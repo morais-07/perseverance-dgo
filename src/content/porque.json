@@ -1,0 +1,45 @@
+{
+  "titulo": "O Porquê da Escolha",
+  "caminhoTitulo": "Como chegámos ao Perseverance",
+  "caminho": [
+    {
+      "passo": "01",
+      "titulo": "Primeiro, um rover de raiz",
+      "texto": "No início queríamos criar um rover de raiz: pegar em vários rovers existentes e usar componentes distintos de cada um para criar um novo."
+    },
+    {
+      "passo": "02",
+      "titulo": "Demasiado trabalho para o tempo",
+      "texto": "Isso daria muito trabalho e o tempo é apertado. Decidimos por isso modelar um rover que já existe."
+    },
+    {
+      "passo": "03",
+      "titulo": "NASA, não ESA",
+      "texto": "Considerámos o ExoMars da ESA, mas ainda não foi lançado e há pouca informação disponível. Optámos por um rover da NASA."
+    },
+    {
+      "passo": "04",
+      "titulo": "Perseverance, não Curiosity",
+      "texto": "Entre os da NASA, pensámos também no Curiosity, mas escolhemos o Perseverance por ser o mais recente."
+    }
+  ],
+  "razoesTitulo": "O que o Perseverance tem para nós",
+  "texto": [
+    "O Perseverance junta, numa só máquina, mobilidade, mecanismos, energia, controlo térmico e instrumentação. Cada uma destas áreas dá um subsistema que se modela e otimiza de forma autónoma — o que se adequa a uma decomposição em módulos e à divisão do trabalho por três pessoas.",
+    "Existe documentação pública e fiável da NASA/JPL (dimensões, massas, fotografias e um modelo 3D de domínio público) e a sua suspensão é uma candidata natural à otimização pedida na UC."
+  ],
+  "razoes": [
+    { "titulo": "Diversidade de engenharia", "texto": "Mecanismos, estruturas, energia e instrumentação no mesmo objeto." },
+    { "titulo": "Decomposição natural", "texto": "Subsistemas independentes, com interfaces claras." },
+    { "titulo": "Informação pública", "texto": "Documentação, imagens e modelo de referência de domínio público." },
+    { "titulo": "Potencial de otimização", "texto": "Uma suspensão com cargas bem definidas." }
+  ],
+  "comparacaoTitulo": "Alternativas que considerámos",
+  "colunas": ["Alternativa", "Porquê", "Decisão"],
+  "alternativas": [
+    { "nome": "Rover de raiz (componentes de vários rovers)", "motivo": "Demasiado trabalho para o tempo disponível.", "decisao": "Descartado", "vencedora": false },
+    { "nome": "ExoMars (ESA)", "motivo": "Ainda não foi lançado e há pouca informação disponível.", "decisao": "Descartado", "vencedora": false },
+    { "nome": "Curiosity (NASA)", "motivo": "Também considerado; o Perseverance é mais recente.", "decisao": "Descartado", "vencedora": false },
+    { "nome": "Perseverance (NASA)", "motivo": "O mais recente, com documentação pública da NASA e subsistemas bem separados.", "decisao": "Escolhido", "vencedora": true }
+  ]
+}

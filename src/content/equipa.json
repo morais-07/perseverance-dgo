@@ -1,0 +1,103 @@
+{
+  "titulo": "Quem constrói o rover",
+  "texto": "Três pessoas, sete partes e um semestre.",
+  "membros": [
+    {
+      "nome": "David Coelho",
+      "funcao": "Modelação",
+      "mec": "102612",
+      "email": "david.coelho@ua.pt",
+      "subsistemas": [
+        "Braço",
+        "Broca",
+        "MMRTG"
+      ],
+      "foto": {
+        "kind": "image",
+        "file": "media/equipa/david_coelho.webp",
+        "desc": "Fotografia de David Coelho (retrato, fundo neutro).",
+        "size": "800×1000",
+        "alt": "Fotografia de David Coelho."
+      }
+    },
+    {
+      "nome": "Nuno Mourinha",
+      "funcao": "Modelação",
+      "mec": "119610",
+      "email": "nuno.mourinha@ua.pt",
+      "subsistemas": [
+        "Suspensão",
+        "Rodas"
+      ],
+      "foto": {
+        "kind": "image",
+        "file": "media/equipa/nuno_mourinha.webp",
+        "desc": "Fotografia de Nuno Mourinha (retrato, fundo neutro).",
+        "size": "800×1000",
+        "alt": "Fotografia de Nuno Mourinha."
+      }
+    },
+    {
+      "nome": "Rafael Morais",
+      "funcao": "Modelação e website",
+      "mec": "112731",
+      "email": "rafaelbarretomorais@ua.pt",
+      "subsistemas": [
+        "Mastro (câmara)",
+        "Chassis",
+        "Website"
+      ],
+      "foto": {
+        "kind": "image",
+        "file": "media/equipa/rafael_morais.webp",
+        "desc": "Fotografia de Rafael Morais (retrato, fundo neutro).",
+        "size": "800×1000",
+        "alt": "Fotografia de Rafael Morais."
+      }
+    }
+  ],
+  "matrizTitulo": "Matriz de contribuições",
+  "matrizNota": "● responsável · ○ apoio. Cada elemento é o responsável pelos seus subsistemas; os outros dois dão apoio.",
+  "matrizColunas": [
+    "Mastro (câmara)",
+    "Chassis",
+    "Braço",
+    "Broca",
+    "MMRTG",
+    "Suspensão",
+    "Rodas",
+    "Website"
+  ],
+  "matriz": [
+    [
+      "○",
+      "○",
+      "●",
+      "●",
+      "●",
+      "○",
+      "○",
+      "○"
+    ],
+    [
+      "○",
+      "○",
+      "○",
+      "○",
+      "○",
+      "●",
+      "●",
+      "○"
+    ],
+    [
+      "●",
+      "●",
+      "○",
+      "○",
+      "○",
+      "○",
+      "○",
+      "●"
+    ]
+  ]
+}

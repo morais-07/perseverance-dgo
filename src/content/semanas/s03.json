@@ -1,0 +1,20 @@
+{
+  "semana": 3,
+  "data": "1 out",
+  "fase": "M0",
+  "titulo": "Retomar a ideia",
+  "tema": "Estratégias computacionais em modelação 3D.",
+  "texto": [
+    "Retomámos a ideia: já modelámos bastante e fizemos uma proposta simples de website.",
+    "No slide mostrámos o braço frontal, o chassis e peças da suspensão já modelados, e a primeira proposta do website."
+  ],
+  "etiqueta": null,
+  "apresentacao": false,
+  "slot": {
+    "kind": "image",
+    "file": "media/m0/slide_semana_03.webp",
+    "desc": "Slide da semana 3 (apresentação de 1 slide, 3 minutos).",
+    "size": "1920×1080",
+    "alt": "Slide da semana 3: update semanal com o braço frontal, o chassis, peças da suspensão e a proposta de website."
+  }
+}

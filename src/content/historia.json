@@ -1,0 +1,163 @@
+{
+  "titulo": "Uma máquina enviada a procurar vida passada",
+  "intro": "O Perseverance é o rover da missão Mars 2020 da NASA. Pousou na cratera Jezero para estudar uma antiga região de delta e recolher amostras de rocha que, no futuro, possam regressar à Terra. É esta máquina — 1025 kg de mobilidade, mecanismos, energia, controlo térmico e instrumentação — que vamos modelar.",
+  "timelineTitulo": "Cronologia da missão",
+  "eventos": [
+    {
+      "data": "2012-12-04",
+      "rotulo": "4 dez 2012",
+      "titulo": "A missão é anunciada",
+      "texto": "A NASA anuncia o rover de 2020, que reutiliza a arquitetura de voo do Curiosity para reduzir custo e risco."
+    },
+    {
+      "data": "2020-07-30",
+      "rotulo": "30 jul 2020",
+      "titulo": "Lançamento",
+      "texto": "Lançamento num foguetão Atlas V 541 a partir de Cabo Canaveral."
+    },
+    {
+      "data": "2021-02-18",
+      "rotulo": "18 fev 2021",
+      "titulo": "Aterragem na cratera Jezero",
+      "texto": "Após o «sky crane», o rover toca no solo marciano. Este dia é o Sol 0 da missão.",
+      "imagem": {
+        "file": "media/historia/jezero_delta.webp",
+        "alt": "Mosaico panorâmico do delta da cratera Jezero, o local de aterragem.",
+        "credito": "Imagem: NASA/JPL-Caltech/ASU/MSSS"
+      }
+    },
+    {
+      "data": "2021-04-19",
+      "rotulo": "19 abr 2021",
+      "titulo": "Primeiro voo do Ingenuity",
+      "texto": "O helicóptero Ingenuity realiza o primeiro voo motorizado e controlado noutro planeta.",
+      "imagem": {
+        "file": "media/historia/ingenuity_first_flight.webp",
+        "alt": "Sequência do primeiro voo do Ingenuity captada pela Mastcam-Z do Perseverance.",
+        "credito": "Imagem: NASA/JPL-Caltech/ASU/MSSS"
+      }
+    },
+    {
+      "data": "2021-09-01",
+      "rotulo": "1 set 2021",
+      "titulo": "Primeira amostra de rocha",
+      "texto": "O rover extrai o primeiro núcleo de rocha («Montdenier», da rocha «Rochette») ao Sol 190. A primeira tentativa, em agosto, tinha ficado sem amostra de rocha."
+    },
+    {
+      "data": "2024-07-21",
+      "rotulo": "jul 2024",
+      "titulo": "Cheyava Falls e Sapphire Canyon",
+      "texto": "Uma rocha com «manchas de leopardo» e veios brancos é amostrada; o núcleo recebe o nome Sapphire Canyon e é um dos mais discutidos pela comunidade científica.",
+      "imagem": {
+        "file": "media/historia/cheyava_falls_selfie.webp",
+        "alt": "Autorretrato do Perseverance junto à rocha Cheyava Falls.",
+        "credito": "Imagem: NASA/JPL-Caltech/MSSS"
+      }
+    },
+    {
+      "data": "2024-12-12",
+      "rotulo": "dez 2024",
+      "titulo": "Chegada ao bordo da cratera",
+      "texto": "O Perseverance chega ao bordo da cratera Jezero e começa a explorar um terreno geologicamente novo.",
+      "imagem": {
+        "file": "media/historia/jezero_rim.webp",
+        "alt": "Vista panorâmica do bordo da cratera Jezero.",
+        "credito": "Imagem: NASA/JPL-Caltech"
+      }
+    }
+  ],
+  "numeros": [
+    {
+      "valor": 1025,
+      "unidade": "kg",
+      "rotulo": "massa do rover"
+    },
+    {
+      "valor": 3,
+      "unidade": "m",
+      "rotulo": "de comprimento"
+    },
+    {
+      "valor": 6,
+      "unidade": "",
+      "rotulo": "rodas, cada uma com motor"
+    },
+    {
+      "valor": 7,
+      "unidade": "",
+      "rotulo": "instrumentos científicos"
+    },
+    {
+      "valor": 43,
+      "unidade": "",
+      "rotulo": "tubos de amostra (5 de controlo)"
+    }
+  ],
+  "edl": {
+    "titulo": "Sete minutos de terror",
+    "texto": "A entrada, descida e aterragem (EDL) acontece mais depressa do que um sinal de rádio demora a chegar da Terra: quando a Terra sabe que a cápsula entrou na atmosfera, tudo já terminou. Tudo tem de funcionar sozinho.",
+    "passos": [
+      {
+        "rotulo": "Entrada",
+        "valor": "≈ 19 500 km/h",
+        "texto": "A cápsula entra na atmosfera marciana protegida pelo escudo térmico."
+      },
+      {
+        "rotulo": "Paraquedas",
+        "valor": "supersónico",
+        "texto": "O paraquedas abre-se para travar a descida."
+      },
+      {
+        "rotulo": "Navegação Relativa ao Terreno",
+        "valor": "TRN",
+        "texto": "Uma câmara compara o solo com um mapa a bordo e escolhe uma zona segura."
+      },
+      {
+        "rotulo": "Sky crane",
+        "valor": "≈ 20 m",
+        "texto": "O estágio de descida baixa o rover com cabos até tocar no solo."
+      }
+    ],
+    "video": {
+      "titulo": "Vídeo oficial da aterragem (NASA/JPL-Caltech)",
+      "link": "https://www.youtube.com/watch?v=lFiTjZDOekg",
+      "nota": "Ligação externa — o vídeo não está guardado no repositório. O primeiro vídeo de alta definição de uma aterragem noutro planeta."
+    }
+  },
+  "fontesTitulo": "Fontes",
+  "fontes": [
+    {
+      "rotulo": "NASA — Rover Components (massa, dimensões, rodas, braço, MMRTG, tubos)",
+      "url": "https://science.nasa.gov/mission/mars-2020-perseverance/rover-components/"
+    },
+    {
+      "rotulo": "NASA — Science Instruments (7 instrumentos, Mastcam-Z, SuperCam)",
+      "url": "https://science.nasa.gov/mission/mars-2020-perseverance/science-instruments/"
+    },
+    {
+      "rotulo": "NASA/JPL — Confirmation of Montdenier Sample (1 set 2021, Sol 190)",
+      "url": "https://www.jpl.nasa.gov/images/pia24832-confirmation-of-montdenier-sample-in-perseverances-drill/"
+    },
+    {
+      "rotulo": "NASA/JPL — Vídeo da aterragem do Perseverance",
+      "url": "https://www.youtube.com/watch?v=lFiTjZDOekg"
+    },
+    {
+      "rotulo": "NASA 3D Resources — Modelo 3D Mars 2020 Perseverance Rover (domínio público)",
+      "url": "https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Mars%202020%20Perseverance%20Rover"
+    },
+    {
+      "rotulo": "NASA/JPL-Caltech — Photojournal e Science (imagens)",
+      "url": "https://science.nasa.gov/photojournal/"
+    },
+    {
+      "rotulo": "NASA/JPL — Mars 2020 Perseverance Landing Press Kit (entrada, sky crane)",
+      "url": "https://www.jpl.nasa.gov/news/press_kits/mars_2020/landing/mission/"
+    },
+    {
+      "rotulo": "NASA/JPL — Perseverance chega ao topo do bordo da cratera Jezero (dez 2024)",
+      "url": "https://www.jpl.nasa.gov/news/nasas-perseverance-mars-rover-reaches-top-of-jezero-crater-rim/"
+    }
+  ],
+  "verificar": "Datas e valores confirmados em fontes NASA/JPL: anúncio (4 dez 2012), lançamento num Atlas V 541 (30 jul 2020), aterragem (18 fev 2021), primeiro voo do Ingenuity (19 abr 2021), primeira amostra de rocha (1 set 2021), Sapphire Canyon (jul 2024), chegada ao bordo da cratera (dez 2024), entrada a ≈ 19 500 km/h e sky crane a ≈ 20 m."
+}

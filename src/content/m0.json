@@ -1,0 +1,48 @@
+{
+  "codigo": "M0",
+  "titulo": "Modelação e montagem do rover",
+  "periodo": "17 set — 8 out 2026 · peso 20 %",
+  "intro": "No M0 modelamos tudo e montamos o rover completo, para preparar a fase seguinte, a parametrização. A montagem completa fica no final desta fase. Detalhes ou peças em falta ainda podem ser modelados no M1 e no M2.",
+  "semanasTitulo": "M0 · semana a semana",
+  "estrategiaTitulo": "Estratégia de modelação",
+  "estrategia": [
+    { "titulo": "Estratégia de modelação", "texto": "[FALTA: estratégia de modelação seguida (ex.: top-down vs bottom-up) e porquê]", "etiqueta": null },
+    { "titulo": "Esqueleto mestre", "texto": "[FALTA: esboço de layout com os pontos de ligação entre os subsistemas]", "etiqueta": null },
+    { "titulo": "Convenção de nomes", "texto": "[FALTA: convenção de nomes usada nos ficheiros e componentes]", "etiqueta": null },
+    { "titulo": "Partilha de ficheiros", "texto": "[FALTA: como a equipa partilhou os ficheiros]", "etiqueta": null }
+  ],
+  "inversaTitulo": "Levantamento de forma e superfícies",
+  "inversa": {
+    "texto": "[FALTA: como obtivemos a forma a partir das referências e como passámos de superfícies a sólido]",
+    "slot": {
+      "kind": "image",
+      "file": "media/m0/levantamento_de_forma.webp",
+      "desc": "levantamento de forma: imagem de referência sobreposta ao esboço ou às superfícies no Fusion.",
+      "size": "1600×900",
+      "alt": "Fotografia de referência sobreposta a superfícies modeladas no Fusion."
+    }
+  },
+  "montagemTitulo": "A montagem completa",
+  "montagemTexto": "O rover completo, montado a partir dos subsistemas, fecha o M0. Enquanto o nosso CAD não estiver montado e exportado, o visualizador mostra o modelo provisório da NASA: roda, aproxima, isola cada subsistema ou explode a montagem.",
+  "montagemFalta": "[FALTA: o CAD completo montado em Fusion, exportado para o visualizador (ver docs/exportar-modelo.md)]",
+  "processoTitulo": "Análise do processo",
+  "fluxo": [
+    { "codigo": "01", "rotulo": "Pesquisa" },
+    { "codigo": "02", "rotulo": "Esboços de referência" },
+    { "codigo": "03", "rotulo": "Modelação de peças" },
+    { "codigo": "04", "rotulo": "Montagem de subsistemas" },
+    { "codigo": "05", "rotulo": "Montagem geral" },
+    { "codigo": "06", "rotulo": "Renders" }
+  ],
+  "divisaoTitulo": "Divisão do trabalho",
+  "divisaoNota": "Cada elemento é o responsável pelos seus subsistemas; os outros dois dão apoio.",
+  "riscosTitulo": "Riscos e mitigação",
+  "riscos": [
+    { "risco": "[FALTA: riscos identificados pela equipa]", "mitigacao": "[FALTA: como foram mitigados]" }
+  ],
+  "ferramentasTitulo": "Ferramentas",
+  "ferramentas": [
+    { "tipo": "Modelação", "nome": "Fusion" },
+    { "tipo": "Renders", "nome": "Blender" }
+  ]
+}

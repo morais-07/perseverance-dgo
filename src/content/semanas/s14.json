@@ -1,0 +1,20 @@
+{
+  "semana": 14,
+  "data": "17 dez",
+  "fase": "M2",
+  "titulo": "Apresentação final e balanço",
+  "tema": "Balanço da UC. Apresentação final M2 e entrega do projeto da fase 2 (40 %), com a versão final do website e análise global do semestre.",
+  "texto": [
+    "[A CONFIRMAR: resultado final, lições aprendidas e próximos passos]",
+    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+  ],
+  "etiqueta": null,
+  "apresentacao": true,
+  "slot": {
+    "kind": "image",
+    "file": "media/m2/semana_14.webp",
+    "desc": "Imagem, GIF ou captura da semana 14: apresentação final e balanço. Pode ser CAD, esboço, simulação ou foto de trabalho.",
+    "size": "1600×900",
+    "alt": "Trabalho da equipa na semana 14: apresentação final e balanço."
+  }
+}

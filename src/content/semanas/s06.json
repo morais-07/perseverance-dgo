@@ -1,0 +1,20 @@
+{
+  "semana": 6,
+  "data": "22 out",
+  "fase": "M1",
+  "titulo": "Integração de simulação estrutural",
+  "tema": "Integração de simulação numérica estrutural.",
+  "texto": [
+    "[A CONFIRMAR: peça simulada, malha, cargas e condições de fronteira]",
+    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+  ],
+  "etiqueta": null,
+  "apresentacao": false,
+  "slot": {
+    "kind": "image",
+    "file": "media/m1/semana_06.webp",
+    "desc": "Imagem, GIF ou captura da semana 6: integração de simulação estrutural. Pode ser CAD, esboço, simulação ou foto de trabalho.",
+    "size": "1600×900",
+    "alt": "Trabalho da equipa na semana 6: integração de simulação estrutural."
+  }
+}

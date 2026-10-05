@@ -1,0 +1,20 @@
+{
+  "semana": 5,
+  "data": "15 out",
+  "fase": "M1",
+  "titulo": "Design paramétrico, algorítmico e generativo",
+  "tema": "Design paramétrico, algorítmico e generativo. Scripting em CAD.",
+  "texto": [
+    "[A CONFIRMAR: parâmetros definidos e primeiros scripts ou design tables]",
+    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+  ],
+  "etiqueta": null,
+  "apresentacao": false,
+  "slot": {
+    "kind": "image",
+    "file": "media/m1/semana_05.webp",
+    "desc": "Imagem, GIF ou captura da semana 5: design paramétrico, algorítmico e generativo. Pode ser CAD, esboço, simulação ou foto de trabalho.",
+    "size": "1600×900",
+    "alt": "Trabalho da equipa na semana 5: design paramétrico, algorítmico e generativo."
+  }
+}

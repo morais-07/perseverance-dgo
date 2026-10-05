@@ -1,0 +1,158 @@
+{
+  "codigo": "M2",
+  "titulo": "Otimização da suspensão",
+  "periodo": "12 nov — 17 dez 2026 · peso 40 %",
+  "intro": "O M2 não tem montagem: é só otimização. Escolhemos a suspensão e vamos procurar a forma mais leve que continua a resistir às cargas.",
+  "otimizacao": {
+    "titulo": "Design generativo e otimização",
+    "pecaCaso": "A suspensão do rover.",
+    "problema": [
+      {
+        "rotulo": "Espaço de projeto",
+        "valor": "[A CONFIRMAR: volume máximo permitido e regiões a preservar]"
+      },
+      {
+        "rotulo": "Cargas",
+        "valor": "[A CONFIRMAR: casos de carga — ex.: obstáculo na roda dianteira, aterragem]"
+      },
+      {
+        "rotulo": "Restrições",
+        "valor": "[A CONFIRMAR: fixações, tensão máxima admissível, deslocamento máximo, material]"
+      },
+      {
+        "rotulo": "Objetivo",
+        "valor": "Minimizar a massa respeitando os limites de tensão e deslocamento."
+      }
+    ],
+    "iteracoesTitulo": "As gerações",
+    "iteracoes": [
+      {
+        "gen": 1,
+        "massa_kg": null,
+        "slotFile": "media/m2/gen_01.webp"
+      },
+      {
+        "gen": 2,
+        "massa_kg": null,
+        "slotFile": "media/m2/gen_02.webp"
+      },
+      {
+        "gen": 3,
+        "massa_kg": null,
+        "slotFile": "media/m2/gen_03.webp"
+      },
+      {
+        "gen": 4,
+        "massa_kg": null,
+        "slotFile": "media/m2/gen_04.webp"
+      },
+      {
+        "gen": 5,
+        "massa_kg": null,
+        "slotFile": "media/m2/gen_05.webp"
+      },
+      {
+        "gen": 6,
+        "massa_kg": null,
+        "slotFile": "media/m2/gen_06.webp"
+      }
+    ],
+    "iteracoesNota": "Cada geração é uma imagem; a massa de cada geração (em kg) preenche o gráfico. Edita src/content/m2.json e substitui null pelos valores reais.",
+    "resultadosTitulo": "Resultados",
+    "resultados": [
+      {
+        "rotulo": "Massa inicial",
+        "valor": "[A CONFIRMAR]",
+        "unidade": "kg"
+      },
+      {
+        "rotulo": "Massa otimizada",
+        "valor": "[A CONFIRMAR]",
+        "unidade": "kg"
+      },
+      {
+        "rotulo": "Redução de massa",
+        "valor": "[A CONFIRMAR]",
+        "unidade": "%"
+      },
+      {
+        "rotulo": "Tensão máxima (von Mises)",
+        "valor": "[A CONFIRMAR]",
+        "unidade": "MPa"
+      },
+      {
+        "rotulo": "Coeficiente de segurança",
+        "valor": "[A CONFIRMAR]",
+        "unidade": "—"
+      }
+    ],
+    "posProcessamento": {
+      "titulo": "Pós-processamento",
+      "texto": "[A CONFIRMAR: como a forma otimizada foi suavizada e convertida em geometria fabricável; restrições de fabrico consideradas.]",
+      "slot": {
+        "kind": "image",
+        "file": "media/m2/pos_processamento.webp",
+        "desc": "Forma otimizada bruta (malha) ao lado da geometria CAD final, suavizada e fabricável.",
+        "size": "1600×900",
+        "alt": "Forma otimizada bruta e geometria CAD final fabricável."
+      }
+    }
+  },
+  "renders": {
+    "titulo": "Renders finais",
+    "slots": [
+      {
+        "kind": "image",
+        "file": "media/m2/render_final_01.webp",
+        "desc": "Render principal do conjunto final, vista de três quartos.",
+        "size": "1920×1080",
+        "alt": "Render do rover completo em vista de três quartos."
+      },
+      {
+        "kind": "image",
+        "file": "media/m2/render_final_02.webp",
+        "desc": "Render do subsistema otimizado em contexto, na montagem.",
+        "size": "1920×1080",
+        "alt": "Render do subsistema otimizado integrado na montagem."
+      },
+      {
+        "kind": "image",
+        "file": "media/m2/render_final_03.webp",
+        "desc": "Render em vista explodida do conjunto final.",
+        "size": "1920×1080",
+        "alt": "Render em vista explodida do conjunto final."
+      }
+    ],
+    "video": {
+      "kind": "video",
+      "file": "media/m2/turntable_final.mp4",
+      "desc": "[VÍDEO: turntable do conjunto final — a gravar]",
+      "size": "1920×1080 · 10–20 s · MP4 (H.264) + poster",
+      "alt": "Vídeo com o conjunto final a rodar sobre si próprio."
+    }
+  },
+  "licoes": {
+    "titulo": "Lições aprendidas",
+    "correu": [
+      "[A CONFIRMAR: o que correu bem]"
+    ],
+    "mudariamos": [
+      "[A CONFIRMAR: o que mudaríamos]"
+    ],
+    "proximos": [
+      "[A CONFIRMAR: próximos passos — ex.: subsistemas extra (ACA, antena de ganho alto)]"
+    ]
+  },
+  "wip": {
+    "ativo": true,
+    "estado": "Em desenvolvimento",
+    "texto": "Esta fase ainda não está feita. Quando estiver, esta secção passa a mostrar a otimização da suspensão e o seu resultado. Para já, fica o plano.",
+    "titulo": "O que vamos fazer em M2",
+    "planeado": [
+      "Definir o problema de otimização da suspensão: espaço de projeto, cargas, restrições e objetivo.",
+      "Aplicar otimização estrutural e topológica, integrada numa estratégia generativa.",
+      "Pós-processar a solução até uma geometria fabricável.",
+      "Apresentar o resultado da otimização e compará-lo com o ponto de partida."
+    ]
+  }
+}

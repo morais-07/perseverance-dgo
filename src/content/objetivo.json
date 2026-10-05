@@ -1,0 +1,57 @@
+{
+  "titulo": "O que pretendemos fazer",
+  "texto": "Modelar o Perseverance em CAD, parametrizar parte dele, otimizar a suspensão e contar tudo aqui, como num relatório. O rover é o pretexto; o processo é o resultado.",
+  "criteriosTitulo": "Como sabemos que lá chegámos",
+  "cartoes": [
+    {
+      "codigo": "OBJ-01",
+      "fase": "M0",
+      "titulo": "Modelar",
+      "texto": "Cada elemento do grupo modela um ou mais subsistemas e, no final, montamos tudo numa assemblagem completa do rover.",
+      "criterios": [
+        "Todos os subsistemas modelados e o rover completo montado no fim do M0.",
+        "Detalhes ou peças em falta podem ser acrescentados no M1 e no M2.",
+        "A fidelidade não foi fixada com os docentes: a UC é muito aberta (podíamos até desenhar o rover para impressão 3D)."
+      ]
+    },
+    {
+      "codigo": "OBJ-02",
+      "fase": "M1",
+      "titulo": "Parametrizar",
+      "texto": "Parametrizar uma parte do rover, para poder variar a sua geometria de forma controlada. Ainda estamos a escolher o quê.",
+      "criterios": [
+        "Parâmetros definidos e ligados à geometria.",
+        "Variantes geradas a partir desses parâmetros."
+      ]
+    },
+    {
+      "codigo": "OBJ-03",
+      "fase": "M2",
+      "titulo": "Otimizar a suspensão",
+      "texto": "Mais à frente, aplicar otimização à suspensão: reduzir massa mantendo a resistência.",
+      "criterios": [
+        "Problema formulado: espaço de projeto, cargas, restrições e objetivo.",
+        "Resultado da otimização apresentado e comparado com o ponto de partida."
+      ]
+    },
+    {
+      "codigo": "OBJ-04",
+      "fase": "Website",
+      "titulo": "Apresentar como um relatório",
+      "texto": "Este website é o nosso relatório: conta a história do projeto ao longo das semanas, com as decisões, as dificuldades e o resultado.",
+      "criterios": [
+        "Memória descritiva semana a semana, com o slide de cada apresentação.",
+        "Modelo 3D explorável no próprio website."
+      ]
+    },
+    {
+      "codigo": "OBJ-05",
+      "fase": "Renders",
+      "titulo": "Realizar renders",
+      "texto": "Fazer renders do rover e dos subsistemas para mostrar o nosso trabalho com mais nitidez no website.",
+      "criterios": [
+        "Renders dos subsistemas e do rover completo no website."
+      ]
+    }
+  ]
+}

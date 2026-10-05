@@ -1,0 +1,77 @@
+{
+  "titulo": "Perseverance.",
+  "tituloLinha2": "Peça a peça.",
+  "subtitulo": "Modelação, análise e otimização do rover da missão Mars 2020, subsistema a subsistema.",
+  "curso": "DGO — Design Generativo e Otimização",
+  "instituicao": "Universidade de Aveiro · Departamento de Engenharia Mecânica",
+  "ano": "2026/27",
+  "docentes": "Docentes: João Dias-de-Oliveira (regente) e António Gil d'Orey Andrade Campos",
+  "modeloProvisorio": "Modelo provisório — NASA",
+  "botoes": {
+    "explorar": "Explorar o modelo 3D",
+    "descarregar": "Descarregar CAD"
+  },
+  "nav": [
+    {
+      "id": "inicio",
+      "rotulo": "Início"
+    },
+    {
+      "id": "historia",
+      "rotulo": "História e Contexto"
+    },
+    {
+      "id": "objetivo",
+      "rotulo": "Objetivo"
+    },
+    {
+      "id": "projeto",
+      "rotulo": "O Nosso Projeto"
+    },
+    {
+      "id": "equipa",
+      "rotulo": "Equipa"
+    }
+  ],
+  "subnav": [
+    {
+      "id": "porque",
+      "rotulo": "O Porquê da Escolha"
+    },
+    {
+      "id": "m0",
+      "rotulo": "M0"
+    },
+    {
+      "id": "m1",
+      "rotulo": "M1"
+    },
+    {
+      "id": "m2",
+      "rotulo": "M2"
+    }
+  ],
+  "telemetria": {
+    "rotulo": "TELEMETRIA",
+    "rotacao": "ROT",
+    "zoom": "ZOOM",
+    "explosao": "EXPL"
+  },
+  "download": {
+    "ficheiro": "downloads/perseverance_cad.zip",
+    "formato": "[A CONFIRMAR: formato]",
+    "tamanho": "[A CONFIRMAR: tamanho]",
+    "disponivel": false,
+    "nota": "O pacote CAD ainda não existe. Quando o ficheiro for colocado em public/downloads/perseverance_cad.zip, este botão passa a descarregá-lo."
+  },
+  "rodape": {
+    "texto": "Projeto de grupo da UC 43449 — Design Generativo e Otimização · Mestrado em Engenharia Aeroespacial · Universidade de Aveiro.",
+    "creditos": "Modelo 3D provisório e imagens: NASA/JPL-Caltech (domínio público). O logótipo da NASA não é utilizado. O logótipo DGO pertence à unidade curricular.",
+    "dica": "Dica: escreve «dare» em qualquer ponto da página."
+  },
+  "sobre": {
+    "rotulo": "Sobre este projeto",
+    "texto": "Este website é o relatório do nosso projeto de grupo na unidade curricular **Design Generativo e Otimização** (Mestrado em Engenharia Aeroespacial, Universidade de Aveiro). Vamos modelar em CAD o rover Perseverance, da NASA, parametrizar uma parte dele e otimizar a sua suspensão. Aqui contamos, semana a semana, como lá chegámos.",
+    "uc": "UC 43449 · Design Generativo e Otimização"
+  }
+}

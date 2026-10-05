@@ -1,0 +1,147 @@
+{
+  "modeloProvisorio": {
+    "ficheiro": "models/perseverance_nasa.glb",
+    "origem": "https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Mars%202020%20Perseverance%20Rover",
+    "licenca": "Domínio público — NASA/JPL-Caltech (Brian Kumanchik)"
+  },
+  "modeloFinal": {
+    "ficheiro": "models/perseverance_dgo.glb",
+    "nota": "Quando este ficheiro existir em public/models/, o site passa a usá-lo no lugar do modelo provisório."
+  },
+  "subsistemas": [
+    {
+      "id": "mastro",
+      "cota": { "label": "≈ 2 m", "dir": "v" },
+      "n": 1,
+      "codigo": "PRV-MST-001",
+      "nome": "Mastro e câmara principal",
+      "nomeReal": "Remote Sensing Mast · Mastcam-Z (+ SuperCam)",
+      "cor": "#FF7A00",
+      "explode": [0, 1, 0.15],
+      "funcao": "Eleva as câmaras e o laser de análise até à altura de um olho humano para ver o terreno à frente do rover, planear percursos e escolher alvos científicos.",
+      "componentes": ["Cabeça do mastro", "Mastcam-Z (duas câmaras com zoom)", "SuperCam (câmara, laser e espectrómetros)", "Câmaras de navegação (NavCams)"],
+      "numeros": [
+        { "valor": "≈ 2", "unidade": "m", "rotulo": "altura das câmaras ao solo" },
+        { "valor": "24,2", "unidade": "cm", "rotulo": "separação estereoscópica da Mastcam-Z" },
+        { "valor": "> 7", "unidade": "m", "rotulo": "distância de análise da SuperCam" }
+      ],
+      "simplificacoes": ["[A CONFIRMAR: simplificações e pressupostos de modelação do mastro]"],
+      "nodesNasa": ["Cylinder", "probe", "base"]
+    },
+    {
+      "id": "braco",
+      "cota": { "label": "2,1 m", "dir": "h" },
+      "n": 2,
+      "codigo": "PRV-ARM-001",
+      "nome": "Braço robótico e broca",
+      "nomeReal": "Robotic Arm · Turret · coring drill",
+      "cor": "#FFC000",
+      "explode": [0, 0.25, 1],
+      "funcao": "Posiciona a torre de instrumentos junto às rochas e faz a perfuração: recolhe núcleos de rocha para os tubos de amostra e prepara superfícies para análise.",
+      "componentes": ["Braço com cinco articulações", "Torre (turret)", "Broca de carotagem", "PIXL e SHERLOC", "Câmara WATSON"],
+      "numeros": [
+        { "valor": "2,1", "unidade": "m", "rotulo": "comprimento do braço" },
+        { "valor": "5", "unidade": "", "rotulo": "graus de liberdade" },
+        { "valor": "3", "unidade": "", "rotulo": "tipos de broca (carotagem, regolito, abrasão)" }
+      ],
+      "simplificacoes": ["[A CONFIRMAR: simplificações e pressupostos de modelação do braço e da torre]"],
+      "nodesNasa": ["arm.001", "arm.003", "arm_01_joint", "arm_02_joint", "arm_cable_etc", "calibration_target", "calibration_target_bracket"]
+    },
+    {
+      "id": "suspensao",
+      "cota": { "label": "Ø 52,5 cm", "dir": "h" },
+      "n": 3,
+      "codigo": "PRV-SUS-001",
+      "nome": "Suspensão e rodas",
+      "nomeReal": "Rocker-bogie · 6 rodas de Ø 52,5 cm",
+      "cor": "#FF9A3D",
+      "explode": [0, -1, 0],
+      "funcao": "Mantém as seis rodas em contacto com o solo em terreno irregular, sem molas: o diferencial e o braço oscilante (rocker-bogie) distribuem a carga e permitem trepar obstáculos do tamanho de uma roda.",
+      "componentes": ["Braços oscilantes (rocker)", "Bogies", "Diferencial", "Seis rodas com motor próprio"],
+      "numeros": [
+        { "valor": "Ø 52,5", "unidade": "cm", "rotulo": "diâmetro da roda" },
+        { "valor": "6", "unidade": "", "rotulo": "rodas, cada uma com motor" },
+        { "valor": "1,65", "unidade": "m", "rotulo": "avanço por volta completa da roda" }
+      ],
+      "simplificacoes": ["[A CONFIRMAR: simplificações — ex.: perfil das garras da roda, cablagem]"],
+      "nodesNasa": ["Wheels_objs", "suspension"],
+      "candidataOtimizacao": true
+    },
+    {
+      "id": "chassis",
+      "cota": { "label": "3 m", "dir": "h" },
+      "n": 4,
+      "codigo": "PRV-CHS-001",
+      "nome": "Chassis",
+      "nomeReal": "Warm Electronics Box · Rover Equipment Deck",
+      "cor": "#E8E4DA",
+      "explode": [0, 0.28, 0],
+      "funcao": "É o corpo do rover: abriga a eletrónica e as baterias numa caixa mantida quente (Warm Electronics Box) e serve de plataforma de montagem dos restantes subsistemas.",
+      "componentes": ["Warm Electronics Box", "Rover Equipment Deck", "Câmaras de perigo (HazCams)", "Painéis e suportes"],
+      "numeros": [
+        { "valor": "3", "unidade": "m", "rotulo": "comprimento total do rover" },
+        { "valor": "2,7", "unidade": "m", "rotulo": "largura total do rover" },
+        { "valor": "1025", "unidade": "kg", "rotulo": "massa total do rover" }
+      ],
+      "simplificacoes": ["[A CONFIRMAR: simplificações e pressupostos de modelação do chassis]"],
+      "nodesNasa": ["Body", "Body.002", "Body.003", "Body_Parts", "Body_Parts.001", "part_01", "box", "lab", "hazcams_front", "hazcams_front_cover", "hazcams_rear", "hazcams_rear_cover_l", "hazcams_rear_cover_r", "hazcams_rear_wiring", "microphones", "Empty", "Name_Chips", "RIMFAX", "Up_Look_Camera", "Down_Look_Camera", "pan_end cover", "Armature"]
+    },
+    {
+      "id": "mmrtg",
+      "n": 5,
+      "codigo": "PRV-RTG-001",
+      "nome": "Gerador de plutónio",
+      "nomeReal": "MMRTG — Multi-Mission Radioisotope Thermoelectric Generator",
+      "cor": "#C44A00",
+      "explode": [0, 0.15, -1],
+      "funcao": "Converte o calor do decaimento radioativo do plutónio-238 em eletricidade e fornece calor ao rover, o que o torna independente da luz solar.",
+      "componentes": ["Fonte de calor de dióxido de plutónio", "Termopares", "Aletas de dissipação", "Baterias recarregáveis (no corpo do rover)"],
+      "numeros": [
+        { "valor": "≈ 110", "unidade": "W", "rotulo": "potência elétrica no lançamento" },
+        { "valor": "≈ 45", "unidade": "kg", "rotulo": "massa do gerador" },
+        { "valor": "4,8", "unidade": "kg", "rotulo": "dióxido de plutónio" }
+      ],
+      "simplificacoes": ["[A CONFIRMAR: simplificações e pressupostos de modelação do MMRTG]"],
+      "nodesNasa": ["rtg"]
+    }
+  ],
+  "extras": [
+    {
+      "id": "antena",
+      "codigo": "PRV-ANT-001",
+      "nome": "Antena de ganho alto",
+      "nomeReal": "High-Gain Antenna",
+      "cor": "#9AA3B2",
+      "explode": [0.3, 0.8, -0.8],
+      "funcao": "[A CONFIRMAR: descrição, se houver tempo para modelar este subsistema extra]",
+      "componentes": ["[A CONFIRMAR]"],
+      "numeros": [],
+      "simplificacoes": [],
+      "nodesNasa": ["antenna_hg", "antenna_uhf", "antenna_lg"]
+    },
+    {
+      "id": "aca",
+      "codigo": "PRV-ACA-001",
+      "nome": "Sistema de amostragem interno",
+      "nomeReal": "Adaptive Caching Assembly (Bit Carousel + Sample Handling Arm)",
+      "cor": "#9AA3B2",
+      "explode": [0, 0, 0],
+      "funcao": "[A CONFIRMAR: descrição, se houver tempo para modelar este subsistema extra]",
+      "componentes": ["[A CONFIRMAR]"],
+      "numeros": [],
+      "simplificacoes": [],
+      "nodesNasa": []
+    }
+  ],
+  "hotspotMapa": {
+    "mastro": "cabeça do mastro",
+    "braco": "torre e broca",
+    "suspensao": "rocker-bogie",
+    "chassis": "caixa quente",
+    "mmrtg": "gerador"
+  },
+  "slotsPorSubsistema": {
+    "render": { "kind": "image", "size": "1600×900", "descPrefix": "Render do subsistema" },
+    "arvore": { "kind": "image", "size": "1200×800", "descPrefix": "Captura da árvore de operações (feature tree) do subsistema" }
+  }
+}

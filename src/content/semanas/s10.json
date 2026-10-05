@@ -1,0 +1,20 @@
+{
+  "semana": 10,
+  "data": "19 nov",
+  "fase": "M2",
+  "titulo": "Otimização estrutural",
+  "tema": "Otimização estrutural em engenharia.",
+  "texto": [
+    "[A CONFIRMAR: otimização dimensional, de forma ou paramétrica; resultados]",
+    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+  ],
+  "etiqueta": null,
+  "apresentacao": false,
+  "slot": {
+    "kind": "image",
+    "file": "media/m2/semana_10.webp",
+    "desc": "Imagem, GIF ou captura da semana 10: otimização estrutural. Pode ser CAD, esboço, simulação ou foto de trabalho.",
+    "size": "1600×900",
+    "alt": "Trabalho da equipa na semana 10: otimização estrutural."
+  }
+}

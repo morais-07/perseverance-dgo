@@ -1,0 +1,20 @@
+{
+  "semana": 9,
+  "data": "12 nov",
+  "fase": "M2",
+  "titulo": "Fundamentos de otimização",
+  "tema": "Fundamentos de otimização.",
+  "texto": [
+    "[A CONFIRMAR: definição do problema de engenharia — peça, objetivo, restrições]",
+    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+  ],
+  "etiqueta": null,
+  "apresentacao": false,
+  "slot": {
+    "kind": "image",
+    "file": "media/m2/semana_09.webp",
+    "desc": "Imagem, GIF ou captura da semana 9: fundamentos de otimização. Pode ser CAD, esboço, simulação ou foto de trabalho.",
+    "size": "1600×900",
+    "alt": "Trabalho da equipa na semana 9: fundamentos de otimização."
+  }
+}

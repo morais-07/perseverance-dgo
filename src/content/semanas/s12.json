@@ -1,0 +1,20 @@
+{
+  "semana": 12,
+  "data": "3 dez",
+  "fase": "M2",
+  "titulo": "Otimização em estratégias generativas",
+  "tema": "Otimização em estratégias generativas.",
+  "texto": [
+    "[A CONFIRMAR: integração da otimização numa estratégia generativa]",
+    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+  ],
+  "etiqueta": null,
+  "apresentacao": false,
+  "slot": {
+    "kind": "image",
+    "file": "media/m2/semana_12.webp",
+    "desc": "Imagem, GIF ou captura da semana 12: otimização em estratégias generativas. Pode ser CAD, esboço, simulação ou foto de trabalho.",
+    "size": "1600×900",
+    "alt": "Trabalho da equipa na semana 12: otimização em estratégias generativas."
+  }
+}

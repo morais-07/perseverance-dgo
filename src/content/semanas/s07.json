@@ -1,0 +1,20 @@
+{
+  "semana": 7,
+  "data": "29 out",
+  "fase": "M1",
+  "titulo": "Design generativo com AGD (Autodesk)",
+  "tema": "AGD Autodesk.",
+  "texto": [
+    "[A CONFIRMAR: primeiros resultados no AGD e comparação com a solução própria]",
+    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+  ],
+  "etiqueta": null,
+  "apresentacao": false,
+  "slot": {
+    "kind": "image",
+    "file": "media/m1/semana_07.webp",
+    "desc": "Imagem, GIF ou captura da semana 7: design generativo com agd (autodesk). Pode ser CAD, esboço, simulação ou foto de trabalho.",
+    "size": "1600×900",
+    "alt": "Trabalho da equipa na semana 7: design generativo com agd (autodesk)."
+  }
+}

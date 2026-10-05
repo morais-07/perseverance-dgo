@@ -1,0 +1,20 @@
+{
+  "semana": 13,
+  "data": "10 dez",
+  "fase": "M2",
+  "titulo": "Pós-processamento de soluções",
+  "tema": "Pós-processamento de soluções.",
+  "texto": [
+    "[A CONFIRMAR: da malha otimizada a geometria CAD fabricável]",
+    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+  ],
+  "etiqueta": null,
+  "apresentacao": false,
+  "slot": {
+    "kind": "image",
+    "file": "media/m2/semana_13.webp",
+    "desc": "Imagem, GIF ou captura da semana 13: pós-processamento de soluções. Pode ser CAD, esboço, simulação ou foto de trabalho.",
+    "size": "1600×900",
+    "alt": "Trabalho da equipa na semana 13: pós-processamento de soluções."
+  }
+}

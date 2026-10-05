@@ -1,0 +1,20 @@
+{
+  "semana": 2,
+  "data": "24 set",
+  "fase": "M0",
+  "titulo": "Dois protótipos de rovers",
+  "tema": "Primitivas, superfícies e modelação direta.",
+  "texto": [
+    "Apresentámos dois protótipos de rovers originais, ainda sem saber que íamos modelar apenas o Perseverance.",
+    "O slide era uma proposta de projeto, «Rover de exploração espacial», com o plano de M0 a M2: modelação base e superfícies, design paramétrico e cinemática, design generativo e otimização."
+  ],
+  "etiqueta": null,
+  "apresentacao": false,
+  "slot": {
+    "kind": "image",
+    "file": "media/m0/slide_semana_02.webp",
+    "desc": "Slide da semana 2 (apresentação de 1 slide, 3 minutos).",
+    "size": "1920×1080",
+    "alt": "Slide da semana 2: proposta de projeto «Rover de exploração espacial», com o plano de M0 a M2 e imagens do rover original em CAD."
+  }
+}

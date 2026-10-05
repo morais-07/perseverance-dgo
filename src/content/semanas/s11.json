@@ -1,0 +1,20 @@
+{
+  "semana": 11,
+  "data": "26 nov",
+  "fase": "M2",
+  "titulo": "Otimização topológica",
+  "tema": "Otimização topológica.",
+  "texto": [
+    "[A CONFIRMAR: otimização topológica da peça escolhida; primeiras gerações]",
+    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+  ],
+  "etiqueta": null,
+  "apresentacao": false,
+  "slot": {
+    "kind": "image",
+    "file": "media/m2/semana_11.webp",
+    "desc": "Imagem, GIF ou captura da semana 11: otimização topológica. Pode ser CAD, esboço, simulação ou foto de trabalho.",
+    "size": "1600×900",
+    "alt": "Trabalho da equipa na semana 11: otimização topológica."
+  }
+}

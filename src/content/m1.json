@@ -1,0 +1,92 @@
+{
+  "codigo": "M1",
+  "titulo": "Parametrização",
+  "periodo": "15 out — 5 nov 2026 · peso 30 %",
+  "intro": "Depois de modelar e montar o rover, o M1 é dedicado às estratégias computacionais em CAD: parametrizar uma parte do rover e explorar as soluções que daí resultam.",
+  "cartoesTitulo": "Os cinco subsistemas",
+  "extrasTitulo": "Extras (se houver tempo)",
+  "extrasNota": "Sem comprometer o layout: estes subsistemas só entram no modelo final se o calendário permitir.",
+  "viewerMini": {
+    "carregar": "Carregar viewer 3D",
+    "provisorio": "Modelo provisório — NASA",
+    "arrastar": "Arrastar para rodar · rolar para ampliar"
+  },
+  "antesDepois": {
+    "titulo": "Antes / depois",
+    "texto": "À esquerda, a fotografia de referência do rover real; à direita, o nosso modelo. Arrasta o cursor — ou usa as setas do teclado — para comparar.",
+    "antes": {
+      "file": "media/historia/selfie_2025.webp",
+      "alt": "Autorretrato do rover Perseverance em Marte (fotografia real).",
+      "credito": "Imagem: NASA/JPL-Caltech/MSSS"
+    },
+    "depois": {
+      "kind": "image",
+      "file": "media/m1/comparacao_render_dgo.webp",
+      "desc": "Render do nosso modelo com o mesmo ângulo e enquadramento da fotografia de referência.",
+      "size": "1600×900",
+      "alt": "Render do modelo CAD da equipa, no mesmo ângulo da fotografia de referência."
+    },
+    "rotuloAntes": "REAL · NASA/JPL",
+    "rotuloDepois": "NOSSO MODELO"
+  },
+  "parametrico": {
+    "titulo": "Modelação paramétrica e design tables",
+    "texto": "[A CONFIRMAR: que parâmetros controlam a geometria (ex.: diâmetro e largura da roda, comprimento do braço oscilante), como foram ligados a uma design table e que variantes foram geradas automaticamente.]",
+    "parametros": [
+      {
+        "nome": "[A CONFIRMAR: parâmetro 1]",
+        "valor": "[A CONFIRMAR]",
+        "unidade": "[ ]"
+      },
+      {
+        "nome": "[A CONFIRMAR: parâmetro 2]",
+        "valor": "[A CONFIRMAR]",
+        "unidade": "[ ]"
+      },
+      {
+        "nome": "[A CONFIRMAR: parâmetro 3]",
+        "valor": "[A CONFIRMAR]",
+        "unidade": "[ ]"
+      }
+    ],
+    "slot": {
+      "kind": "image",
+      "file": "media/m1/design_table.webp",
+      "desc": "Captura da design table e da variação de geometria (duas ou três variantes lado a lado).",
+      "size": "1600×900",
+      "alt": "Variantes da geometria geradas a partir de uma design table."
+    }
+  },
+  "simulacao": {
+    "titulo": "Simulação estrutural e comparação com AGD",
+    "texto": "[A CONFIRMAR: peça simulada, malha, cargas e condições de fronteira; comparação entre a solução paramétrica própria e a solução do Autodesk Generative Design.]",
+    "slots": [
+      {
+        "kind": "image",
+        "file": "media/m1/simulacao_tensoes.webp",
+        "desc": "Mapa de tensões de von Mises da peça simulada, com legenda e escala.",
+        "size": "1600×900",
+        "alt": "Mapa de tensões de von Mises da peça simulada."
+      },
+      {
+        "kind": "image",
+        "file": "media/m1/agd_comparacao.webp",
+        "desc": "Comparação da solução própria com as soluções geradas no AGD (Autodesk).",
+        "size": "1600×900",
+        "alt": "Comparação entre a solução própria e as soluções do AGD."
+      }
+    ]
+  },
+  "wip": {
+    "ativo": true,
+    "estado": "Em desenvolvimento",
+    "texto": "Esta fase ainda não está feita. Quando estiver, esta secção passa a mostrar o trabalho de parametrização da equipa. Para já, fica o plano.",
+    "titulo": "O que vamos fazer em M1",
+    "planeado": [
+      "Parametrizar uma parte do rover, ligando a geometria a parâmetros e a design tables.",
+      "Usar scripting em CAD para automatizar a geração de variantes.",
+      "Simular o desempenho estrutural de pelo menos uma peça.",
+      "Comparar a nossa solução com o design generativo do Autodesk (AGD) e avaliar as soluções obtidas."
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "semana": 4,
+  "data": "8 out",
+  "fase": "M0",
+  "titulo": "Apresentação da fase 0",
+  "tema": "Apresentação M0 e entrega do projeto da fase 0 (20 %), incluindo a primeira versão do website.",
+  "texto": [
+    "Apresentação M0 e entrega do projeto da fase 0 (20 %).",
+    "[FALTA: resultados apresentados em aula]"
+  ],
+  "etiqueta": null,
+  "apresentacao": true,
+  "slot": {
+    "kind": "image",
+    "file": "media/m0/slide_semana_04.webp",
+    "desc": "Slide da semana 4 (apresentação de 1 slide, 3 minutos).",
+    "size": "1920×1080",
+    "alt": "Slide apresentado na semana 4."
+  }
+}

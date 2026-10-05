@@ -1,0 +1,20 @@
+{
+  "semana": 8,
+  "data": "5 nov",
+  "fase": "M1",
+  "titulo": "Apresentação da fase 1",
+  "tema": "Apresentação M1 e entrega do projeto da fase 1 (30 %), com atualização do website.",
+  "texto": [
+    "[A CONFIRMAR: resultados apresentados em aula e feedback dos docentes]",
+    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+  ],
+  "etiqueta": null,
+  "apresentacao": true,
+  "slot": {
+    "kind": "image",
+    "file": "media/m1/semana_08.webp",
+    "desc": "Imagem, GIF ou captura da semana 8: apresentação da fase 1. Pode ser CAD, esboço, simulação ou foto de trabalho.",
+    "size": "1600×900",
+    "alt": "Trabalho da equipa na semana 8: apresentação da fase 1."
+  }
+}

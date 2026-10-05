@@ -1,0 +1,9 @@
+node_modules
+dist
+.DS_Store
+*.tmp
+*.tmp.*
+# material dos docentes (não publicar)
+referencias/
+# configuração local do editor/ferramentas
+.claude/

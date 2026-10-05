@@ -1,0 +1,26 @@
+{
+  "name": "dgo-perseverance",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Website DGO 2026/27 — Rover Perseverance (Universidade de Aveiro)",
+  "scripts": {
+    "predev": "node scripts/copiar-draco.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/copiar-draco.mjs && node scripts/gerar-slots.mjs",
+    "build": "vite build",
+    "preview": "vite preview",
+    "slots": "node scripts/gerar-slots.mjs",
+    "imagens": "node scripts/otimizar-imagens.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "gsap": "^3.12.5",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5",
+    "vite": "^6.0.0"
+  }
+}
