@@ -710,3 +710,8 @@ tr.win th::after { content: ' ★ escolhida'; font-family: var(--f-mono); font-s
 .lightbox .lb-prev { left: 16px; } .lightbox .lb-next { right: 16px; }
 .lightbox.single .lb-prev, .lightbox.single .lb-next { display: none; }
 .lightbox .lb-cap { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); font-family: var(--f-mono); font-size: .78rem; color: #fff; background: rgba(11,11,16,.7); padding: 4px 12px; border-radius: 999px; }
+
+.dl-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.dl-links a { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border: 1px solid var(--mars); border-radius: var(--r); color: var(--mars); font-size: .82rem; font-weight: 600; text-decoration: none; transition: background var(--t-fast), color var(--t-fast); }
+.dl-links a:hover { background: var(--mars); color: #000; }
+.dl-links svg { width: 16px; height: 16px; }

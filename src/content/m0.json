@@ -69,7 +69,7 @@
     }
   ],
   "divisaoTitulo": "Divisão do trabalho",
-  "divisaoNota": "Cada elemento é o responsável pelos seus subsistemas; os outros dois dão apoio.",
+  "divisaoNota": "Cada elemento é o responsável pelos seus subsistemas.",
   "riscosTitulo": "Riscos e mitigação",
   "riscos": [
     {
@@ -87,5 +87,22 @@
       "tipo": "Renders",
       "nome": "Blender"
     }
-  ]
+  ],
+  "renderRover": {
+    "titulo": "O rover renderizado",
+    "imagem": {
+      "kind": "image",
+      "file": "media/m0/render_rover.webp",
+      "desc": "render do rover completo montado.",
+      "size": "1920×1080",
+      "alt": "Render do rover Perseverance modelado pela equipa."
+    },
+    "video": {
+      "kind": "video",
+      "file": "media/m0/render_rover.mp4",
+      "desc": "[VÍDEO: rover renderizado, com as juntas a mover-se — a juntar]",
+      "size": "1920×1080 · MP4 (H.264)",
+      "alt": "Vídeo do rover renderizado com as juntas a mover-se."
+    }
+  }
 }

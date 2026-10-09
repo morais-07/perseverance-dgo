@@ -7,13 +7,23 @@
       "data": "2012-12-04",
       "rotulo": "4 dez 2012",
       "titulo": "A missão é anunciada",
-      "texto": "A NASA anuncia o rover de 2020, que reutiliza a arquitetura de voo do Curiosity para reduzir custo e risco."
+      "texto": "A NASA anuncia o rover de 2020, que reutiliza a arquitetura de voo do Curiosity para reduzir custo e risco.",
+      "imagem": {
+        "file": "media/historia/conceito_2012.webp",
+        "alt": "Esboço do conceito do rover Mars 2020.",
+        "credito": "Imagem: NASA/JPL-Caltech"
+      }
     },
     {
       "data": "2020-07-30",
       "rotulo": "30 jul 2020",
       "titulo": "Lançamento",
-      "texto": "Lançamento num foguetão Atlas V 541 a partir de Cabo Canaveral."
+      "texto": "Lançamento num foguetão Atlas V 541 a partir de Cabo Canaveral.",
+      "imagem": {
+        "file": "media/historia/lancamento_2020.webp",
+        "alt": "Lançamento do foguetão Atlas V com o Perseverance, em Cabo Canaveral.",
+        "credito": "Imagem: NASA/Joel Kowsky"
+      }
     },
     {
       "data": "2021-02-18",
@@ -41,7 +51,12 @@
       "data": "2021-09-01",
       "rotulo": "1 set 2021",
       "titulo": "Primeira amostra de rocha",
-      "texto": "O rover extrai o primeiro núcleo de rocha («Montdenier», da rocha «Rochette») ao Sol 190. A primeira tentativa, em agosto, tinha ficado sem amostra de rocha."
+      "texto": "O rover extrai o primeiro núcleo de rocha («Montdenier», da rocha «Rochette») ao Sol 190. A primeira tentativa, em agosto, tinha ficado sem amostra de rocha.",
+      "imagem": {
+        "file": "media/historia/primeira_amostra_2021.webp",
+        "alt": "O núcleo «Montdenier» dentro do tubo de amostra do Perseverance.",
+        "credito": "Imagem: NASA/JPL-Caltech/ASU/MSSS"
+      }
     },
     {
       "data": "2024-07-21",

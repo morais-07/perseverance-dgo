@@ -41,11 +41,15 @@ for ch in list(root.children):
 bpy.data.objects.remove(root, do_unlink=True)
 
 # 3) Materiais: o Fusion exporta tudo como metal=1; corrigir os não metálicos
+# Só mexe em valores que ainda estão como o Fusion os exporta (metallic = 1, roughness = 0,55):
+# tudo o que a equipa já tenha ajustado no Blender é respeitado.
 def setm(name_part, metal=None, rough=None, color=None, alpha=None):
     for m in bpy.data.materials:
         if name_part in m.name and m.use_nodes:
             b = next((n for n in m.node_tree.nodes if n.type == 'BSDF_PRINCIPLED'), None)
             if not b: continue
+            default = abs(b.inputs['Metallic'].default_value - 1.0) < 1e-3 and abs(b.inputs['Roughness'].default_value - 0.55) < 1e-3
+            if not default: continue
             if metal is not None: b.inputs['Metallic'].default_value = metal
             if rough is not None: b.inputs['Roughness'].default_value = rough
             if color is not None: b.inputs['Base Color'].default_value = color

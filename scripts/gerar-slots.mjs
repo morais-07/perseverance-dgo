@@ -16,6 +16,8 @@ const wipM2 = m2.wip?.ativo;
 
 // M0
 add('M0 · Levantamento de forma', m0.inversa.slot);
+add('M0 · Render do rover (imagem)', m0.renderRover.imagem);
+add('M0 · Render do rover (vídeo)', m0.renderRover.video);
 for (const p of read('partes.json').partes) {
   add(`M0 · ${p.nome} (CAD 3D)`, { kind: 'image', file: `media/m0/${p.id}_cad.webp`, desc: `CAD 3D: ${p.nome.toLowerCase()} (render ou captura do Fusion).`, size: '1600×900' });
 }

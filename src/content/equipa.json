@@ -57,7 +57,7 @@
     }
   ],
   "matrizTitulo": "Matriz de contribuições",
-  "matrizNota": "● responsável · ○ apoio. Cada elemento é o responsável pelos seus subsistemas; os outros dois dão apoio.",
+  "matrizNota": "● responsável. Cada elemento modelou sozinho os seus subsistemas.",
   "matrizColunas": [
     "Mastro (câmara)",
     "Chassis",
@@ -70,33 +70,33 @@
   ],
   "matriz": [
     [
-      "○",
-      "○",
+      "",
+      "",
       "●",
       "●",
       "●",
-      "○",
-      "○",
-      "○"
+      "",
+      "",
+      ""
     ],
     [
-      "○",
-      "○",
-      "○",
-      "○",
-      "○",
+      "",
+      "",
+      "",
+      "",
+      "",
       "●",
       "●",
-      "○"
+      ""
     ],
     [
       "●",
       "●",
-      "○",
-      "○",
-      "○",
-      "○",
-      "○",
+      "",
+      "",
+      "",
+      "",
+      "",
       "●"
     ]
   ]

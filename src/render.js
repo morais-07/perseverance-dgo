@@ -226,7 +226,7 @@ function partCard(p) {
       <div class="sub-id"><span>${esc(p.codigo)}</span></div>
       <h3>${esc(p.nome)}</h3>
       <p class="real">${esc(p.nomeReal)}</p>
-      <p class="who"><b>${esc(partes.responsavelRotulo)}:</b> ${esc(p.responsavel)} · <b>${esc(partes.apoioRotulo)}:</b> ${p.apoio.map(esc).join(', ')}</p>
+      <p class="who"><b>${esc(partes.responsavelRotulo)}:</b> ${esc(p.responsavel)}</p>
       <p>${esc(p.funcao)}</p>
       ${figs(p.numeros)}
       <div><h4>Abordagem de modelação</h4><p>${tbc(`[FALTA: texto sobre a abordagem seguida na modelação: ${p.nome.toLowerCase()}]`)}</p></div>
@@ -256,6 +256,8 @@ export function renderM0() {
       ${renderViewer()}
       <p class="note rv" style="margin-top:12px">Modelo provisório: <a href="${esc(subs.modeloProvisorio.origem)}" target="_blank" rel="noopener noreferrer" style="color:var(--mars)">NASA 3D Resources — Mars 2020 Perseverance Rover</a> (${esc(subs.modeloProvisorio.licenca)}).</p>
     </div>
+    <div class="block"><h3 class="rv">${esc(d.renderRover.titulo)}</h3>
+      <div class="slots-2 rv">${slot(d.renderRover.imagem)}${slot(d.renderRover.video)}</div></div>
     <div class="block"><h3 class="rv">${esc(d.processoTitulo)}</h3>
       <ol class="flow rv" style="list-style:none;padding:0;margin:0 0 var(--s7)">${d.fluxo.map((f) => `<li><span class="n">${esc(f.codigo)}</span><span class="r">${esc(f.rotulo)}</span></li>`).join('')}</ol>
       <div class="two-col rv">
@@ -426,7 +428,7 @@ export function renderEquipa() {
       <div class="meta"><span>${tbc(m.mec)}</span><span>${tbc(m.email)}</span></div><h4>Subsistemas</h4><ul class="chips">${m.subsistemas.map((s) => `<li>${tbc(s)}</li>`).join('')}</ul></div></article>`).join('')}</div>
     <div class="block"><h3 class="rv">${esc(e.matrizTitulo)}</h3>
       <div class="table-wrap rv"><table class="matrix"><thead><tr><th>Pessoa</th>${e.matrizColunas.map((c) => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead>
-        <tbody>${e.matriz.map((row, i) => `<tr><th scope="row">${tbc(e.membros[i].nome)}</th>${row.map((c) => `<td>${esc(c) || '<span aria-label="vazio">·</span>'}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+        <tbody>${e.matriz.map((row, i) => `<tr><th scope="row">${tbc(e.membros[i].nome)}</th>${row.map((c) => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
       <p class="note">${esc(e.matrizNota)}</p></div>
   </div>`;
 }
@@ -436,7 +438,7 @@ export function renderRodape() {
   return `<div class="wrap">
     <section class="ia rv" aria-labelledby="ia-t">
       <div><h3 id="ia-t">${esc(ia.titulo)}</h3><p>${esc(ia.texto)}</p></div>
-      <dl>${ia.itens.map((i) => `<dt>${esc(i.rotulo)}</dt><dd>${tbc(i.valor)}</dd>`).join('')}</dl>
+      <dl>${ia.itens.map((i) => `<dt>${esc(i.rotulo)}</dt><dd>${tbc(i.valor)}${i.links ? `<span class="dl-links">${i.links.map((l) => `<a href="${asset(l.ficheiro)}" download>${icon.down}${esc(l.rotulo)}</a>`).join('')}</span>` : ''}</dd>`).join('')}</dl>
     </section>
     <div class="foot-row">
       <div>

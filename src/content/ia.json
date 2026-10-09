@@ -4,19 +4,29 @@
   "itens": [
     {
       "rotulo": "Ferramentas utilizadas",
-      "valor": "Claude Code (modelo Claude Sonnet 5.5), com a skill de design ui-ux-pro-max. [A CONFIRMAR: outras ferramentas usadas pela equipa]"
+      "valor": "Claude Code (modelo Claude Sonnet 5.5), com a skill de design ui-ux-pro-max."
     },
     {
       "rotulo": "Tarefas apoiadas",
-      "valor": "Estrutura e código inicial deste website, organização do conteúdo e redação dos textos de contexto sobre a missão. [A CONFIRMAR: restantes usos]"
+      "valor": "Apenas o website: estrutura e código, organização do conteúdo e geração de texto (redação dos textos de contexto sobre a missão)."
     },
     {
       "rotulo": "Prompts",
-      "valor": "O prompt de arranque do website está em docs/prompt_website.md. [A CONFIRMAR: prompts usados na modelação e na simulação, a descrever em M1 e M2]"
+      "valor": "Prompt de arranque do website e prompt com as alterações pedidas, ambos usados com o Claude Code.",
+      "links": [
+        {
+          "rotulo": "Descarregar o prompt inicial (.md)",
+          "ficheiro": "downloads/prompt_website.md"
+        },
+        {
+          "rotulo": "Descarregar o prompt de alterações (.md)",
+          "ficheiro": "downloads/prompt_alteracoes.md"
+        }
+      ]
     },
     {
       "rotulo": "Verificação humana",
-      "valor": "[A CONFIRMAR: quem reviu e validou o conteúdo gerado, e o que foi corrigido ou rejeitado]"
+      "valor": "Feita por toda a equipa: os três reviram o conteúdo gerado."
     },
     {
       "rotulo": "Responsabilidade",
