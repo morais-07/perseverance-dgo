@@ -15,7 +15,6 @@ const wipM1 = m1.wip?.ativo;
 const wipM2 = m2.wip?.ativo;
 
 // M0
-add('M0 · Engenharia inversa (esquema)', m0.estrategia.slot);
 add('M0 · Render do rover (imagem)', m0.renderRover.imagem);
 add('M0 · Render do rover (vídeo)', m0.renderRover.video);
 for (const p of read('partes.json').partes) {

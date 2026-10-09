@@ -1,6 +1,6 @@
 {
   "titulo": "Quem constrói o rover",
-  "texto": "Três pessoas, sete partes e um semestre.",
+  "texto": "Três pessoas, cinco subsistemas e um semestre.",
   "membros": [
     {
       "nome": "David Coelho",
@@ -8,8 +8,7 @@
       "mec": "102612",
       "email": "david.coelho@ua.pt",
       "subsistemas": [
-        "Braço",
-        "Broca",
+        "Braço e broca",
         "MMRTG"
       ],
       "foto": {
@@ -26,8 +25,7 @@
       "mec": "119610",
       "email": "nuno.mourinha@ua.pt",
       "subsistemas": [
-        "Suspensão",
-        "Rodas"
+        "Suspensão e rodas"
       ],
       "foto": {
         "kind": "image",
@@ -61,11 +59,9 @@
   "matrizColunas": [
     "Mastro (câmara)",
     "Chassis",
-    "Braço",
-    "Broca",
+    "Braço e broca",
     "MMRTG",
-    "Suspensão",
-    "Rodas",
+    "Suspensão e rodas",
     "Website"
   ],
   "matriz": [
@@ -74,8 +70,6 @@
       "",
       "●",
       "●",
-      "●",
-      "",
       "",
       ""
     ],
@@ -84,16 +78,12 @@
       "",
       "",
       "",
-      "",
-      "●",
       "●",
       ""
     ],
     [
       "●",
       "●",
-      "",
-      "",
       "",
       "",
       "",

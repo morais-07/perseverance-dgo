@@ -113,11 +113,9 @@ export function renderHistoria() {
       <div class="edl-lead">
         <h3>${esc(h.edl.titulo)}</h3>
         <p>${esc(h.edl.texto)}</p>
-        <div class="video-slot" style="background-image:linear-gradient(rgba(11,11,16,.55),rgba(11,11,16,.8)),url('./media/historia/jezero_delta.webp')">
-          <a href="${esc(h.edl.video.link)}" target="_blank" rel="noopener noreferrer">
-            <span class="play">${icon.play}</span><strong>${esc(h.edl.video.titulo)}</strong><span class="note">${esc(h.edl.video.nota)}</span>
-          </a>
-        </div>
+        <p class="ext-link"><a href="${esc(h.edl.video.link)}" target="_blank" rel="noopener noreferrer">${icon.play}<span>${esc(h.edl.video.titulo)}</span><span class="ext-arrow" aria-hidden="true">↗</span></a></p>
+        <p class="note">${esc(h.edl.video.nota)}</p>
+      </div>
       </div>
       <ol class="edl-steps" style="list-style:none;margin:0;padding:0">
         ${h.edl.passos.map((p) => `<li class="edl-step"><div><h4>${esc(p.rotulo)}</h4><p>${esc(p.texto)}</p></div><span class="val">${esc(p.valor)}</span></li>`).join('')}
@@ -250,11 +248,8 @@ export function renderM0() {
     ${msHead('m0', d, 'Ato II — modelação e montagem')}
     <div class="block"><h3 class="rv">${esc(d.semanasTitulo)}</h3>${weeksOf('M0')}</div>
     <div class="block"><h3 class="rv">${esc(d.estrategiaTitulo)}</h3>
-      <div class="estrategia-intro rv">${e.intro.map((t) => `<p>${esc(t)}</p>`).join('')}</div>
+      <div class="estrategia-intro lead rv">${e.intro.map((t) => `<p>${esc(t)}</p>`).join('')}</div>
       <div class="metodos">${e.metodos.map(metodoCard).join('')}</div>
-      <div class="rv" style="margin-top:var(--s5)">${slot(e.slot)}</div>
-      <h4 class="rv sub-titulo">${esc(e.organizacaoTitulo)}</h4>
-      <div class="strat rv">${e.organizacao.map((s) => `<div class="strat-item"><h4>${esc(s.titulo)}</h4><p>${tbc(s.texto)}</p></div>`).join('')}</div>
     </div>
     <div class="block"><h3 class="rv">${esc(partes.titulo)}</h3><p class="rv">${esc(partes.texto)}</p>
       <div class="parts">${partes.partes.map(partCard).join('')}</div>

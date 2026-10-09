@@ -1,6 +1,6 @@
 {
   "titulo": "Modelação por subsistema",
-  "texto": "Cada elemento do grupo modela os seus subsistemas e, no fim do M0, montamos tudo. Cada secção tem o espaço do CAD 3D e a abordagem seguida na modelação.",
+  "texto": "Cada elemento do grupo modela os seus subsistemas e, no fim do M0, montamos tudo. Cada secção tem o render do CAD e os números-chave da parte.",
   "responsavelRotulo": "Responsável",
   "apoioRotulo": "Apoio",
   "partes": [
@@ -69,14 +69,14 @@
     {
       "id": "braco",
       "codigo": "PRV-ARM-001",
-      "nome": "Braço",
-      "nomeReal": "Robotic Arm · Turret",
+      "nome": "Braço e broca",
+      "nomeReal": "Robotic Arm · Turret · coring drill",
       "responsavel": "David Coelho",
       "apoio": [
         "Nuno Mourinha",
         "Rafael Morais"
       ],
-      "funcao": "Posiciona a torre de instrumentos junto às rochas. É o braço que leva a broca e os instrumentos PIXL e SHERLOC até ao alvo.",
+      "funcao": "Posiciona a torre de instrumentos junto às rochas e faz a perfuração: o braço leva a broca e os instrumentos PIXL e SHERLOC até ao alvo, e a broca recolhe núcleos de rocha para os tubos de amostra.",
       "numeros": [
         {
           "valor": "2,1",
@@ -89,35 +89,9 @@
           "rotulo": "graus de liberdade"
         },
         {
-          "valor": "2",
-          "unidade": "",
-          "rotulo": "instrumentos na torre (PIXL e SHERLOC)"
-        }
-      ],
-      "cota": null,
-      "metodo": "B"
-    },
-    {
-      "id": "broca",
-      "codigo": "PRV-DRL-001",
-      "nome": "Broca",
-      "nomeReal": "Coring drill",
-      "responsavel": "David Coelho",
-      "apoio": [
-        "Nuno Mourinha",
-        "Rafael Morais"
-      ],
-      "funcao": "Recolhe núcleos de rocha para os tubos de amostra e prepara superfícies para análise.",
-      "numeros": [
-        {
           "valor": "3",
           "unidade": "",
           "rotulo": "tipos de broca (carotagem, regolito e abrasão)"
-        },
-        {
-          "valor": "43",
-          "unidade": "",
-          "rotulo": "tubos de amostra transportados (5 de controlo)"
         }
       ],
       "cota": null,
@@ -126,44 +100,14 @@
     {
       "id": "suspensao",
       "codigo": "PRV-SUS-001",
-      "nome": "Suspensão",
-      "nomeReal": "Rocker-bogie",
+      "nome": "Suspensão e rodas",
+      "nomeReal": "Rocker-bogie · 6 rodas de Ø 52,5 cm",
       "responsavel": "Nuno Mourinha",
       "apoio": [
         "David Coelho",
         "Rafael Morais"
       ],
-      "funcao": "Mantém as seis rodas em contacto com o solo em terreno irregular, sem molas: o diferencial e o braço oscilante (rocker-bogie) distribuem a carga e permitem trepar obstáculos do tamanho de uma roda.",
-      "numeros": [
-        {
-          "valor": "52,5",
-          "unidade": "cm",
-          "rotulo": "altura máxima de obstáculo (≈ um diâmetro de roda)"
-        },
-        {
-          "valor": "6",
-          "unidade": "",
-          "rotulo": "rodas, cada uma com motor"
-        }
-      ],
-      "cota": null,
-      "demo": {
-        "titulo": "Demo: a suspensão rocker-bogie",
-        "texto": "Arrasta o obstáculo (ou usa o cursor) por baixo das rodas e vê como a suspensão se adapta: o corpo do rover sobe apenas uma fração da altura do obstáculo. Modelo esquemático 2D, para ilustrar o princípio — não é uma simulação do nosso CAD."
-      },
-      "metodo": "A"
-    },
-    {
-      "id": "rodas",
-      "codigo": "PRV-WHL-001",
-      "nome": "Rodas",
-      "nomeReal": "6 rodas de Ø 52,5 cm",
-      "responsavel": "Nuno Mourinha",
-      "apoio": [
-        "David Coelho",
-        "Rafael Morais"
-      ],
-      "funcao": "Seis rodas, cada uma com o seu motor, que fazem avançar o rover e agarram o terreno marciano.",
+      "funcao": "Mantém as seis rodas em contacto com o solo em terreno irregular, sem molas: o diferencial e o braço oscilante (rocker-bogie) distribuem a carga e permitem trepar obstáculos do tamanho de uma roda. Cada roda tem o seu motor.",
       "numeros": [
         {
           "valor": "Ø 52,5",
@@ -182,6 +126,10 @@
         }
       ],
       "cota": null,
+      "demo": {
+        "titulo": "Demo: a suspensão rocker-bogie",
+        "texto": "Arrasta o obstáculo (ou usa o cursor) por baixo das rodas e vê como a suspensão se adapta: o corpo do rover sobe apenas uma fração da altura do obstáculo. Modelo esquemático 2D, para ilustrar o princípio — não é uma simulação do nosso CAD."
+      },
       "metodo": "A"
     },
     {

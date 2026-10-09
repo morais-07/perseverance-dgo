@@ -44,8 +44,16 @@
       "nome": "Fusion"
     },
     {
+      "tipo": "Conversão da malha em corpo",
+      "nome": "Fusion e SolidWorks"
+    },
+    {
       "tipo": "Renders",
-      "nome": "Blender"
+      "nome": "Fusion"
+    },
+    {
+      "tipo": "Modelo 3D do website",
+      "nome": "Blender (materiais e exportação para GLB)"
     }
   ],
   "renderRover": {
@@ -124,28 +132,6 @@
           ]
         ],
         "vantagem": "Método direto, parecido com medir a peça com um paquímetro digital: a coerência com o resto do rover verifica-se na montagem."
-      }
-    ],
-    "slot": {
-      "kind": "image",
-      "file": "media/m0/levantamento_de_forma.webp",
-      "desc": "levantamento de forma: esquema do método de engenharia inversa.",
-      "size": "1600×900",
-      "alt": "Esquema dos dois métodos de engenharia inversa: do SolidWorks e do Fusion à modelação no Fusion."
-    },
-    "organizacaoTitulo": "Organização do trabalho",
-    "organizacao": [
-      {
-        "titulo": "Esqueleto mestre",
-        "texto": "[FALTA: esboço de layout com os pontos de ligação entre os subsistemas]"
-      },
-      {
-        "titulo": "Convenção de nomes",
-        "texto": "[FALTA: convenção de nomes usada nos ficheiros e componentes]"
-      },
-      {
-        "titulo": "Partilha de ficheiros",
-        "texto": "[FALTA: como a equipa partilhou os ficheiros]"
       }
     ]
   },

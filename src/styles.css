@@ -752,3 +752,19 @@ tr.win th::after { content: ' ★ escolhida'; font-family: var(--f-mono); font-s
 @media (max-width: 560px) { .pilares { grid-template-columns: 1fr; } }
 
 .mt-passos span { display: block; }
+
+/* texto de abertura da estratégia */
+.estrategia-intro.lead { max-width: 92ch; font-size: 1.05rem; gap: var(--s3); }
+.estrategia-intro.lead p { color: #d6d7df; max-width: none; line-height: 1.65; }
+/* ligação externa ao vídeo da NASA */
+.ext-link { margin: var(--s4) 0 var(--s2); }
+.ext-link a { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 18px; border: 1px solid var(--ink); border-radius: var(--r); color: var(--ink); font-weight: 600; text-decoration: none; transition: background var(--t-fast), color var(--t-fast); }
+.ext-link a:hover { background: var(--ink); color: var(--paper); }
+.ext-link svg { width: 16px; height: 16px; color: var(--mars-ink); }
+.ext-link a:hover svg { color: var(--mars); }
+.ext-arrow { font-family: var(--f-mono); }
+/* renders de CAD: fundo claro de estúdio (as peças são escuras) */
+.part-media .slot.has-media { background: radial-gradient(90% 90% at 50% 45%, #f4f5f7, #d9dce2); }
+.part-media .slot.has-media img { object-fit: contain; }
+
+.estrategia-intro.lead { max-width: none; }
