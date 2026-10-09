@@ -3,12 +3,13 @@ import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { buildRover, createStage, loadRoverModel, SUBS } from '../lib/rover.js';
-import { hasWebGL, isMobile, reducedMotion } from '../lib/util.js';
+import { hasWebGL, reducedMotion } from '../lib/util.js';
 
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true }); // a barra de endereço do telemóvel não deve reiniciar a animação
 
 export async function initHero(hero) {
-  if (isMobile() || !hasWebGL()) return; // no telemóvel o hero é uma imagem estática
+  if (!hasWebGL()) return; // sem WebGL o hero fica com a imagem estática
   const canvas = hero.querySelector('canvas');
   const labelsHost = hero.querySelector('.hero-labels');
   const tele = {
@@ -18,8 +19,8 @@ export async function initHero(hero) {
   };
   const reduced = reducedMotion();
 
-  const hs = { rot: 0.55, dist: 9.4, elev: 0.16, ex: 0, shiftX: 2.3, lookY: 0.05, lab: 0 };
-  if (reduced) Object.assign(hs, { rot: 0.9, dist: 9.6, elev: 0.32, ex: 0.7, shiftX: 0, lookY: 0.2, lab: 1 });
+  const hs = { rot: 0.55, dist: 9.4, elev: 0.16, ex: 0, shiftX: 2.3, lookY: 0.05, lab: 0, mobY: 1.0 };
+  if (reduced) Object.assign(hs, { rot: 0.9, dist: 9.6, elev: 0.32, ex: 0.7, shiftX: 0, lookY: 0.2, lab: 1, mobY: 0.5 });
 
   // O pin é criado já (antes de o modelo carregar) para o layout não saltar quando o GLB chegar.
   if (!reduced) {
@@ -32,6 +33,7 @@ export async function initHero(hero) {
       .to(hs, { shiftX: 0, duration: 0.55, ease: 'power2.inOut' }, 0.2)
       .to(hs, { ex: 1, duration: 0.4, ease: 'power2.inOut' }, 0.58)
       .to(hs, { dist: 10.6, elev: 0.46, lookY: 0.25, duration: 0.4, ease: 'power1.inOut' }, 0.58)
+      .to(hs, { mobY: 0.35, duration: 0.6, ease: 'power1.inOut' }, 0.1)
       .to(hs, { lab: 1, duration: 0.12 }, 0.88)
       .to('.hero-copy', { autoAlpha: 0, y: -70, duration: 0.14, ease: 'power1.in' }, 0.04)
       .to('.hero-cue', { autoAlpha: 0, duration: 0.06 }, 0.02);
@@ -61,11 +63,17 @@ export async function initHero(hero) {
   const v = new THREE.Vector3();
   const apply = () => {
     const { camera } = stage;
-    camera.position.set(0, hs.lookY + Math.sin(hs.elev) * hs.dist, Math.cos(hs.elev) * hs.dist);
-    camera.lookAt(0, hs.lookY, 0);
+    // Em ecrãs verticais (telemóvel) afasta a câmara, centra o rover e deixa espaço ao título
+    const aspect = canvas.clientWidth / Math.max(1, canvas.clientHeight);
+    const portrait = aspect < 1;
+    const ds = portrait ? 1 + (1 - aspect) * 2.3 : 1;
+    const look = hs.lookY + (portrait ? hs.mobY : 0);
+    const sx = portrait ? 0 : hs.shiftX;
+    camera.position.set(0, look + Math.sin(hs.elev) * hs.dist * ds, Math.cos(hs.elev) * hs.dist * ds);
+    camera.lookAt(0, look, 0);
     rover.pivot.rotation.y = hs.rot;
-    rover.pivot.position.x = hs.shiftX;
-    if (stage.floorGroup) stage.floorGroup.position.x = hs.shiftX;
+    rover.pivot.position.x = sx;
+    if (stage.floorGroup) stage.floorGroup.position.x = sx;
     rover.setExplode(hs.ex);
     rover.pivot.updateMatrixWorld(true);
     stage.render();
