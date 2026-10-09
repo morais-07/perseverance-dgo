@@ -32,10 +32,7 @@
           "rotulo": "distância de análise da SuperCam"
         }
       ],
-      "cota": {
-        "label": "≈ 2 m",
-        "dir": "v"
-      },
+      "cota": null,
       "metodo": "B"
     },
     {
@@ -66,10 +63,7 @@
           "rotulo": "massa total do rover"
         }
       ],
-      "cota": {
-        "label": "3 m",
-        "dir": "h"
-      },
+      "cota": null,
       "metodo": "B"
     },
     {
@@ -100,10 +94,7 @@
           "rotulo": "instrumentos na torre (PIXL e SHERLOC)"
         }
       ],
-      "cota": {
-        "label": "2,1 m",
-        "dir": "h"
-      },
+      "cota": null,
       "metodo": "B"
     },
     {
@@ -190,10 +181,7 @@
           "rotulo": "avanço por volta completa da roda"
         }
       ],
-      "cota": {
-        "label": "Ø 52,5 cm",
-        "dir": "h"
-      },
+      "cota": null,
       "metodo": "A"
     },
     {
