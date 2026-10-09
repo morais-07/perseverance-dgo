@@ -52,7 +52,7 @@ export function slot(cfg, { ar = '', cota = null, extra = '' } = {}) {
   const size = cfg.size ? `<span class="s">${esc(cfg.size)}</span>` : '';
   const media =
     kind === 'video'
-      ? `<video data-src="${esc(cfg.file)}" muted loop playsinline controls preload="none" aria-label="${esc(cfg.alt || cfg.desc || '')}"></video>`
+      ? `<video data-src="${esc(cfg.file)}" muted loop playsinline controls autoplay preload="metadata" aria-label="${esc(cfg.alt || cfg.desc || '')}"></video>`
       : `<img data-src="${esc(cfg.file)}" alt="${esc(cfg.alt || '')}" loading="lazy" decoding="async" />`;
   const cred = cfg.credito ? `<span class="cred">${esc(cfg.credito)}</span>` : '';
   return `<figure class="slot ${ar} ${extra}" data-slot="${esc(cfg.file)}">
@@ -84,6 +84,7 @@ export function hydrateSlots(root = document) {
     } else {
       exists(el.dataset.src).then((ok) => {
         if (!ok) return;
+        if (reducedMotion()) el.removeAttribute('autoplay'); // sem movimento automático se o utilizador o pediu
         el.src = src;
         fig.classList.add('has-media');
       });

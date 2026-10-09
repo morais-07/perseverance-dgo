@@ -50,7 +50,7 @@ export function renderHero() {
   return `
     <div class="hero-pin">
       <div class="hero-grid" aria-hidden="true"></div>
-      <img class="hero-fallback" src="./media/hero/perseverance_nasa_preview.webp" alt="Render do rover Perseverance (modelo provisório da NASA)." width="1200" height="800" fetchpriority="high" />
+      <img class="hero-fallback" src="./media/m0/render_rover.webp" alt="Render do rover Perseverance modelado pela equipa." width="1200" height="800" fetchpriority="high" />
       <canvas aria-hidden="true"></canvas>
       <div class="hero-labels" aria-hidden="true"></div>
       <div class="hero-corner tl" aria-hidden="true">PRV-000 · ESC 1:20 · FOLHA 1/6</div>
@@ -414,7 +414,7 @@ function renderViewer() {
     <p class="v-ui v-hint">Arrastar: rodar · Rolar: ampliar · Botão direito / dois dedos: deslocar · ● Hotspots: informação</p>
     <aside class="v-info" aria-live="polite" aria-label="Informação do subsistema"></aside>
     <div class="v-load" role="status"><span>A carregar o modelo 3D…</span><div class="meter"><i></i></div><span class="pct">0 %</span></div>
-    <div class="v-fallback"><img src="./media/hero/perseverance_nasa_preview.webp" alt="Render do rover Perseverance (modelo provisório da NASA)." /><p class="mono" style="font-size:.74rem;color:var(--dust)">WebGL indisponível — a mostrar imagem estática.</p></div>
+    <div class="v-fallback"><img src="./media/m0/render_rover.webp" alt="Render do rover Perseverance modelado pela equipa." /><p class="mono" style="font-size:.74rem;color:var(--dust)">WebGL indisponível — a mostrar imagem estática.</p></div>
   </div>`;
 }
 
