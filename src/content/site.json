@@ -59,7 +59,7 @@
   },
   "download": {
     "ficheiro": "downloads/perseverance_cad.zip",
-    "formato": "ZIP · Fusion (.f3z) + renders",
+    "formato": "ZIP · Fusion (.f3z), renders e README",
     "tamanho": "26 MB",
     "disponivel": true,
     "nota": "Pacote CAD: montagem completa em Fusion e renders do rover."
