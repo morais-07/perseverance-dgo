@@ -10,14 +10,33 @@
       "nome": "Mastro (câmara)",
       "nomeReal": "Remote Sensing Mast · Mastcam-Z (+ SuperCam)",
       "responsavel": "Rafael Morais",
-      "apoio": ["David Coelho", "Nuno Mourinha"],
+      "apoio": [
+        "David Coelho",
+        "Nuno Mourinha"
+      ],
       "funcao": "Eleva as câmaras e o laser de análise até à altura de um olho humano para ver o terreno à frente do rover, planear percursos e escolher alvos científicos.",
       "numeros": [
-        { "valor": "≈ 2", "unidade": "m", "rotulo": "altura das câmaras ao solo" },
-        { "valor": "24,2", "unidade": "cm", "rotulo": "separação estereoscópica da Mastcam-Z" },
-        { "valor": "> 7", "unidade": "m", "rotulo": "distância de análise da SuperCam" }
+        {
+          "valor": "≈ 2",
+          "unidade": "m",
+          "rotulo": "altura das câmaras ao solo"
+        },
+        {
+          "valor": "24,2",
+          "unidade": "cm",
+          "rotulo": "separação estereoscópica da Mastcam-Z"
+        },
+        {
+          "valor": "> 7",
+          "unidade": "m",
+          "rotulo": "distância de análise da SuperCam"
+        }
       ],
-      "cota": { "label": "≈ 2 m", "dir": "v" }
+      "cota": {
+        "label": "≈ 2 m",
+        "dir": "v"
+      },
+      "metodo": "B"
     },
     {
       "id": "chassis",
@@ -25,14 +44,33 @@
       "nome": "Chassis",
       "nomeReal": "Warm Electronics Box · Rover Equipment Deck",
       "responsavel": "Rafael Morais",
-      "apoio": ["David Coelho", "Nuno Mourinha"],
+      "apoio": [
+        "David Coelho",
+        "Nuno Mourinha"
+      ],
       "funcao": "É o corpo do rover: abriga a eletrónica e as baterias numa caixa mantida quente e serve de plataforma de montagem dos restantes subsistemas.",
       "numeros": [
-        { "valor": "3", "unidade": "m", "rotulo": "comprimento total do rover" },
-        { "valor": "2,7", "unidade": "m", "rotulo": "largura total do rover" },
-        { "valor": "1025", "unidade": "kg", "rotulo": "massa total do rover" }
+        {
+          "valor": "3",
+          "unidade": "m",
+          "rotulo": "comprimento total do rover"
+        },
+        {
+          "valor": "2,7",
+          "unidade": "m",
+          "rotulo": "largura total do rover"
+        },
+        {
+          "valor": "1025",
+          "unidade": "kg",
+          "rotulo": "massa total do rover"
+        }
       ],
-      "cota": { "label": "3 m", "dir": "h" }
+      "cota": {
+        "label": "3 m",
+        "dir": "h"
+      },
+      "metodo": "B"
     },
     {
       "id": "braco",
@@ -40,14 +78,33 @@
       "nome": "Braço",
       "nomeReal": "Robotic Arm · Turret",
       "responsavel": "David Coelho",
-      "apoio": ["Nuno Mourinha", "Rafael Morais"],
+      "apoio": [
+        "Nuno Mourinha",
+        "Rafael Morais"
+      ],
       "funcao": "Posiciona a torre de instrumentos junto às rochas. É o braço que leva a broca e os instrumentos PIXL e SHERLOC até ao alvo.",
       "numeros": [
-        { "valor": "2,1", "unidade": "m", "rotulo": "comprimento do braço" },
-        { "valor": "5", "unidade": "", "rotulo": "graus de liberdade" },
-        { "valor": "2", "unidade": "", "rotulo": "instrumentos na torre (PIXL e SHERLOC)" }
+        {
+          "valor": "2,1",
+          "unidade": "m",
+          "rotulo": "comprimento do braço"
+        },
+        {
+          "valor": "5",
+          "unidade": "",
+          "rotulo": "graus de liberdade"
+        },
+        {
+          "valor": "2",
+          "unidade": "",
+          "rotulo": "instrumentos na torre (PIXL e SHERLOC)"
+        }
       ],
-      "cota": { "label": "2,1 m", "dir": "h" }
+      "cota": {
+        "label": "2,1 m",
+        "dir": "h"
+      },
+      "metodo": "B"
     },
     {
       "id": "broca",
@@ -55,13 +112,25 @@
       "nome": "Broca",
       "nomeReal": "Coring drill",
       "responsavel": "David Coelho",
-      "apoio": ["Nuno Mourinha", "Rafael Morais"],
+      "apoio": [
+        "Nuno Mourinha",
+        "Rafael Morais"
+      ],
       "funcao": "Recolhe núcleos de rocha para os tubos de amostra e prepara superfícies para análise.",
       "numeros": [
-        { "valor": "3", "unidade": "", "rotulo": "tipos de broca (carotagem, regolito e abrasão)" },
-        { "valor": "43", "unidade": "", "rotulo": "tubos de amostra transportados (5 de controlo)" }
+        {
+          "valor": "3",
+          "unidade": "",
+          "rotulo": "tipos de broca (carotagem, regolito e abrasão)"
+        },
+        {
+          "valor": "43",
+          "unidade": "",
+          "rotulo": "tubos de amostra transportados (5 de controlo)"
+        }
       ],
-      "cota": null
+      "cota": null,
+      "metodo": "B"
     },
     {
       "id": "suspensao",
@@ -69,17 +138,29 @@
       "nome": "Suspensão",
       "nomeReal": "Rocker-bogie",
       "responsavel": "Nuno Mourinha",
-      "apoio": ["David Coelho", "Rafael Morais"],
+      "apoio": [
+        "David Coelho",
+        "Rafael Morais"
+      ],
       "funcao": "Mantém as seis rodas em contacto com o solo em terreno irregular, sem molas: o diferencial e o braço oscilante (rocker-bogie) distribuem a carga e permitem trepar obstáculos do tamanho de uma roda.",
       "numeros": [
-        { "valor": "52,5", "unidade": "cm", "rotulo": "altura máxima de obstáculo (≈ um diâmetro de roda)" },
-        { "valor": "6", "unidade": "", "rotulo": "rodas, cada uma com motor" }
+        {
+          "valor": "52,5",
+          "unidade": "cm",
+          "rotulo": "altura máxima de obstáculo (≈ um diâmetro de roda)"
+        },
+        {
+          "valor": "6",
+          "unidade": "",
+          "rotulo": "rodas, cada uma com motor"
+        }
       ],
       "cota": null,
       "demo": {
         "titulo": "Demo: a suspensão rocker-bogie",
         "texto": "Arrasta o obstáculo (ou usa o cursor) por baixo das rodas e vê como a suspensão se adapta: o corpo do rover sobe apenas uma fração da altura do obstáculo. Modelo esquemático 2D, para ilustrar o princípio — não é uma simulação do nosso CAD."
-      }
+      },
+      "metodo": "A"
     },
     {
       "id": "rodas",
@@ -87,14 +168,33 @@
       "nome": "Rodas",
       "nomeReal": "6 rodas de Ø 52,5 cm",
       "responsavel": "Nuno Mourinha",
-      "apoio": ["David Coelho", "Rafael Morais"],
+      "apoio": [
+        "David Coelho",
+        "Rafael Morais"
+      ],
       "funcao": "Seis rodas, cada uma com o seu motor, que fazem avançar o rover e agarram o terreno marciano.",
       "numeros": [
-        { "valor": "Ø 52,5", "unidade": "cm", "rotulo": "diâmetro da roda" },
-        { "valor": "6", "unidade": "", "rotulo": "rodas, cada uma com motor" },
-        { "valor": "1,65", "unidade": "m", "rotulo": "avanço por volta completa da roda" }
+        {
+          "valor": "Ø 52,5",
+          "unidade": "cm",
+          "rotulo": "diâmetro da roda"
+        },
+        {
+          "valor": "6",
+          "unidade": "",
+          "rotulo": "rodas, cada uma com motor"
+        },
+        {
+          "valor": "1,65",
+          "unidade": "m",
+          "rotulo": "avanço por volta completa da roda"
+        }
       ],
-      "cota": { "label": "Ø 52,5 cm", "dir": "h" }
+      "cota": {
+        "label": "Ø 52,5 cm",
+        "dir": "h"
+      },
+      "metodo": "A"
     },
     {
       "id": "mmrtg",
@@ -102,14 +202,30 @@
       "nome": "MMRTG",
       "nomeReal": "Multi-Mission Radioisotope Thermoelectric Generator",
       "responsavel": "David Coelho",
-      "apoio": ["Nuno Mourinha", "Rafael Morais"],
+      "apoio": [
+        "Nuno Mourinha",
+        "Rafael Morais"
+      ],
       "funcao": "Converte o calor do decaimento radioativo do plutónio-238 em eletricidade e fornece calor ao rover, o que o torna independente da luz solar.",
       "numeros": [
-        { "valor": "≈ 110", "unidade": "W", "rotulo": "potência elétrica no lançamento" },
-        { "valor": "≈ 45", "unidade": "kg", "rotulo": "massa do gerador" },
-        { "valor": "4,8", "unidade": "kg", "rotulo": "dióxido de plutónio" }
+        {
+          "valor": "≈ 110",
+          "unidade": "W",
+          "rotulo": "potência elétrica no lançamento"
+        },
+        {
+          "valor": "≈ 45",
+          "unidade": "kg",
+          "rotulo": "massa do gerador"
+        },
+        {
+          "valor": "4,8",
+          "unidade": "kg",
+          "rotulo": "dióxido de plutónio"
+        }
       ],
-      "cota": null
+      "cota": null,
+      "metodo": "B"
     }
   ]
 }

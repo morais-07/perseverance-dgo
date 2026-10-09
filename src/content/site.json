@@ -71,7 +71,7 @@
   },
   "sobre": {
     "rotulo": "Sobre este projeto",
-    "texto": "Este website é o relatório do nosso projeto de grupo na unidade curricular **Design Generativo e Otimização** (Mestrado em Engenharia Aeroespacial, Universidade de Aveiro). Vamos modelar em CAD o rover Perseverance, da NASA, parametrizar uma parte dele e otimizar a sua suspensão. Aqui contamos, semana a semana, como lá chegámos.",
+    "texto": "Este website é o relatório do nosso projeto de grupo na unidade curricular **Design Generativo e Otimização** (Mestrado em Engenharia Aeroespacial, Universidade de Aveiro). Vamos modelar em CAD o rover Perseverance, da NASA, parametrizar o chassis, a suspensão e as rodas, e otimizar a suspensão. Aqui contamos, semana a semana, como lá chegámos.",
     "uc": "UC 43449 · Design Generativo e Otimização"
   }
 }

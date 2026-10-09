@@ -6,7 +6,7 @@ Total: 17 · já preenchidos: 9
 
 | Estado | Ficheiro (dentro de `public/`) | Secção | Descrição | Dimensões |
 |---|---|---|---|---|
-| ✅ existe | `media/m0/levantamento_de_forma.webp` | M0 · Levantamento de forma | levantamento de forma: esquema do método de engenharia inversa. | 1600×900 |
+| ✅ existe | `media/m0/levantamento_de_forma.webp` | M0 · Engenharia inversa (esquema) | levantamento de forma: esquema do método de engenharia inversa. | 1600×900 |
 | ✅ existe | `media/m0/render_rover.webp` | M0 · Render do rover (imagem) | render do rover completo montado. | 1920×1080 |
 | ✅ existe | `media/m0/render_rover.mp4` | M0 · Render do rover (vídeo) | [VÍDEO: rover renderizado, com as juntas a mover-se — a juntar] | 1920×1080 · MP4 (H.264) |
 | ⬜ em falta | `media/m0/mastro_cad.webp` | M0 · Mastro (câmara) (CAD 3D) | CAD 3D: mastro (câmara) (render ou captura do Fusion). | 1600×900 |

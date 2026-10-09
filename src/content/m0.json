@@ -4,40 +4,7 @@
   "periodo": "17 set — 8 out 2026 · peso 20 %",
   "intro": "No M0 modelamos tudo e montamos o rover completo, para preparar a fase seguinte, a parametrização. A montagem completa fica no final desta fase. Detalhes ou peças em falta ainda podem ser modelados no M1 e no M2.",
   "semanasTitulo": "M0 · semana a semana",
-  "estrategiaTitulo": "Estratégia de modelação",
-  "estrategia": [
-    {
-      "titulo": "Estratégia de modelação",
-      "texto": "Modelamos com sólidos (extrusões e cortes), sem recorrer a superfícies: demorava muito e não se justificava. Cada elemento modela os seus subsistemas e, no fim, montamos tudo.",
-      "etiqueta": null
-    },
-    {
-      "titulo": "Esqueleto mestre",
-      "texto": "[FALTA: esboço de layout com os pontos de ligação entre os subsistemas]",
-      "etiqueta": null
-    },
-    {
-      "titulo": "Convenção de nomes",
-      "texto": "[FALTA: convenção de nomes usada nos ficheiros e componentes]",
-      "etiqueta": null
-    },
-    {
-      "titulo": "Partilha de ficheiros",
-      "texto": "[FALTA: como a equipa partilhou os ficheiros]",
-      "etiqueta": null
-    }
-  ],
-  "inversaTitulo": "Levantamento de forma e superfícies",
-  "inversa": {
-    "texto": "Partimos da malha (mesh) do rover como referência, com fotografias de apoio. Usámos dois métodos. Por cima da malha: importar do Blender para o Fusion, cortar por planos (Plane Cut), separar as peças (Separate), converter a malha em corpo (Convert Mesh) e modelar por cima. Medir e replicar: abrir a malha como mesh normal (no Fusion ou no SolidWorks), converter em corpo, tirar medidas e replicá-las no Fusion para modelar o subsistema.",
-    "slot": {
-      "kind": "image",
-      "file": "media/m0/levantamento_de_forma.webp",
-      "desc": "levantamento de forma: esquema do método de engenharia inversa.",
-      "size": "1600×900",
-      "alt": "Fotografia de referência sobreposta a superfícies modeladas no Fusion."
-    }
-  },
+  "estrategiaTitulo": "Estratégia de modelação e engenharia inversa",
   "montagemTitulo": "A montagem completa",
   "montagemTexto": "O rover completo, montado a partir dos subsistemas, fecha o M0: roda, aproxima, isola cada subsistema ou explode a montagem.",
   "montagemFalta": "",
@@ -70,13 +37,6 @@
   ],
   "divisaoTitulo": "Divisão do trabalho",
   "divisaoNota": "Cada elemento é o responsável pelos seus subsistemas.",
-  "riscosTitulo": "Riscos e mitigação",
-  "riscos": [
-    {
-      "risco": "[FALTA: riscos identificados pela equipa]",
-      "mitigacao": "[FALTA: como foram mitigados]"
-    }
-  ],
   "ferramentasTitulo": "Ferramentas",
   "ferramentas": [
     {
@@ -104,5 +64,134 @@
       "size": "1920×1080 · MP4 (H.264)",
       "alt": "Vídeo do rover renderizado com as juntas a mover-se."
     }
+  },
+  "estrategia": {
+    "intro": [
+      "O rover foi dividido em subsistemas e cada elemento do grupo modelou os seus. Modelamos com sólidos (extrusões e cortes), sem recorrer a superfícies: demorava muito e não se justificava.",
+      "Partimos de uma malha (mesh) do rover como referência: é a engenharia inversa, o levantamento de forma. Como cada pessoa seguiu o mesmo método em todas as suas peças, descrevemo-lo aqui uma só vez, e cada parte indica o método usado."
+    ],
+    "metodos": [
+      {
+        "id": "A",
+        "nome": "Por cima da malha",
+        "quem": "Nuno Mourinha · Fusion",
+        "resumo": "Modelação em contexto: as peças são desenhadas diretamente sobre a malha, já dentro da montagem.",
+        "passos": [
+          [
+            "Segmentar a malha",
+            "Plane Cut corta a malha em zonas estratégicas; Separate transforma-a numa série de corpos individuais, sem polígonos ligados entre si. Separou praticamente todas as peças de forma limpa."
+          ],
+          [
+            "Converter para sólido",
+            "Convert Mesh transforma as malhas facetadas em corpos sólidos (BRep)."
+          ],
+          [
+            "Medir",
+            "Com os sólidos, a ferramenta Measure extrai cotas reais dos elementos do rover."
+          ],
+          [
+            "Blueprint",
+            "Ajusta-se a opacidade dos sólidos convertidos e usam-se como moldes tridimensionais: novos componentes, em modo Assembly, desenhados por cima destas referências."
+          ],
+          [
+            "Refinar",
+            "Os sketches iniciais, baseados na malha, são refinados e parametrizados para garantir curvaturas contínuas e exatidão matemática."
+          ]
+        ],
+        "vantagem": "Rapidez de modelação e boa perceção do encaixe entre peças, evitando colisões na montagem. Exige um pós-processamento crítico dos sketches."
+      },
+      {
+        "id": "B",
+        "nome": "Medir e replicar",
+        "quem": "David Coelho · Fusion  |  Rafael Morais · SolidWorks",
+        "resumo": "As cotas são extraídas da malha e a peça é recriada no Fusion, num ficheiro à parte.",
+        "passos": [
+          [
+            "Abrir a malha",
+            "Como uma mesh normal, no Fusion (David) ou no SolidWorks (Rafael)."
+          ],
+          [
+            "Converter para corpo",
+            "A malha passa a corpo sólido."
+          ],
+          [
+            "Tirar medidas",
+            "Extraem-se as cotas sobre o corpo convertido."
+          ],
+          [
+            "Replicar no Fusion",
+            "As medidas são usadas para modelar o nosso subsistema."
+          ]
+        ],
+        "vantagem": "Método direto, parecido com medir a peça com um paquímetro digital: a coerência com o resto do rover verifica-se na montagem."
+      }
+    ],
+    "slot": {
+      "kind": "image",
+      "file": "media/m0/levantamento_de_forma.webp",
+      "desc": "levantamento de forma: esquema do método de engenharia inversa.",
+      "size": "1600×900",
+      "alt": "Esquema dos dois métodos de engenharia inversa: do SolidWorks e do Fusion à modelação no Fusion."
+    },
+    "organizacaoTitulo": "Organização do trabalho",
+    "organizacao": [
+      {
+        "titulo": "Esqueleto mestre",
+        "texto": "[FALTA: esboço de layout com os pontos de ligação entre os subsistemas]"
+      },
+      {
+        "titulo": "Convenção de nomes",
+        "texto": "[FALTA: convenção de nomes usada nos ficheiros e componentes]"
+      },
+      {
+        "titulo": "Partilha de ficheiros",
+        "texto": "[FALTA: como a equipa partilhou os ficheiros]"
+      }
+    ]
+  },
+  "generativo": {
+    "titulo": "Próximo passo: design generativo (Autodesk Fusion)",
+    "credito": "Explorado por Nuno Mourinha, na suspensão.",
+    "intro": "Depois da consolidação geométrica das peças, o projeto avança para a exploração com o Design Generativo do Autodesk Fusion. O objetivo é submeter componentes estruturais, como suportes e juntas da suspensão, a algoritmos que geram geometrias otimizadas com base em variáveis rigorosamente definidas.",
+    "pilaresTitulo": "Os pilares da configuração",
+    "pilares": [
+      {
+        "titulo": "Design Space",
+        "sub": "Definição geométrica",
+        "texto": "Instrui-se o algoritmo sobre o que pode ou não ser alterado. Definimos as Preserve Geometries (zonas a manter, como os furos dos eixos e as interfaces de ligação entre as peças da suspensão) e deixamos o software remodelar livremente o material de ligação entre elas."
+      },
+      {
+        "titulo": "Design Conditions",
+        "sub": "Restrições e cargas",
+        "texto": "Configuramos os cenários de carga do mundo real: fixações estruturais e diferentes casos de estudo, como o rover em repouso, impacto extremo (a roda a cair num buraco) ou colisões laterais contra rochas."
+      },
+      {
+        "titulo": "Design Criteria",
+        "sub": "Objetivos da otimização",
+        "texto": "O critério principal é a minimização da massa, mantendo a integridade estrutural perante as cargas aplicadas."
+      },
+      {
+        "titulo": "Manufatura e materiais",
+        "sub": "Fabricável",
+        "texto": "A otimização topológica só vale se a peça for fabricável. Restringimos os métodos a manufatura aditiva (impressão 3D de metais) e fresagem CNC, e escolhemos alumínio e titânio, pela elevada relação resistência-peso."
+      }
+    ],
+    "reestruturacaoTitulo": "Reestruturação do fluxo",
+    "reestruturacao": "Na sequência do feedback técnico, decidimos ajustar a transição para esta fase. Antes de gerar formas, vamos consolidar a parametrização (M1) do modelo, para justificar cada parâmetro de base antes de o submeter ao algoritmo.",
+    "proximosTitulo": "Depois de computados os modelos generativos",
+    "proximos": [
+      {
+        "titulo": "Exploração de soluções",
+        "texto": "Gráficos de dispersão (scatter plots) no Fusion para cruzar dados, como massa contra fator de segurança, e isolar o design vencedor, o de melhor compromisso."
+      },
+      {
+        "titulo": "Validação mecânica",
+        "texto": "Submeter o modelo escolhido a simulações estruturais clássicas (FEA) e validar o seu comportamento cinemático na montagem final."
+      },
+      {
+        "titulo": "Escalabilidade e reticulados",
+        "texto": "Integrar as peças geradas com a escalabilidade paramétrica do resto do rover e, na otimização estrutural (M2), introduzir estruturas reticuladas (lattices) para reduzir ainda mais o peso em zonas de baixa tensão."
+      }
+    ]
   }
 }

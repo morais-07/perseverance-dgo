@@ -2,7 +2,7 @@
   "codigo": "M2",
   "titulo": "Otimização da suspensão",
   "periodo": "12 nov — 17 dez 2026 · peso 40 %",
-  "intro": "O M2 não tem montagem: é só otimização. Escolhemos a suspensão e vamos procurar a forma mais leve que continua a resistir às cargas.",
+  "intro": "O M2 não tem montagem: é só otimização. A otimização é da suspensão, com o design generativo do Autodesk Fusion: procuramos a forma mais leve que continua a resistir às cargas.",
   "otimizacao": {
     "titulo": "Design generativo e otimização",
     "pecaCaso": "A suspensão do rover.",
@@ -149,10 +149,10 @@
     "texto": "Esta fase ainda não está feita. Quando estiver, esta secção passa a mostrar a otimização da suspensão e o seu resultado. Para já, fica o plano.",
     "titulo": "O que vamos fazer em M2",
     "planeado": [
-      "Definir o problema de otimização da suspensão: espaço de projeto, cargas, restrições e objetivo.",
-      "Aplicar otimização estrutural e topológica, integrada numa estratégia generativa.",
-      "Pós-processar a solução até uma geometria fabricável.",
-      "Apresentar o resultado da otimização e compará-lo com o ponto de partida."
+      "Otimizar a suspensão com o design generativo do Autodesk Fusion: Design Space, Design Conditions e Design Criteria, com a massa como critério principal.",
+      "Explorar as soluções com gráficos de dispersão e escolher o design de melhor compromisso.",
+      "Validar a solução escolhida com simulação estrutural (FEA).",
+      "Garantir que é fabricável (manufatura aditiva ou fresagem CNC, em alumínio ou titânio) e estudar estruturas reticuladas para aliviar peso."
     ]
   }
 }

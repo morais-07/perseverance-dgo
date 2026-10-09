@@ -223,30 +223,38 @@ function partCard(p) {
   return `<article class="part rv" id="sub-${p.id}">
     <div class="part-media">${slot(cad, { cota: p.cota })}</div>
     <div class="part-body">
-      <div class="sub-id"><span>${esc(p.codigo)}</span></div>
+      <div class="sub-id"><span>${esc(p.codigo)}</span><a class="metodo-tag" href="#metodo-${p.metodo}" title="Ver o método de modelação">MÉTODO ${esc(p.metodo)}</a></div>
       <h3>${esc(p.nome)}</h3>
       <p class="real">${esc(p.nomeReal)}</p>
       <p class="who"><b>${esc(partes.responsavelRotulo)}:</b> ${esc(p.responsavel)}</p>
       <p>${esc(p.funcao)}</p>
       ${figs(p.numeros)}
-      <div><h4>Abordagem de modelação</h4><p>${tbc(`[FALTA: texto sobre a abordagem seguida na modelação: ${p.nome.toLowerCase()}]`)}</p></div>
     </div>
     ${p.demo ? `<div class="part-demo"><h4>${esc(p.demo.titulo)}</h4><p>${esc(p.demo.texto)}</p><div class="rb" data-rb></div></div>` : ''}
   </article>`;
 }
 
+const metodoCard = (mt) => `<article class="metodo rv" id="metodo-${esc(mt.id)}">
+  <header><span class="mt-id">MÉTODO ${esc(mt.id)}</span><h4>${esc(mt.nome)}</h4><p class="mt-quem">${esc(mt.quem)}</p></header>
+  <p class="mt-resumo">${esc(mt.resumo)}</p>
+  <ol class="mt-passos">${mt.passos.map((s) => `<li><div><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div></li>`).join('')}</ol>
+  <p class="mt-van">${esc(mt.vantagem)}</p>
+</article>`;
+
 export function renderM0() {
   const d = m0;
+  const e = d.estrategia;
+  const g = d.generativo;
   return `<div class="wrap">
     ${titleblock('PRV-M00-005', '5/6')}
     ${msHead('m0', d, 'Ato II — modelação e montagem')}
     <div class="block"><h3 class="rv">${esc(d.semanasTitulo)}</h3>${weeksOf('M0')}</div>
     <div class="block"><h3 class="rv">${esc(d.estrategiaTitulo)}</h3>
-      <div class="strat rv">${d.estrategia.map((s) => `<div class="strat-item"><h4>${esc(s.titulo)}</h4><p>${tbc(s.texto)}</p></div>`).join('')}</div>
-    </div>
-    <div class="block two-col rv">
-      <div><h3>${esc(d.inversaTitulo)}</h3><p>${tbc(d.inversa.texto)}</p></div>
-      ${slot(d.inversa.slot)}
+      <div class="estrategia-intro rv">${e.intro.map((t) => `<p>${esc(t)}</p>`).join('')}</div>
+      <div class="metodos">${e.metodos.map(metodoCard).join('')}</div>
+      <div class="rv" style="margin-top:var(--s5)">${slot(e.slot)}</div>
+      <h4 class="rv sub-titulo">${esc(e.organizacaoTitulo)}</h4>
+      <div class="strat rv">${e.organizacao.map((s) => `<div class="strat-item"><h4>${esc(s.titulo)}</h4><p>${tbc(s.texto)}</p></div>`).join('')}</div>
     </div>
     <div class="block"><h3 class="rv">${esc(partes.titulo)}</h3><p class="rv">${esc(partes.texto)}</p>
       <div class="parts">${partes.partes.map(partCard).join('')}</div>
@@ -265,10 +273,17 @@ export function renderM0() {
           <div class="table-wrap"><table><thead><tr><th>Nome</th><th>Contacto</th><th>Subsistemas</th></tr></thead>
             <tbody>${equipa.membros.map((m) => `<tr><th scope="row">${esc(m.nome)} <span class="mono">(${esc(m.mec)})</span></th><td><a href="mailto:${esc(m.email)}" style="color:inherit">${esc(m.email)}</a></td><td>${esc(m.subsistemas.join(', '))}</td></tr>`).join('')}</tbody></table></div>
           <p class="note">${esc(d.divisaoNota)}</p></div>
-        <div><h3>${esc(d.riscosTitulo)}</h3><div class="table-wrap"><table><thead><tr><th>Risco</th><th>Mitigação</th></tr></thead><tbody>${d.riscos.map((r) => `<tr><td>${tbc(r.risco)}</td><td>${tbc(r.mitigacao)}</td></tr>`).join('')}</tbody></table></div></div>
+        <div><h3>${esc(d.ferramentasTitulo)}</h3>
+          <div class="table-wrap"><table><tbody>${d.ferramentas.map((f) => `<tr><th scope="row">${esc(f.tipo)}</th><td>${esc(f.nome)}</td></tr>`).join('')}</tbody></table></div></div>
       </div>
-      <div class="rv" style="margin-top:var(--s7)"><h3>${esc(d.ferramentasTitulo)}</h3>
-        <div class="table-wrap"><table><tbody>${d.ferramentas.map((f) => `<tr><th scope="row">${esc(f.tipo)}</th><td>${esc(f.nome)}</td></tr>`).join('')}</tbody></table></div></div>
+    </div>
+    <div class="block" id="generativo"><h3 class="rv">${esc(g.titulo)}</h3>
+      <p class="rv">${esc(g.intro)}</p><p class="note rv">${esc(g.credito)}</p>
+      <h4 class="rv sub-titulo">${esc(g.pilaresTitulo)}</h4>
+      <div class="pilares rv">${g.pilares.map((p, i) => `<div class="pilar"><span class="pl-n">0${i + 1}</span><h4>${esc(p.titulo)}</h4><span class="pl-sub">${esc(p.sub)}</span><p>${esc(p.texto)}</p></div>`).join('')}</div>
+      <div class="reestrut rv"><h4>${esc(g.reestruturacaoTitulo)}</h4><p>${esc(g.reestruturacao)}</p></div>
+      <h4 class="rv sub-titulo">${esc(g.proximosTitulo)}</h4>
+      <ol class="wip-list rv">${g.proximos.map((x) => `<li><span><b>${esc(x.titulo)}.</b> ${esc(x.texto)}</span></li>`).join('')}</ol>
     </div>
   </div>`;
 }

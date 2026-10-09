@@ -2,7 +2,7 @@
   "codigo": "M1",
   "titulo": "Parametrização",
   "periodo": "15 out — 5 nov 2026 · peso 30 %",
-  "intro": "Depois de modelar e montar o rover, o M1 é dedicado às estratégias computacionais em CAD: parametrizar uma parte do rover e explorar as soluções que daí resultam.",
+  "intro": "Depois de modelar e montar o rover, o M1 é dedicado às estratégias computacionais em CAD: parametrizar o chassis, a suspensão e as rodas, e explorar um chassis mais orgânico com superfícies.",
   "cartoesTitulo": "Os cinco subsistemas",
   "extrasTitulo": "Extras (se houver tempo)",
   "extrasNota": "Sem comprometer o layout: estes subsistemas só entram no modelo final se o calendário permitir.",
@@ -83,10 +83,9 @@
     "texto": "Esta fase ainda não está feita. Quando estiver, esta secção passa a mostrar o trabalho de parametrização da equipa. Para já, fica o plano.",
     "titulo": "O que vamos fazer em M1",
     "planeado": [
-      "Parametrizar uma parte do rover, ligando a geometria a parâmetros e a design tables.",
-      "Usar scripting em CAD para automatizar a geração de variantes.",
-      "Simular o desempenho estrutural de pelo menos uma peça.",
-      "Comparar a nossa solução com o design generativo do Autodesk (AGD) e avaliar as soluções obtidas."
+      "Parametrizar o chassis, a suspensão e as rodas, ligando a geometria a parâmetros e a design tables.",
+      "Fazer um chassis mais orgânico, usando superfícies.",
+      "Justificar cada parâmetro de base da suspensão, para a poder submeter ao design generativo no M2."
     ]
   }
 }

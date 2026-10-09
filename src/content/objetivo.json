@@ -18,17 +18,18 @@
       "codigo": "OBJ-02",
       "fase": "M1",
       "titulo": "Parametrizar",
-      "texto": "Parametrizar uma parte do rover, para poder variar a sua geometria de forma controlada. Ainda estamos a escolher o quê.",
+      "texto": "Parametrizar o chassis, a suspensão e as rodas, para poder variar a sua geometria de forma controlada, e fazer um chassis mais orgânico com superfícies.",
       "criterios": [
-        "Parâmetros definidos e ligados à geometria.",
-        "Variantes geradas a partir desses parâmetros."
+        "Parâmetros definidos e ligados à geometria do chassis, da suspensão e das rodas.",
+        "Variantes geradas a partir desses parâmetros.",
+        "Um chassis orgânico modelado com superfícies."
       ]
     },
     {
       "codigo": "OBJ-03",
       "fase": "M2",
       "titulo": "Otimizar a suspensão",
-      "texto": "Mais à frente, aplicar otimização à suspensão: reduzir massa mantendo a resistência.",
+      "texto": "Mais à frente, otimizar a suspensão com design generativo: reduzir massa mantendo a resistência.",
       "criterios": [
         "Problema formulado: espaço de projeto, cargas, restrições e objetivo.",
         "Resultado da otimização apresentado e comparado com o ponto de partida."

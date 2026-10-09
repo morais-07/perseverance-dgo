@@ -715,3 +715,40 @@ tr.win th::after { content: ' ★ escolhida'; font-family: var(--f-mono); font-s
 .dl-links a { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border: 1px solid var(--mars); border-radius: var(--r); color: var(--mars); font-size: .82rem; font-weight: 600; text-decoration: none; transition: background var(--t-fast), color var(--t-fast); }
 .dl-links a:hover { background: var(--mars); color: #000; }
 .dl-links svg { width: 16px; height: 16px; }
+
+/* estratégia de modelação: dois métodos */
+.estrategia-intro { display: grid; gap: var(--s2); max-width: 78ch; margin-bottom: var(--s6); }
+.estrategia-intro p { margin: 0; color: #d6d7df; }
+.metodos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4); }
+.metodo { border: 1px solid var(--line-d); padding: var(--s6); background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,0)); display: grid; gap: var(--s3); align-content: start; scroll-margin-top: calc(var(--nav-h) + var(--subnav-h) + 16px); }
+.metodo header { display: grid; gap: 4px; }
+.mt-id { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .16em; font-weight: 700; color: var(--mars); }
+.metodo h4 { font-size: 1.5rem; font-stretch: 88%; }
+.mt-quem { font-family: var(--f-mono); font-size: .74rem; color: var(--dust); margin: 0; }
+.mt-resumo { margin: 0; color: #e9e9ee; font-weight: 500; }
+.mt-passos { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: p; }
+.mt-passos li { display: grid; grid-template-columns: 28px 1fr; gap: var(--s3); padding: var(--s3) 0; border-top: 1px solid var(--line-d); counter-increment: p; }
+.mt-passos li::before { content: counter(p); font-family: var(--f-mono); font-weight: 700; font-size: .78rem; color: var(--mars); padding-top: 2px; }
+.mt-passos b { display: block; font-size: .95rem; margin-bottom: 2px; }
+.mt-passos span { font-size: .85rem; color: #b9bbc6; line-height: 1.5; }
+.mt-van { margin: 0; font-size: .85rem; color: #cfd0d8; border-top: 1px dashed var(--line-d); padding-top: var(--s3); }
+.sub-titulo { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--dust); margin: var(--s6) 0 var(--s3); font-weight: 600; }
+.metodo-tag { font-family: var(--f-mono); font-size: .66rem; letter-spacing: .12em; font-weight: 700; padding: 2px 9px; border: 1px solid var(--mars); border-radius: 999px; color: var(--mars); text-decoration: none; transition: background var(--t-fast), color var(--t-fast); }
+.metodo-tag:hover { background: var(--mars); color: #000; }
+.part .sub-id { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+@media (max-width: 900px) { .metodos { grid-template-columns: 1fr; } .metodo { padding: var(--s4); } }
+
+/* design generativo */
+.pilares { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s3); }
+.pilar { border: 1px solid var(--line-d); padding: var(--s5); display: grid; gap: 6px; align-content: start; }
+.pl-n { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .14em; color: var(--mars); font-weight: 700; }
+.pilar h4 { font-size: 1.15rem; font-stretch: 90%; }
+.pl-sub { font-family: var(--f-mono); font-size: .68rem; color: var(--dust); }
+.pilar p { margin: var(--s2) 0 0; font-size: .86rem; color: #cfd0d8; }
+.reestrut { margin-top: var(--s5); border: 1px solid var(--mars); padding: var(--s5); max-width: 860px; }
+.reestrut h4 { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--mars); margin-bottom: var(--s2); }
+.reestrut p { margin: 0; }
+@media (max-width: 1000px) { .pilares { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .pilares { grid-template-columns: 1fr; } }
+
+.mt-passos span { display: block; }
