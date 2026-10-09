@@ -59,10 +59,10 @@
   },
   "download": {
     "ficheiro": "downloads/perseverance_cad.zip",
-    "formato": "[A CONFIRMAR: formato]",
-    "tamanho": "[A CONFIRMAR: tamanho]",
-    "disponivel": false,
-    "nota": "O pacote CAD ainda não existe. Quando o ficheiro for colocado em public/downloads/perseverance_cad.zip, este botão passa a descarregá-lo."
+    "formato": "ZIP · Fusion (.f3z) + renders",
+    "tamanho": "26 MB",
+    "disponivel": true,
+    "nota": "Pacote CAD: montagem completa em Fusion e renders do rover."
   },
   "rodape": {
     "texto": "Projeto de grupo da UC 43449 — Design Generativo e Otimização · Mestrado em Engenharia Aeroespacial · Universidade de Aveiro.",
