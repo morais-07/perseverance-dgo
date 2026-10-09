@@ -6,6 +6,8 @@
   },
   "modeloFinal": {
     "ficheiro": "models/perseverance_dgo.glb",
+    "rotacaoY": -90,
+    "rotulo": "Modelo da equipa · DGO",
     "nota": "Quando este ficheiro existir em public/models/, o site passa a usá-lo no lugar do modelo provisório."
   },
   "subsistemas": [

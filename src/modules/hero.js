@@ -46,7 +46,7 @@ export async function initHero(hero) {
   }
 
   const rover = buildRover(model.gltf);
-  const stage = createStage(canvas, { floorY: -rover.size.y / 2 - 0.02 });
+  const stage = createStage(canvas, { floorY: -rover.size.y / 2 - 0.02, envIntensity: model.provisional ? 0.85 : 0.5 });
   stage.scene.add(rover.pivot);
 
   // etiquetas dos subsistemas (aparecem na vista explodida)
@@ -85,6 +85,7 @@ export async function initHero(hero) {
     }
   };
 
+  if (!model.provisional) hero.querySelector('[data-prov]').textContent = 'MODELO DA EQUIPA · DGO';
   hero.classList.add('ready');
   apply();
 

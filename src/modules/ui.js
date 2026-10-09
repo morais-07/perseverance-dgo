@@ -219,42 +219,74 @@ export function initDownloadButtons(msg) {
   );
 }
 
-/* ───────── Ampliar os slides das semanas ───────── */
+/* ───────── Ampliar os slides das semanas (com galeria) ───────── */
 export function initLightbox() {
-  let box;
-  let last;
+  let box, img, cap, last;
+  let items = [];
+  let idx = 0;
+  const show = () => {
+    const it = items[idx];
+    img.src = it.src;
+    img.alt = it.alt;
+    cap.textContent = items.length > 1 ? `${idx + 1} / ${items.length}` : '';
+    box.classList.toggle('single', items.length < 2);
+  };
   const close = () => {
     if (!box) return;
     box.hidden = true;
     last?.focus?.();
   };
-  const open = (fig) => {
-    const img = fig.querySelector('img');
-    if (!img?.src) return;
+  const step = (d) => {
+    idx = (idx + d + items.length) % items.length;
+    show();
+  };
+  const open = (list, i, from) => {
     if (!box) {
       box = document.createElement('div');
       box.className = 'lightbox';
       box.setAttribute('role', 'dialog');
       box.setAttribute('aria-modal', 'true');
-      box.innerHTML = `<button class="icon-btn" aria-label="Fechar">${icon.close}</button><img alt="" />`;
-      box.addEventListener('click', close);
+      box.setAttribute('aria-label', 'Imagem ampliada');
+      box.innerHTML = `<button class="icon-btn lb-close" aria-label="Fechar">${icon.close}</button>
+        <button class="icon-btn lb-prev" aria-label="Slide anterior">${icon.prev}</button>
+        <img alt="" /><button class="icon-btn lb-next" aria-label="Slide seguinte">${icon.next}</button><span class="lb-cap" aria-live="polite"></span>`;
+      img = box.querySelector('img');
+      cap = box.querySelector('.lb-cap');
+      box.addEventListener('click', (e) => {
+        if (e.target.closest('.lb-prev')) return step(-1);
+        if (e.target.closest('.lb-next')) return step(1);
+        close();
+      });
       document.body.appendChild(box);
     }
-    last = fig;
-    box.querySelector('img').src = img.src;
-    box.querySelector('img').alt = img.alt;
+    last = from;
+    items = list;
+    idx = i;
+    show();
     box.hidden = false;
-    box.querySelector('button').focus();
+    box.querySelector('.lb-close').focus();
   };
   document.addEventListener('click', (e) => {
+    const t = e.target.closest('.gal-t');
+    if (t) {
+      const group = [...document.querySelectorAll(`.gal-t[data-gal="${t.dataset.gal}"]`)];
+      return open(group.map((g) => ({ src: asset(g.dataset.full), alt: g.dataset.alt })), group.indexOf(t), t);
+    }
     const fig = e.target.closest('.week .slot.has-media');
-    if (fig) open(fig);
+    if (fig) {
+      const im = fig.querySelector('img');
+      if (im?.src) open([{ src: im.src, alt: im.alt }], 0, fig);
+    }
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && box && !box.hidden) return close();
+    if (box && !box.hidden) {
+      if (e.key === 'Escape') return close();
+      if (e.key === 'ArrowRight') return step(1);
+      if (e.key === 'ArrowLeft') return step(-1);
+    }
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches?.('.week .slot.has-media')) {
       e.preventDefault();
-      open(e.target);
+      e.target.click();
     }
   });
 }

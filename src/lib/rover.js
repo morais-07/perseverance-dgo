@@ -45,6 +45,8 @@ export function loadRoverModel() {
     draco.dispose();
     progress = 1;
     listeners.forEach((fn) => fn(1));
+    // O modelo da equipa vem do Blender com a frente do rover em +X; o site espera a frente em +Z.
+    if (final && cfg.modeloFinal.rotacaoY) gltf.scene.rotation.y = THREE.MathUtils.degToRad(cfg.modeloFinal.rotacaoY);
     return { gltf, provisional: !final };
   })();
   modelPromise.catch(() => (modelPromise = null));
@@ -203,7 +205,7 @@ function radialTexture() {
   return t;
 }
 
-export function createStage(canvas, { floorY = -1.2, floor = true, fov = 32 } = {}) {
+export function createStage(canvas, { floorY = -1.2, floor = true, fov = 32, envIntensity = 0.85 } = {}) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -215,7 +217,7 @@ export function createStage(canvas, { floorY = -1.2, floor = true, fov = 32 } = 
   const pmrem = new THREE.PMREMGenerator(renderer);
   const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
   scene.environment = envTex;
-  scene.environmentIntensity = 0.85;
+  scene.environmentIntensity = envIntensity;
 
   const key = new THREE.DirectionalLight(0xffd9b8, 2.4);
   key.position.set(4, 6, 3);

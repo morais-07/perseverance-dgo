@@ -99,3 +99,17 @@ npm run dev
 ```
 
 Abre o site, vai ao visualizador (M2) e confirma: os cinco subsistemas aparecem nos botões, «Isolar» e «Vista explodida» funcionam e a etiqueta «Modelo provisório — NASA» desapareceu.
+
+## Como o modelo da equipa foi exportado (Blender → GLB)
+
+O modelo da equipa (`Rover_E4_DGO.blend`, importado do Fusion em FBX) foi exportado com o script
+[`scripts/blender_exportar_glb.py`](../scripts/blender_exportar_glb.py), que não altera o `.blend`:
+
+```bash
+"C:\Program Files\Blender Foundation\Blender 4.4\blender.exe" -b Rover_E4_DGO.blend --python scripts/blender_exportar_glb.py -- public/models/perseverance_dgo.glb
+```
+
+- **Nomes:** os componentes do Fusion têm nomes livres; o script mapeia-os para `mastro`, `braco`, `suspensao`, `chassis_*`, `mmrtg` e `antena` (lista `MAP` no início do script). Se mudarem nomes no Fusion, ajustem essa lista.
+- **Materiais:** o Fusion exporta tudo com *metallic = 1*. O script põe o vidro, o nylon e a pintura sem metal.
+- **Orientação:** no Blender a frente do rover está em +X; o site espera +Z. A correção está em `subsistemas.json → modeloFinal.rotacaoY` (−90). Se a frente mudar, ajustem esse número.
+- **Tamanho:** ≈ 1,7 MB (Draco).

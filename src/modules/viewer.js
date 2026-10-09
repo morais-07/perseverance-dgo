@@ -54,7 +54,7 @@ export function initViewer(root) {
       return;
     }
     const rover = buildRover(model.gltf);
-    const stage = createStage(canvas, { floorY: -rover.size.y / 2 - 0.02 });
+    const stage = createStage(canvas, { floorY: -rover.size.y / 2 - 0.02, envIntensity: model.provisional ? 0.85 : 0.5 });
     stage.scene.add(rover.pivot);
     const { camera, renderer } = stage;
     const R = rover.radius;

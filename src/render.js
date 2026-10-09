@@ -54,7 +54,7 @@ export function renderHero() {
       <canvas aria-hidden="true"></canvas>
       <div class="hero-labels" aria-hidden="true"></div>
       <div class="hero-corner tl" aria-hidden="true">PRV-000 · ESC 1:20 · FOLHA 1/6</div>
-      <div class="hero-corner tr" aria-hidden="true">${esc(site.modeloProvisorio.toUpperCase())}</div>
+      <div class="hero-corner tr" data-prov aria-hidden="true">${esc(site.modeloProvisorio.toUpperCase())}</div>
       <div class="hero-copy">
         <h1><span>${esc(site.titulo)}</span><span>${esc(site.tituloLinha2)}</span></h1>
         <p class="sub">${esc(site.subtitulo)}</p>
@@ -192,6 +192,10 @@ export function renderPorque() {
 }
 
 /* semanas */
+const galeria = (w) => `<div class="gal" role="group" aria-label="Slides da apresentação (${w.galeria.length})">${w.galeria
+  .map((g, i) => `<button type="button" class="gal-t" data-gal="semana-${w.semana}" data-full="${esc(g.file)}" data-alt="${esc(g.alt)}" aria-label="Ampliar slide ${i + 1}: ${esc(g.alt)}"><img src="${asset(g.file.replace('.webp', '_t.webp'))}" alt="" loading="lazy" decoding="async" width="480" height="270" /><span>${i + 1}</span></button>`)
+  .join('')}</div>`;
+
 function weekHtml(w) {
   const tag = w.etiqueta ? `<span class="tag ${w.etiqueta === 'Dificuldade' ? 'dificuldade' : 'decisao'}">${esc(w.etiqueta)}</span>` : '';
   const apres = w.apresentacao ? '<span class="tag apres">Apresentação</span>' : '';
@@ -202,7 +206,7 @@ function weekHtml(w) {
       <p class="tema"><span class="sr">Tema da aula: </span>${esc(w.tema)}</p>
       ${w.texto.map((t) => `<p>${tbc(t)}</p>`).join('')}
     </div>
-    ${w.slot ? slot(w.slot) : '<div class="noslide">Sem slide nesta semana</div>'}
+    ${w.galeria ? galeria(w) : w.slot ? slot(w.slot) : '<div class="noslide">Sem slide nesta semana</div>'}
   </article>`;
 }
 const weeksOf = (fase) => `<div class="weeks">${semanas.filter((w) => w.fase === fase).map(weekHtml).join('')}</div>`;
@@ -248,7 +252,7 @@ export function renderM0() {
       <div class="parts">${partes.partes.map(partCard).join('')}</div>
     </div>
     <div class="block" id="viewer-bloco"><h3 class="rv">${esc(d.montagemTitulo)}</h3><p class="rv">${esc(d.montagemTexto)}</p>
-      <p class="rv">${tbc(d.montagemFalta)}</p>
+      ${d.montagemFalta ? `<p class="rv">${tbc(d.montagemFalta)}</p>` : ''}
       ${renderViewer()}
       <p class="note rv" style="margin-top:12px">Modelo provisório: <a href="${esc(subs.modeloProvisorio.origem)}" target="_blank" rel="noopener noreferrer" style="color:var(--mars)">NASA 3D Resources — Mars 2020 Perseverance Rover</a> (${esc(subs.modeloProvisorio.licenca)}).</p>
     </div>

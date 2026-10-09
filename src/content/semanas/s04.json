@@ -6,15 +6,50 @@
   "tema": "Apresentação M0 e entrega do projeto da fase 0 (20 %), incluindo a primeira versão do website.",
   "texto": [
     "Apresentação M0 e entrega do projeto da fase 0 (20 %).",
-    "[FALTA: resultados apresentados em aula]"
+    "Apresentámos a equipa, a estratégia e a engenharia inversa, o assembly final do rover e os próximos passos para o M1."
   ],
   "etiqueta": null,
   "apresentacao": true,
-  "slot": {
-    "kind": "image",
-    "file": "media/m0/slide_semana_04.webp",
-    "desc": "Slide da semana 4 (apresentação de 1 slide, 3 minutos).",
-    "size": "1920×1080",
-    "alt": "Slide apresentado na semana 4."
-  }
+  "galeria": [
+    {
+      "file": "media/m0/semana4/slide_01.webp",
+      "alt": "Título: Perseverance Rover, apresentação M0 do DGO."
+    },
+    {
+      "file": "media/m0/semana4/slide_02.webp",
+      "alt": "Equipa: David Coelho, Nuno Mourinha e Rafael Morais."
+    },
+    {
+      "file": "media/m0/semana4/slide_03.webp",
+      "alt": "Perseverance."
+    },
+    {
+      "file": "media/m0/semana4/slide_04.webp",
+      "alt": "Estratégia e competências: abordagem e divisão em subsistemas."
+    },
+    {
+      "file": "media/m0/semana4/slide_05.webp",
+      "alt": "Estratégias de modelação e engenharia inversa: por cima da malha e modelação tradicional."
+    },
+    {
+      "file": "media/m0/semana4/slide_06.webp",
+      "alt": "Estratégias de modelação e engenharia inversa: do SolidWorks e do Fusion ao Fusion, com medidas."
+    },
+    {
+      "file": "media/m0/semana4/slide_07.webp",
+      "alt": "Assembly final do rover, render 1."
+    },
+    {
+      "file": "media/m0/semana4/slide_08.webp",
+      "alt": "Assembly final do rover, render 2."
+    },
+    {
+      "file": "media/m0/semana4/slide_09.webp",
+      "alt": "Próximos passos: transição para o M1."
+    },
+    {
+      "file": "media/m0/semana4/slide_10.webp",
+      "alt": "Obrigado! Questões?"
+    }
+  ]
 }

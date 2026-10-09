@@ -6,43 +6,86 @@
   "semanasTitulo": "M0 · semana a semana",
   "estrategiaTitulo": "Estratégia de modelação",
   "estrategia": [
-    { "titulo": "Estratégia de modelação", "texto": "[FALTA: estratégia de modelação seguida (ex.: top-down vs bottom-up) e porquê]", "etiqueta": null },
-    { "titulo": "Esqueleto mestre", "texto": "[FALTA: esboço de layout com os pontos de ligação entre os subsistemas]", "etiqueta": null },
-    { "titulo": "Convenção de nomes", "texto": "[FALTA: convenção de nomes usada nos ficheiros e componentes]", "etiqueta": null },
-    { "titulo": "Partilha de ficheiros", "texto": "[FALTA: como a equipa partilhou os ficheiros]", "etiqueta": null }
+    {
+      "titulo": "Estratégia de modelação",
+      "texto": "Modelamos com sólidos (extrusões e cortes), sem recorrer a superfícies: demorava muito e não se justificava. Cada elemento modela os seus subsistemas e, no fim, montamos tudo.",
+      "etiqueta": null
+    },
+    {
+      "titulo": "Esqueleto mestre",
+      "texto": "[FALTA: esboço de layout com os pontos de ligação entre os subsistemas]",
+      "etiqueta": null
+    },
+    {
+      "titulo": "Convenção de nomes",
+      "texto": "[FALTA: convenção de nomes usada nos ficheiros e componentes]",
+      "etiqueta": null
+    },
+    {
+      "titulo": "Partilha de ficheiros",
+      "texto": "[FALTA: como a equipa partilhou os ficheiros]",
+      "etiqueta": null
+    }
   ],
   "inversaTitulo": "Levantamento de forma e superfícies",
   "inversa": {
-    "texto": "[FALTA: como obtivemos a forma a partir das referências e como passámos de superfícies a sólido]",
+    "texto": "Partimos da malha (mesh) do rover como referência, com fotografias de apoio. Usámos dois métodos. Por cima da malha: importar do Blender para o Fusion, cortar por planos (Plane Cut), separar as peças (Separate), converter a malha em corpo (Convert Mesh) e modelar por cima. Medir e replicar: abrir a malha como mesh normal (no Fusion ou no SolidWorks), converter em corpo, tirar medidas e replicá-las no Fusion para modelar o subsistema.",
     "slot": {
       "kind": "image",
       "file": "media/m0/levantamento_de_forma.webp",
-      "desc": "levantamento de forma: imagem de referência sobreposta ao esboço ou às superfícies no Fusion.",
+      "desc": "levantamento de forma: esquema do método de engenharia inversa.",
       "size": "1600×900",
       "alt": "Fotografia de referência sobreposta a superfícies modeladas no Fusion."
     }
   },
   "montagemTitulo": "A montagem completa",
-  "montagemTexto": "O rover completo, montado a partir dos subsistemas, fecha o M0. Enquanto o nosso CAD não estiver montado e exportado, o visualizador mostra o modelo provisório da NASA: roda, aproxima, isola cada subsistema ou explode a montagem.",
-  "montagemFalta": "[FALTA: o CAD completo montado em Fusion, exportado para o visualizador (ver docs/exportar-modelo.md)]",
+  "montagemTexto": "O rover completo, montado a partir dos subsistemas, fecha o M0: roda, aproxima, isola cada subsistema ou explode a montagem.",
+  "montagemFalta": "",
   "processoTitulo": "Análise do processo",
   "fluxo": [
-    { "codigo": "01", "rotulo": "Pesquisa" },
-    { "codigo": "02", "rotulo": "Esboços de referência" },
-    { "codigo": "03", "rotulo": "Modelação de peças" },
-    { "codigo": "04", "rotulo": "Montagem de subsistemas" },
-    { "codigo": "05", "rotulo": "Montagem geral" },
-    { "codigo": "06", "rotulo": "Renders" }
+    {
+      "codigo": "01",
+      "rotulo": "Pesquisa"
+    },
+    {
+      "codigo": "02",
+      "rotulo": "Esboços de referência"
+    },
+    {
+      "codigo": "03",
+      "rotulo": "Modelação de peças"
+    },
+    {
+      "codigo": "04",
+      "rotulo": "Montagem de subsistemas"
+    },
+    {
+      "codigo": "05",
+      "rotulo": "Montagem geral"
+    },
+    {
+      "codigo": "06",
+      "rotulo": "Renders"
+    }
   ],
   "divisaoTitulo": "Divisão do trabalho",
   "divisaoNota": "Cada elemento é o responsável pelos seus subsistemas; os outros dois dão apoio.",
   "riscosTitulo": "Riscos e mitigação",
   "riscos": [
-    { "risco": "[FALTA: riscos identificados pela equipa]", "mitigacao": "[FALTA: como foram mitigados]" }
+    {
+      "risco": "[FALTA: riscos identificados pela equipa]",
+      "mitigacao": "[FALTA: como foram mitigados]"
+    }
   ],
   "ferramentasTitulo": "Ferramentas",
   "ferramentas": [
-    { "tipo": "Modelação", "nome": "Fusion" },
-    { "tipo": "Renders", "nome": "Blender" }
+    {
+      "tipo": "Modelação",
+      "nome": "Fusion"
+    },
+    {
+      "tipo": "Renders",
+      "nome": "Blender"
+    }
   ]
 }
