@@ -79,6 +79,7 @@ export function initViewer(root) {
 
     /* ── provisório ── */
     $('.v-prov').hidden = !model.provisional;
+    if (!model.provisional) document.querySelector('[data-viewer-note]')?.replaceChildren('Modelo da equipa: modelado no Fusion, materiais no Blender, exportado para GLB.');
 
     /* ── hotspots ── */
     const hsHost = $('.v-hotspots');

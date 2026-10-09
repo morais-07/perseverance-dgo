@@ -254,7 +254,7 @@ export function renderM0() {
     <div class="block" id="viewer-bloco"><h3 class="rv">${esc(d.montagemTitulo)}</h3><p class="rv">${esc(d.montagemTexto)}</p>
       ${d.montagemFalta ? `<p class="rv">${tbc(d.montagemFalta)}</p>` : ''}
       ${renderViewer()}
-      <p class="note rv" style="margin-top:12px">Modelo provisório: <a href="${esc(subs.modeloProvisorio.origem)}" target="_blank" rel="noopener noreferrer" style="color:var(--mars)">NASA 3D Resources — Mars 2020 Perseverance Rover</a> (${esc(subs.modeloProvisorio.licenca)}).</p>
+      <p class="note rv" data-viewer-note style="margin-top:12px">Modelo provisório: <a href="${esc(subs.modeloProvisorio.origem)}" target="_blank" rel="noopener noreferrer" style="color:var(--mars)">NASA 3D Resources — Mars 2020 Perseverance Rover</a> (${esc(subs.modeloProvisorio.licenca)}).</p>
     </div>
     <div class="block"><h3 class="rv">${esc(d.renderRover.titulo)}</h3>
       <div class="slots-2 rv">${slot(d.renderRover.imagem)}${slot(d.renderRover.video)}</div></div>
