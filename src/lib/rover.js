@@ -23,14 +23,30 @@ export function onModelProgress(fn) {
   return () => listeners.delete(fn);
 }
 
+function makeLoader() {
+  const draco = new DRACOLoader().setDecoderPath(asset('draco/'));
+  return { draco, loader: new GLTFLoader().setDRACOLoader(draco).setMeshoptDecoder(MeshoptDecoder) };
+}
+
+/** Carrega um GLB qualquer (cada ficheiro só é pedido uma vez). */
+const glbs = new Map();
+export function loadGLB(file) {
+  if (!glbs.has(file)) {
+    const { loader, draco } = makeLoader();
+    const p = new Promise((res, rej) => loader.load(asset(file), res, undefined, rej)).finally(() => draco.dispose());
+    p.catch(() => glbs.delete(file));
+    glbs.set(file, p);
+  }
+  return glbs.get(file);
+}
+
 /** Usa o modelo final (public/models/perseverance_dgo.glb) se existir; senão o provisório da NASA. */
 export function loadRoverModel() {
   if (modelPromise) return modelPromise;
   modelPromise = (async () => {
     const final = await exists(cfg.modeloFinal.ficheiro);
     const file = final ? cfg.modeloFinal.ficheiro : cfg.modeloProvisorio.ficheiro;
-    const draco = new DRACOLoader().setDecoderPath(asset('draco/'));
-    const loader = new GLTFLoader().setDRACOLoader(draco).setMeshoptDecoder(MeshoptDecoder);
+    const { loader, draco } = makeLoader();
     const gltf = await new Promise((res, rej) =>
       loader.load(
         asset(file),
@@ -191,7 +207,7 @@ export function buildRover(gltf) {
 }
 
 /* ───────── Palco (renderer + cena + luzes + chão) ───────── */
-function radialTexture() {
+export function radialTexture() {
   const c = document.createElement('canvas');
   c.width = c.height = 128;
   const g = c.getContext('2d');

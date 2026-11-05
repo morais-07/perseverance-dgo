@@ -6,38 +6,14 @@ import { historiaEvents } from '../render.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ───────── Progresso e secção ativa ───────── */
-export function initNav() {
+/* ───────── Barra de progresso de leitura (a navegação ativa é do router) ───────── */
+export function initProgress() {
   const bar = document.getElementById('progress-bar');
-  const mainIds = ['inicio', 'historia', 'objetivo', 'projeto', 'equipa'];
-  const subIds = ['porque', 'm0', 'm1', 'm2'];
-  const mainLinks = [...document.querySelectorAll('#nav a')];
-  const subLinks = [...document.querySelectorAll('#subnav a')];
-  const subnav = document.getElementById('subnav');
   let ticking = false;
-
   const update = () => {
     ticking = false;
     const max = document.documentElement.scrollHeight - innerHeight;
     bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
-    const line = innerHeight * 0.38; // linha de leitura (a partir do topo do ecrã)
-    const top = (id) => document.getElementById(id).getBoundingClientRect().top;
-    let cur = mainIds[0];
-    mainIds.forEach((id) => {
-      if (top(id) <= line) cur = id;
-    });
-    mainLinks.forEach((a) => a.setAttribute('aria-current', String(a.dataset.sec === cur)));
-    let sub = null;
-    subIds.forEach((id) => {
-      if (top(id) <= line + 40) sub = id;
-    });
-    subLinks.forEach((a) => a.setAttribute('aria-current', String(a.dataset.sec === sub)));
-    subnav.style.visibility = cur === 'projeto' ? 'visible' : 'hidden';
-    const active = subLinks.find((a) => a.dataset.sec === sub);
-    if (active && cur === 'projeto') {
-      const r = active.getBoundingClientRect();
-      if (r.left < 0 || r.right > innerWidth) active.scrollIntoView({ inline: 'center', block: 'nearest' });
-    }
   };
   addEventListener(
     'scroll',
@@ -51,6 +27,7 @@ export function initNav() {
   );
   addEventListener('resize', update);
   update();
+  return update;
 }
 
 /* ───────── Contadores animados ───────── */
@@ -157,14 +134,15 @@ export function initSubTabs() {
 }
 
 /* ───────── Sol marciano ───────── */
+const LANDING = Date.UTC(2021, 1, 18, 20, 55, 0); // Sol 0: aterragem em Jezero
+const SOL_MS = 88775.244 * 1000;
+export function paintSol() {
+  const sol = Math.floor((Date.now() - LANDING) / SOL_MS);
+  document.querySelectorAll('[data-sol]').forEach((e) => (e.textContent = fmt(sol)));
+}
 export function initSol() {
-  const LANDING = Date.UTC(2021, 1, 18, 20, 55, 0); // Sol 0: aterragem em Jezero
-  const SOL_MS = 88775.244 * 1000;
-  const sol = () => Math.floor((Date.now() - LANDING) / SOL_MS);
-  const els = document.querySelectorAll('[data-sol]');
-  const paint = () => els.forEach((e) => (e.textContent = fmt(sol())));
-  paint();
-  setInterval(paint, 60000);
+  paintSol();
+  setInterval(paintSol, 60000);
 }
 
 /* ───────── Easter egg: «Dare Mighty Things» ───────── */
@@ -199,9 +177,9 @@ export function initEgg(html) {
 }
 
 /* ───────── Botão de CAD ainda indisponível ───────── */
+let toast;
+let timer;
 export function initDownloadButtons(msg) {
-  let toast;
-  let timer;
   document.querySelectorAll('[data-nodownload]').forEach((a) =>
     a.addEventListener('click', (e) => {
       e.preventDefault();

@@ -34,8 +34,32 @@ Requer Node 18+ (testado em Node 24).
 | `equipa.json` | Cartões da equipa e matriz de contribuições |
 | | `partes.json` | As 7 partes modeladas (mastro, chassis, braço, broca, suspensão, rodas, MMRTG): responsável, função, números |
 | `ia.json` | Declaração de utilização de IA (obrigatória no guião) |
+| `destinos.json` | **M1 · «Escolhe a próxima viagem»**: os destinos (gravidade, ambiente, porquê, cores do céu e do chão) |
 
 Tudo o que ainda não sabemos está marcado como **`[A CONFIRMAR: …]`** e aparece no site com um destaque laranja tracejado, para nunca passar despercebido. Para procurar o que falta: `Ctrl+Shift+F` por `A CONFIRMAR`.
+
+### Páginas e endereços
+
+O site tem várias páginas (um «router» por `#`, funciona no GitHub Pages sem configurar nada):
+
+| Endereço | Página |
+|---|---|
+| `#/` | Início (hero 3D + mapa do relatório) |
+| `#/historia`, `#/objetivo`, `#/equipa` | Páginas simples |
+| `#/projeto`, `#/porque` | O Nosso Projeto (visão geral) e O Porquê da Escolha |
+| `#/m0/semanas`, `/estrategia`, `/montagem`, `/processo` | M0, com 4 separadores |
+| `#/m1/viagem`, `#/m1/plano` | M1: «Escolhe a próxima viagem» e plano (quando M1 estiver feito, aparecem também semanas, subsistemas e parametrização) |
+| `#/m1/viagem/europa` | Abre já num destino (útil para partilhar) |
+| `#/m2` | M2 |
+
+As ligações antigas (`#m1`, `#semana-5`, `#viewer`…) continuam a funcionar. O menu e as páginas estão definidos em `site.json` (menu) e `src/router.js` (páginas e separadores).
+
+### Adicionar um destino à «próxima viagem» (M1)
+
+1. Em `src/content/destinos.json`, copia um destino dentro de `destinos` e muda `id`, `nome`, `tipo`, `g` (gravidade, m/s²), `temperatura`, `ambiente` e `porque`.
+2. `orb` são as duas cores do botão redondo; `ceu` e `cena` definem o céu, o chão, a luz, o nevoeiro e as partículas (poeira, neve, chuva, brasas).
+3. O rover usado em todos os destinos é, por agora, o Perseverance (molde). A frase `adaptacaoModelo` aparece a vermelho até alguém escrever o que muda no rover para cada destino.
+4. O peso e a altura do salto calculam-se sozinhos a partir de `g` (massa e velocidade do salto em `massaRover` e `salto.v0`).
 
 ### Adicionar uma semana nova
 
@@ -43,7 +67,7 @@ Tudo o que ainda não sabemos está marcado como **`[A CONFIRMAR: …]`** e apar
 2. Muda `semana`, `data`, `fase` (`M0`, `M1` ou `M2`), `titulo`, `texto` e o `slot.file`.
 3. `etiqueta` pode ser `"Decisão"`, `"Dificuldade"` ou `null`. `apresentacao: true` destaca a semana (usa-o nas semanas de entrega).
 
-A semana aparece sozinha na secção da fase certa, por ordem de `semana`.
+A semana aparece sozinha na página da fase certa (M0, M1 ou M2), por ordem de `semana`.
 
 ### Adicionar uma imagem, GIF ou vídeo
 
@@ -74,6 +98,8 @@ O GitHub recusa ficheiros > 100 MB e avisa acima de 50 MB. Se `perseverance_cad.
 
 ## 4. O que está implementado
 
+- **Várias páginas** (menu no topo, submenu em «O Nosso Projeto» e separadores no M0 e no M1).
+- **M1 · Escolhe a próxima viagem:** sete destinos (Marte, Lua, Mercúrio, Europa, Titã, Io, Vénus) com o rover de base a andar em cada um; céu, chão, luz e atmosfera mudam, e o salto simulado depende só da gravidade. Teclado: setas no seletor; botão para pausar a animação.
 - **Início:** o rover (GLB real da NASA) controlado pelo scroll: roda, aproxima-se e abre em vista explodida, com os cinco subsistemas etiquetados. Hero fixo ~260 % de ecrã. No telemóvel e com `prefers-reduced-motion` o hero é simplificado (imagem estática / pose final).
 - **História e Contexto:** cronologia interativa (teclado: setas), números animados, «sete minutos de terror» com ligação ao vídeo oficial, peso na Terra vs Marte, fontes.
 - **Sobre este projeto:** parágrafo introdutório antes da história (UC Design Generativo e Otimização). **Objetivo:** 5 cartões (modelar, parametrizar, otimizar a suspensão, website como relatório, renders).
@@ -112,11 +138,25 @@ public/
   draco/            descodificadores (copiados do Three.js)
 src/
   content/          TODO o texto (JSON)
-  lib/              util.js · rover.js (carregamento, subsistemas, explosão)
-  modules/          hero · viewer · mini · ui · rocker · gens
+  lib/              util.js · rover.js (carregamento, subsistemas, explosão) · lifecycle.js (limpeza ao mudar de página)
+  modules/          hero · viewer · mini · ui · rocker · gens · viagem (cena 3D dos destinos)
+  router.js         páginas, separadores e endereços (#/…)
   render.js         constrói o HTML a partir dos JSON
   styles.css        tokens e estilos
 scripts/            copiar-draco · gerar-slots · otimizar-imagens
 docs/               exportar-modelo.md · conteudo-em-falta.md · prompt_website.md
 referencias/        guião e slides da UC (PDF)
 ```
+
+## Rovers da M1 (renders, clips e 3D)
+
+Cada destino tem os seus ficheiros, com o id de `src/content/destinos.json`:
+
+- `public/media/m1/rovers/<id>/`: `principal.webp`, `lateral.webp`, `traseira.webp`, `recorte.webp` (sem fundo) e `clip.mp4`.
+- `public/models/rovers/<id>.glb`: modelo 3D leve (150 mil triângulos, com Draco).
+
+Para atualizar as imagens depois de novos renders: `node scripts/importar-rovers.mjs "C:\caminho\Renders_Rovers"`.
+
+## Animação inicial
+
+A animação do rover segue o scroll. Quem tem os efeitos de animação desligados no sistema também a vê, sem a rotação automática, e tem um botão para passar à vista estática. Se o WebGL ou o modelo falharem, o site mostra a imagem do rover e uma mensagem com a causa.

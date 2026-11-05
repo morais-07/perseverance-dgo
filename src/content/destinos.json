@@ -1,0 +1,133 @@
+{
+  "eyebrow": "M1 · próxima viagem",
+  "titulo": "Escolhe a próxima viagem",
+  "intro": "Para o M1 modelámos uma variante do rover para cada destino, com chassis próprio e só as peças que esse ambiente justifica. O Perseverance continua a ser o ponto de partida. Escolhe para onde o enviarias.",
+  "escolhaRotulo": "Destino da próxima viagem",
+  "ponto": "Ponto de partida do Perseverance",
+  "massaRover": 1025,
+  "gTerra": 9.80665,
+  "salto": {
+    "v0": 2,
+    "nota": "Salto simulado: o rover é lançado na vertical a 2 m/s (valor ilustrativo, como se passasse por cima de uma rocha). A altura e o tempo de voo vêm só da gravidade do destino: h = v₀² / 2g e t = 2v₀ / g."
+  },
+  "fontes": "Valores de gravidade, temperatura e ambiente: [A CONFIRMAR: citar a fonte (NASA/ESA) de cada valor].",
+  "adaptacaoModelo": "[FALTA: descrever o que muda no rover para {nome} (chassis, peças retiradas, materiais e parâmetros)]",
+  "destinos": [
+    {
+      "id": "marte",
+      "nome": "Marte",
+      "tipo": "Planeta",
+      "g": 3.71,
+      "temperatura": "−125 a +20 °C",
+      "ambiente": "Rochas e poeira.",
+      "porque": "É o planeta real do Perseverance e serve de referência. As rochas e a abrasão obrigam a paredes mais grossas.",
+      "origem": true,
+      "orb": [
+        "#f0a878",
+        "#8f3c1b"
+      ],
+      "cor": "#9a4a2a",
+      "horizonte": "#c9794a"
+    },
+    {
+      "id": "lua",
+      "nome": "Lua",
+      "tipo": "Satélite da Terra",
+      "g": 1.62,
+      "temperatura": "−170 a +120 °C",
+      "ambiente": "Vácuo e regolito.",
+      "porque": "Gravidade baixa, por isso é o caso mais leve. Testa o ciclo térmico, que provoca fadiga.",
+      "orb": [
+        "#ececec",
+        "#6f6f75"
+      ],
+      "cor": "#c9c9cc",
+      "horizonte": "#16171d"
+    },
+    {
+      "id": "mercurio",
+      "nome": "Mercúrio",
+      "tipo": "Planeta",
+      "g": 3.7,
+      "temperatura": "−180 a +430 °C",
+      "ambiente": "Sem atmosfera.",
+      "porque": "Tem a maior variação de temperatura e testa materiais a quente. Obriga a usar titânio.",
+      "orb": [
+        "#cbbfb2",
+        "#5f5750"
+      ],
+      "cor": "#a8774a",
+      "horizonte": "#1c1715"
+    },
+    {
+      "id": "europa",
+      "nome": "Europa",
+      "tipo": "Lua de Júpiter",
+      "g": 1.31,
+      "temperatura": "≈ −160 °C",
+      "ambiente": "Gelo.",
+      "porque": "Testa o frio extremo (fragilidade) e o gelo escorregadio, que dá cargas laterais.",
+      "orb": [
+        "#eaf4fa",
+        "#6e8fa6"
+      ],
+      "cor": "#d6e8f5",
+      "horizonte": "#101a26"
+    },
+    {
+      "id": "tita",
+      "nome": "Titã",
+      "tipo": "Lua de Saturno",
+      "g": 1.35,
+      "temperatura": "≈ −180 °C",
+      "ambiente": "Atmosfera densa e lagos de metano.",
+      "porque": "Gravidade baixa e cargas suaves, por isso permite as peças mais leves. É o caso mais «fácil».",
+      "orb": [
+        "#f0b24f",
+        "#8a5a1c"
+      ],
+      "cor": "#c8651c",
+      "horizonte": "#c98f3d"
+    },
+    {
+      "id": "io",
+      "nome": "Io",
+      "tipo": "Lua de Júpiter",
+      "g": 1.8,
+      "temperatura": "lava fria e quente",
+      "ambiente": "Vulcânico, com enxofre.",
+      "porque": "Testa a corrosão por enxofre e um terreno muito irregular.",
+      "orb": [
+        "#f2e36a",
+        "#b0501e"
+      ],
+      "cor": "#e6cf2e",
+      "horizonte": "#3d1d10"
+    },
+    {
+      "id": "venus",
+      "nome": "Vénus",
+      "tipo": "Planeta",
+      "g": 8.87,
+      "temperatura": "≈ 460 °C",
+      "ambiente": "92 bar e ácido sulfúrico.",
+      "porque": "É o caso limite: gravidade alta, calor e corrosão. O alumínio não aguenta e é preciso usar titânio ou Inconel.",
+      "orb": [
+        "#f5d27a",
+        "#a8741c"
+      ],
+      "cor": "#a8801f",
+      "horizonte": "#d9a94a"
+    }
+  ],
+  "adaptacaoTitulo": "O que muda neste rover",
+  "corNota": "A cor do chassis serve para distinguir os destinos nas imagens; não representa um material escolhido.",
+  "laboratorio": {
+    "titulo": "O mesmo salto, sete gravidades",
+    "texto": "Todos os rovers saltam em simultâneo, à velocidade real. Só muda a gravidade, e é ela que decide a altura e o tempo no ar.",
+    "botao": "Fazer o salto",
+    "repetir": "Repetir o salto",
+    "terra": "Terra"
+  },
+  "massaNota": "Com a massa de referência do Perseverance"
+}

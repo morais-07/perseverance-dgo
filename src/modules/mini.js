@@ -6,6 +6,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { buildRover, createStage, loadRoverModel } from '../lib/rover.js';
 import { asset, exists, hasWebGL, reducedMotion } from '../lib/util.js';
+import { onLeave } from '../lib/lifecycle.js';
 
 let active = null; // { stop() }
 
@@ -28,6 +29,7 @@ async function loadOwnModel(id) {
 
 export function initMinis(root = document) {
   const webgl = hasWebGL();
+  onLeave(() => active?.stop());
   root.querySelectorAll('.mini').forEach((el) => {
     const id = el.dataset.sub;
     const canvasHost = el;

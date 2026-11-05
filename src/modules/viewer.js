@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { buildRover, createStage, loadRoverModel, onModelProgress, SUBS } from '../lib/rover.js';
 import { esc, hasWebGL, icon, reducedMotion, clamp } from '../lib/util.js';
+import { onLeave } from '../lib/lifecycle.js';
 
 export function initViewer(root) {
   if (!root) return;
@@ -27,9 +28,9 @@ export function initViewer(root) {
 
   let started = false;
   let visible = false;
+  let dead = false;
   let ctx = null;
-
-  new IntersectionObserver(
+  const io = new IntersectionObserver(
     ([e]) => {
       visible = e.isIntersecting;
       if (visible && !started) {
@@ -41,7 +42,13 @@ export function initViewer(root) {
       }
     },
     { rootMargin: '500px 0px' },
-  ).observe(root);
+  );
+  io.observe(root);
+  onLeave(() => {
+    dead = true;
+    io.disconnect();
+    ctx?.stage.dispose();
+  });
 
   async function start() {
     let model;
@@ -53,6 +60,7 @@ export function initViewer(root) {
       loadEl.classList.add('done');
       return;
     }
+    if (dead) return;
     const rover = buildRover(model.gltf);
     const stage = createStage(canvas, { floorY: -rover.size.y / 2 - 0.02, envIntensity: model.provisional ? 0.85 : 0.5 });
     stage.scene.add(rover.pivot);
@@ -282,6 +290,7 @@ export function initViewer(root) {
     /* ── ciclo de render (só quando visível) ── */
     const v = new THREE.Vector3();
     const tick = () => {
+      if (dead) return;
       requestAnimationFrame(tick);
       if (!visible) return;
       controls.update();

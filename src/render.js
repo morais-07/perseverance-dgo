@@ -10,7 +10,8 @@ import equipa from './content/equipa.json';
 import partes from './content/partes.json';
 import ia from './content/ia.json';
 import subs from './content/subsistemas.json';
-import { esc, tbc, slot, icon, asset } from './lib/util.js';
+import destinos from './content/destinos.json';
+import { esc, tbc, slot, icon, asset, fmt } from './lib/util.js';
 
 // Uma semana = um ficheiro em src/content/semanas/sNN.json
 const weekFiles = import.meta.glob('./content/semanas/*.json', { eager: true, import: 'default' });
@@ -38,9 +39,9 @@ const figs = (numeros) =>
 /* ───────── Barra de topo ───────── */
 export function renderTopbar() {
   return `
-    <a class="brand" href="#inicio" aria-label="Início — DGO"><span class="logo-slot" aria-hidden="true"></span><b>PRV·2026</b></a>
+    <a class="brand" href="#/" aria-label="Início — DGO"><span class="logo-slot" aria-hidden="true"></span><b>PRV·2026</b></a>
     <nav class="nav" id="nav" aria-label="Principal">
-      ${site.nav.map((n) => `<a href="#${n.id}" data-sec="${n.id}">${esc(n.rotulo)}</a>`).join('')}
+      ${site.nav.map((n) => `<a href="#${n.rota}" data-sec="${n.id}">${esc(n.rotulo)}</a>`).join('')}
     </nav>
     <span class="sol-chip" aria-live="off">SOL <b data-sol>—</b></span>`;
 }
@@ -61,7 +62,7 @@ export function renderHero() {
         <p class="meta"><span>${esc(site.curso)}</span><span>${esc(site.instituicao)}</span><span>${esc(site.ano)}</span></p>
       </div>
       <div class="hero-actions">
-        <a class="btn" href="#viewer">${esc(site.botoes.explorar)}</a>
+        <a class="btn" href="#/m0/montagem">${esc(site.botoes.explorar)}</a>
         ${downloadButton('ghost')}
       </div>
       <div class="hero-tele" aria-hidden="true">
@@ -71,6 +72,8 @@ export function renderHero() {
         <span>${esc(site.telemetria.explosao)} <b data-tele="ex">0 %</b></span>
         <span>SOL <b data-sol>—</b></span>
       </div>
+      <div class="hero-status" role="status" hidden></div>
+      <button type="button" class="hero-motion" hidden></button>
       <div class="hero-cue" aria-hidden="true"><span>SCROLL</span><i></i></div>
     </div>`;
 }
@@ -78,7 +81,7 @@ export function renderHero() {
 export function downloadButton(variant = '') {
   const d = site.download;
   const dis = !d.disponivel;
-  return `<a class="btn ${variant}" href="${dis ? '#equipa' : esc(d.ficheiro)}" ${dis ? 'aria-disabled="true" data-nodownload="1"' : 'download'} title="${esc(dis ? d.nota : 'Descarregar o pacote CAD')}">
+  return `<a class="btn ${variant}" href="${dis ? '#/equipa' : esc(d.ficheiro)}" ${dis ? 'aria-disabled="true" data-nodownload="1"' : 'download'} title="${esc(dis ? d.nota : 'Descarregar o pacote CAD')}">
       ${icon.down}<span>${esc(site.botoes.descarregar)}<span class="btn-meta">${tbc(d.formato)} · ${tbc(d.tamanho)}</span></span></a>`;
 }
 
@@ -159,16 +162,16 @@ export function renderProjetoIntro() {
     ${titleblock('PRV-PRJ-004', '4/6')}
     ${sectionHead('projeto', 'O nosso projeto', 'Uma história em quatro atos', 'Do problema ao resultado: a escolha do rover, a modelação e montagem, a parametrização e a otimização da suspensão. É assim que contamos o semestre.')}
     <div class="arc rv">
-      <a href="#porque"><span class="k">ATO I</span><span class="h">O problema</span><span class="p">Porquê o Perseverance?</span></a>
-      <a href="#m0"><span class="k">ATO II</span><span class="h">Modelação e montagem</span><span class="p">M0 · modelar tudo e montar o rover</span></a>
-      <a href="#m1"><span class="k">ATO III</span><span class="h">Parametrização</span><span class="p">M1 · estratégias computacionais</span></a>
-      <a href="#m2"><span class="k">ATO IV</span><span class="h">Otimização</span><span class="p">M2 · otimizar a suspensão</span></a>
+      <a href="#/porque"><span class="k">ATO I</span><span class="h">O problema</span><span class="p">Porquê o Perseverance?</span></a>
+      <a href="#/m0"><span class="k">ATO II</span><span class="h">Modelação e montagem</span><span class="p">M0 · modelar tudo e montar o rover</span></a>
+      <a href="#/m1"><span class="k">ATO III</span><span class="h">Parametrização</span><span class="p">M1 · estratégias computacionais</span></a>
+      <a href="#/m2"><span class="k">ATO IV</span><span class="h">Otimização</span><span class="p">M2 · otimizar a suspensão</span></a>
     </div>
   </div>`;
 }
 
 export function renderSubnav() {
-  return site.subnav.map((s) => `<a href="#${s.id}" data-sec="${s.id}">${esc(s.rotulo)}</a>`).join('');
+  return site.subnav.map((s) => `<a href="#${s.rota}" data-sec="${s.id}">${esc(s.rotulo)}</a>`).join('');
 }
 
 export function renderPorque() {
@@ -221,7 +224,7 @@ function partCard(p) {
   return `<article class="part rv" id="sub-${p.id}">
     <div class="part-media">${slot(cad, { cota: p.cota })}</div>
     <div class="part-body">
-      <div class="sub-id"><span>${esc(p.codigo)}</span><a class="metodo-tag" href="#metodo-${p.metodo}" title="Ver o método de modelação">MÉTODO ${esc(p.metodo)}</a></div>
+      <div class="sub-id"><span>${esc(p.codigo)}</span><a class="metodo-tag" href="#/m0/estrategia/metodo-${p.metodo}" title="Ver o método de modelação">MÉTODO ${esc(p.metodo)}</a></div>
       <h3>${esc(p.nome)}</h3>
       <p class="real">${esc(p.nomeReal)}</p>
       <p class="who"><b>${esc(partes.responsavelRotulo)}:</b> ${esc(p.responsavel)}</p>
@@ -239,29 +242,36 @@ const metodoCard = (mt) => `<article class="metodo rv" id="metodo-${esc(mt.id)}"
   <p class="mt-van">${esc(mt.vantagem)}</p>
 </article>`;
 
-export function renderM0() {
-  const d = m0;
-  const e = d.estrategia;
-  const g = d.generativo;
-  return `<div class="wrap">
-    ${titleblock('PRV-M00-005', '5/6')}
-    ${msHead('m0', d, 'Ato II — modelação e montagem')}
-    <div class="block"><h3 class="rv">${esc(d.semanasTitulo)}</h3>${weeksOf('M0')}</div>
-    <div class="block"><h3 class="rv">${esc(d.estrategiaTitulo)}</h3>
+export const m0Head = () => `${titleblock('PRV-M00-005', '5/6')}${msHead('m0', m0, 'Ato II — modelação e montagem')}`;
+
+export const m0Semanas = () => `<div class="block"><h3 class="rv">${esc(m0.semanasTitulo)}</h3>${weeksOf('M0')}</div>`;
+
+export function m0Estrategia() {
+  const e = m0.estrategia;
+  return `<div class="block"><h3 class="rv">${esc(m0.estrategiaTitulo)}</h3>
       <div class="estrategia-intro lead rv">${e.intro.map((t) => `<p>${esc(t)}</p>`).join('')}</div>
       <div class="metodos">${e.metodos.map(metodoCard).join('')}</div>
     </div>
     <div class="block"><h3 class="rv">${esc(partes.titulo)}</h3><p class="rv">${esc(partes.texto)}</p>
       <div class="parts">${partes.partes.map(partCard).join('')}</div>
-    </div>
-    <div class="block" id="viewer-bloco"><h3 class="rv">${esc(d.montagemTitulo)}</h3><p class="rv">${esc(d.montagemTexto)}</p>
+    </div>`;
+}
+
+export function m0Montagem() {
+  const d = m0;
+  return `<div class="block" id="viewer-bloco"><h3 class="rv">${esc(d.montagemTitulo)}</h3><p class="rv">${esc(d.montagemTexto)}</p>
       ${d.montagemFalta ? `<p class="rv">${tbc(d.montagemFalta)}</p>` : ''}
       ${renderViewer()}
       <p class="note rv" data-viewer-note style="margin-top:12px">Modelo provisório: <a href="${esc(subs.modeloProvisorio.origem)}" target="_blank" rel="noopener noreferrer" style="color:var(--mars)">NASA 3D Resources — Mars 2020 Perseverance Rover</a> (${esc(subs.modeloProvisorio.licenca)}).</p>
     </div>
     <div class="block"><h3 class="rv">${esc(d.renderRover.titulo)}</h3>
-      <div class="slots-2 rv">${slot(d.renderRover.imagem)}${slot(d.renderRover.video)}</div></div>
-    <div class="block"><h3 class="rv">${esc(d.processoTitulo)}</h3>
+      <div class="slots-2 rv">${slot(d.renderRover.imagem)}${slot(d.renderRover.video)}</div></div>`;
+}
+
+export function m0Processo() {
+  const d = m0;
+  const g = d.generativo;
+  return `<div class="block"><h3 class="rv">${esc(d.processoTitulo)}</h3>
       <ol class="flow rv" style="list-style:none;padding:0;margin:0 0 var(--s7)">${d.fluxo.map((f) => `<li><span class="n">${esc(f.codigo)}</span><span class="r">${esc(f.rotulo)}</span></li>`).join('')}</ol>
       <div class="two-col rv">
         <div><h3>${esc(d.divisaoTitulo)}</h3>
@@ -279,8 +289,13 @@ export function renderM0() {
       <div class="reestrut rv"><h4>${esc(g.reestruturacaoTitulo)}</h4><p>${esc(g.reestruturacao)}</p></div>
       <h4 class="rv sub-titulo">${esc(g.proximosTitulo)}</h4>
       <ol class="wip-list rv">${g.proximos.map((x) => `<li><span><b>${esc(x.titulo)}.</b> ${esc(x.texto)}</span></li>`).join('')}</ol>
-    </div>
-  </div>`;
+    </div>`;
+}
+
+/** Rota (#/…) de uma semana, para ligações antigas do tipo #semana-5. */
+export function weekRoute(n) {
+  const w = semanas.find((x) => x.semana === Number(n));
+  return w ? `/${w.fase.toLowerCase()}/semanas/semana-${w.semana}` : null;
 }
 
 /* M1 */
@@ -324,24 +339,25 @@ const wipBlock = (d) => `
     <ul class="wip-list">${d.wip.planeado.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
   </div>`;
 
-export function renderM1() {
+export const m1Head = () => `${titleblock('PRV-M01-006', '5/6')}${msHead('m1', m1, 'Ato III — parametrização')}`;
+
+export const m1Plano = () => wipBlock(m1);
+
+export function m1Semanas() {
+  return `<div class="block"><h3 class="rv">M1 · semana a semana</h3>${weeksOf('M1')}</div>`;
+}
+
+export function m1Subsistemas() {
   const d = m1;
-  if (d.wip?.ativo) {
-    return `<div class="wrap">
-    ${titleblock('PRV-M01-006', '5/6')}
-    ${msHead('m1', d, 'Ato III — parametrização')}
-    ${wipBlock(d)}
-  </div>`;
-  }
-  const ad = d.antesDepois;
-  return `<div class="wrap">
-    ${titleblock('PRV-M01-006', '5/6')}
-    ${msHead('m1', d, 'Ato III — parametrização')}
-    <div class="block"><h3 class="rv">M1 · semana a semana</h3>${weeksOf('M1')}</div>
-    <div class="block"><h3 class="rv">${esc(d.cartoesTitulo)}</h3><div class="sub-grid">${subs.subsistemas.map(subCard).join('')}</div></div>
+  return `<div class="block"><h3 class="rv">${esc(d.cartoesTitulo)}</h3><div class="sub-grid">${subs.subsistemas.map(subCard).join('')}</div></div>
     <div class="block"><h3 class="rv">${esc(d.extrasTitulo)}</h3><p class="note rv">${esc(d.extrasNota)}</p>
-      <div class="extra-grid rv">${subs.extras.filter((e) => e.id === 'aca' || e.id === 'antena').map((e) => `<div class="extra"><span class="badge">EXTRA · ${esc(e.codigo)}</span><h4>${esc(e.nome)}</h4><p class="mono" style="font-size:.74rem">${esc(e.nomeReal)}</p><p>${tbc(e.funcao)}</p></div>`).join('')}</div></div>
-    <div class="block"><h3 class="rv">${esc(ad.titulo)}</h3><p class="rv">${esc(ad.texto)}</p>
+      <div class="extra-grid rv">${subs.extras.filter((e) => e.id === 'aca' || e.id === 'antena').map((e) => `<div class="extra"><span class="badge">EXTRA · ${esc(e.codigo)}</span><h4>${esc(e.nome)}</h4><p class="mono" style="font-size:.74rem">${esc(e.nomeReal)}</p><p>${tbc(e.funcao)}</p></div>`).join('')}</div></div>`;
+}
+
+export function m1Parametrizacao() {
+  const d = m1;
+  const ad = d.antesDepois;
+  return `<div class="block"><h3 class="rv">${esc(ad.titulo)}</h3><p class="rv">${esc(ad.texto)}</p>
       <div class="ba rv" data-ba role="group" aria-label="Comparação antes e depois">
         <div class="ba-frame">
           <div class="layer">${slot({ ...ad.antes, kind: 'image' })}</div>
@@ -357,25 +373,100 @@ export function renderM1() {
         <div class="table-wrap param-table"><table><thead><tr><th>Parâmetro</th><th>Valor</th><th>Unidade</th></tr></thead><tbody>${d.parametrico.parametros.map((p) => `<tr><th scope="row">${tbc(p.nome)}</th><td>${tbc(p.valor)}</td><td>${tbc(p.unidade)}</td></tr>`).join('')}</tbody></table></div></div>
         ${slot(d.parametrico.slot)}</div></div>
     <div class="block"><h3 class="rv">${esc(d.simulacao.titulo)}</h3><p class="rv">${tbc(d.simulacao.texto)}</p>
-      <div class="slots-2 rv">${d.simulacao.slots.map((s) => slot(s)).join('')}</div></div>
+      <div class="slots-2 rv">${d.simulacao.slots.map((x) => slot(x)).join('')}</div></div>`;
+}
+
+/* ───────── M1 · Escolhe a próxima viagem ───────── */
+export function renderViagem() {
+  const d = destinos;
+  const first = d.destinos.find((x) => x.origem) || d.destinos[0];
+  const lab = d.laboratorio;
+  const hMax = d.salto.v0 ** 2 / (2 * Math.min(...d.destinos.map((x) => x.g)));
+  const pista = (nome, g, id, img) => {
+    const h = d.salto.v0 ** 2 / (2 * g);
+    const t = (2 * d.salto.v0) / g;
+    const tag = id ? 'button' : 'div';
+    return `<${tag} ${id ? `type="button" data-id="${id}" style="--dc:${d.destinos.find((x) => x.id === id).cor}" aria-label="Escolher ${esc(nome)}: salto de ${fmt(h * 100, 0)} cm"` : ''} class="lab-lane ${id ? '' : 'ref'}" data-g="${g}">
+      <span class="lab-track" style="--f:${(h / hMax).toFixed(3)}"><i class="lab-peak"><b>${fmt(h * 100, 0)} cm</b></i><img src="${asset(`media/m1/rovers/${img}/recorte.webp`)}" alt="" loading="lazy" /></span>
+      <span class="lab-n">${esc(nome)}</span><span class="lab-t mono">${fmt(t, 2)} s no ar</span>
+    </${tag}>`;
+  };
+  return `<div class="viagem" data-viagem>
+    <div class="vg-head">
+      <h3 id="viagem-t">${esc(d.titulo)}</h3>
+      <p class="lead">${esc(d.intro)}</p>
+    </div>
+
+    <div class="vg-stage" data-stage>
+      <div class="vg-frame">
+        <div class="vg-media" data-media></div>
+        <video muted playsinline preload="metadata" aria-label="Vídeo do rover a andar neste destino."></video>
+        <canvas hidden aria-label="Modelo 3D do rover. Arrasta para rodar."></canvas>
+        <div class="vg-load" role="status" hidden></div>
+        <p class="vg-hint" hidden>Arrasta para rodar o rover</p>
+      </div>
+      <div class="vg-over">
+        <p class="vg-kicker" data-kicker></p>
+        <h4 class="vg-nome" data-nome aria-live="polite"></h4>
+        <p class="vg-leitura" data-leitura></p>
+      </div>
+      <div class="vg-ctrl">
+        <div class="vg-modos" role="group" aria-label="Como ver o rover">
+          <button type="button" data-modo="movimento">Em movimento</button>
+          <button type="button" data-modo="vistas">Vistas</button>
+          <button type="button" data-modo="3d">3D</button>
+        </div>
+        <button type="button" class="icon-btn vg-pause"></button>
+      </div>
+      <div class="vg-views" role="group" aria-label="Vista do render" hidden>
+        ${[['principal', 'Frente'], ['lateral', 'Lado'], ['traseira', 'Trás']].map(([v, r]) => `<button type="button" data-vista="${v}">${esc(r)}</button>`).join('')}
+      </div>
+    </div>
+
+    <div class="vg-rail" role="radiogroup" aria-label="${esc(d.escolhaRotulo)}">
+      ${d.destinos
+        .map(
+          (x) => `<button type="button" role="radio" class="vg-dest" data-id="${x.id}" aria-checked="${x.id === first.id}" tabindex="${x.id === first.id ? 0 : -1}" style="--dc:${x.cor}">
+        <img src="${asset(`media/m1/rovers/${x.id}/recorte.webp`)}" alt="" width="280" height="140" />
+        <b>${esc(x.nome)}</b><span class="mono">${fmt(x.g, 2)} m/s²</span>
+      </button>`,
+        )
+        .join('')}
+    </div>
+
+    <div class="vg-sheet" data-info aria-live="polite"></div>
+
+    <div class="vg-lab">
+      <div class="lab-head">
+        <div><h3>${esc(lab.titulo)}</h3><p>${esc(lab.texto)}</p></div>
+        <button type="button" class="btn" data-saltar>${esc(lab.botao)}</button>
+      </div>
+      <div class="lab-scroll"><div class="lab">
+        ${pista(lab.terra, d.gTerra, null, 'marte')}
+        ${d.destinos.map((x) => pista(x.nome, x.g, x.id, x.id)).join('')}
+      </div></div>
+      <p class="note">${esc(d.salto.nota)} ${tbc(d.fontes)}</p>
+    </div>
+
+    <details class="vg-table">
+      <summary>Ver a tabela completa dos destinos</summary>
+      <div class="table-wrap"><table>
+        <caption class="sr">Destinos da próxima viagem</caption>
+        <thead><tr><th scope="col">Destino</th><th scope="col">Gravidade</th><th scope="col">Ambiente</th><th scope="col">Porque o escolhemos</th></tr></thead>
+        <tbody>${d.destinos.map((x) => `<tr><th scope="row">${esc(x.nome)}</th><td class="mono">${fmt(x.g, 2)} m/s²</td><td>${esc(x.temperatura)}. ${esc(x.ambiente)}</td><td>${esc(x.porque)}</td></tr>`).join('')}</tbody>
+      </table></div>
+    </details>
   </div>`;
 }
 
 /* M2 */
-export function renderM2() {
+export const m2Head = () => `${titleblock('PRV-M02-007', '5/6')}${msHead('m2', m2, 'Ato IV — otimização')}`;
+
+export function m2Corpo() {
   const d = m2;
   const o = d.otimizacao;
-  if (d.wip?.ativo) {
-    return `<div class="wrap">
-    ${titleblock('PRV-M02-007', '5/6')}
-    ${msHead('m2', d, 'Ato IV — otimização')}
-    ${wipBlock(d)}
-  </div>`;
-  }
-  return `<div class="wrap">
-    ${titleblock('PRV-M02-007', '5/6')}
-    ${msHead('m2', d, 'Ato IV — otimização')}
-    <div class="block"><h3 class="rv">M2 · semana a semana</h3>${weeksOf('M2')}</div>
+  if (d.wip?.ativo) return wipBlock(d);
+  return `<div class="block"><h3 class="rv">M2 · semana a semana</h3>${weeksOf('M2')}</div>
     <div class="block"><h3 class="rv">${esc(o.titulo)}</h3>
       <p class="rv"><strong>Peça em estudo:</strong> ${tbc(o.pecaCaso)}</p>
       <div class="opt-grid rv">${o.problema.map((p) => `<div class="opt-cell"><div class="k">${esc(p.rotulo)}</div><p>${tbc(p.valor)}</p></div>`).join('')}</div>
@@ -400,8 +491,7 @@ export function renderM2() {
         <div class="lesson"><h4>O que correu bem</h4><ul>${d.licoes.correu.map((x) => `<li>${tbc(x)}</li>`).join('')}</ul></div>
         <div class="lesson"><h4>O que mudaríamos</h4><ul>${d.licoes.mudariamos.map((x) => `<li>${tbc(x)}</li>`).join('')}</ul></div>
         <div class="lesson"><h4>Próximos passos</h4><ul>${d.licoes.proximos.map((x) => `<li>${tbc(x)}</li>`).join('')}</ul></div>
-      </div></div>
-  </div>`;
+      </div></div>`;
 }
 
 function renderViewer() {
@@ -443,13 +533,17 @@ export function renderEquipa() {
   </div>`;
 }
 
-/* ───────── Rodapé ───────── */
-export function renderRodape() {
-  return `<div class="wrap">
+/* ───────── Declaração de IA (só na página inicial) ───────── */
+export const renderIA = () => `<div class="wrap">
     <section class="ia rv" aria-labelledby="ia-t">
       <div><h3 id="ia-t">${esc(ia.titulo)}</h3><p>${esc(ia.texto)}</p></div>
       <dl>${ia.itens.map((i) => `<dt>${esc(i.rotulo)}</dt><dd>${tbc(i.valor)}${i.links ? `<span class="dl-links">${i.links.map((l) => `<a href="${asset(l.ficheiro)}" download>${icon.down}${esc(l.rotulo)}</a>`).join('')}</span>` : ''}</dd>`).join('')}</dl>
     </section>
+  </div>`;
+
+/* ───────── Rodapé ───────── */
+export function renderRodape() {
+  return `<div class="wrap">
     <div class="foot-row">
       <div>
         <div class="foot-logo logo-slot" aria-hidden="true"></div>

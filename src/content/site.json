@@ -14,40 +14,54 @@
   "nav": [
     {
       "id": "inicio",
+      "rota": "/",
       "rotulo": "Início"
     },
     {
       "id": "historia",
+      "rota": "/historia",
       "rotulo": "História e Contexto"
     },
     {
       "id": "objetivo",
+      "rota": "/objetivo",
       "rotulo": "Objetivo"
     },
     {
       "id": "projeto",
+      "rota": "/projeto",
       "rotulo": "O Nosso Projeto"
     },
     {
       "id": "equipa",
+      "rota": "/equipa",
       "rotulo": "Equipa"
     }
   ],
   "subnav": [
     {
+      "id": "projeto",
+      "rota": "/projeto",
+      "rotulo": "Visão geral"
+    },
+    {
       "id": "porque",
+      "rota": "/porque",
       "rotulo": "O Porquê da Escolha"
     },
     {
       "id": "m0",
+      "rota": "/m0",
       "rotulo": "M0"
     },
     {
       "id": "m1",
+      "rota": "/m1",
       "rotulo": "M1"
     },
     {
       "id": "m2",
+      "rota": "/m2",
       "rotulo": "M2"
     }
   ],
@@ -73,5 +87,70 @@
     "rotulo": "Sobre este projeto",
     "texto": "Este website é o relatório do nosso projeto de grupo na unidade curricular **Design Generativo e Otimização** (Mestrado em Engenharia Aeroespacial, Universidade de Aveiro). Vamos modelar em CAD o rover Perseverance, da NASA, parametrizar o chassis, a suspensão e as rodas, e otimizar a suspensão. Aqui contamos, semana a semana, como lá chegámos.",
     "uc": "UC 43449 · Design Generativo e Otimização"
+  },
+  "inicio": {
+    "eyebrow": "Mapa do relatório",
+    "titulo": "Para onde queres ir?",
+    "texto": "O relatório está dividido em páginas. Escolhe por onde começar, ou segue a ordem pela barra no topo.",
+    "estadoConcluido": "Concluído",
+    "cartoes": [
+      {
+        "rota": "/historia",
+        "codigo": "01",
+        "titulo": "História e contexto",
+        "texto": "A missão Mars 2020, do lançamento à aterragem em Jezero."
+      },
+      {
+        "rota": "/objetivo",
+        "codigo": "02",
+        "titulo": "Objetivo",
+        "texto": "O que queremos modelar, parametrizar e otimizar, e como o vamos avaliar."
+      },
+      {
+        "rota": "/porque",
+        "codigo": "03",
+        "titulo": "O porquê da escolha",
+        "texto": "Porque escolhemos o Perseverance e não outro rover."
+      },
+      {
+        "rota": "/m0",
+        "codigo": "M0",
+        "titulo": "Modelação e montagem",
+        "texto": "Semana a semana, os métodos, os subsistemas e o modelo 3D do rover.",
+        "estado": "m0"
+      },
+      {
+        "rota": "/m1",
+        "codigo": "M1",
+        "titulo": "Parametrização",
+        "texto": "Parametrizar a suspensão e escolher a próxima viagem do rover.",
+        "estado": "m1"
+      },
+      {
+        "rota": "/m2",
+        "codigo": "M2",
+        "titulo": "Otimização",
+        "texto": "Otimizar a suspensão com design generativo.",
+        "estado": "m2"
+      },
+      {
+        "rota": "/equipa",
+        "codigo": "04",
+        "titulo": "Equipa",
+        "texto": "Quem somos e quem fez o quê."
+      }
+    ]
+  },
+  "paginacao": { "anterior": "Anterior", "seguinte": "Seguinte", "rotulo": "Mudar de página" },
+  "paginas": {
+    "inicio": "Início",
+    "historia": "História e contexto",
+    "objetivo": "Objetivo",
+    "projeto": "O nosso projeto",
+    "porque": "O porquê da escolha",
+    "m0": "M0 · Modelação e montagem",
+    "m1": "M1 · Parametrização",
+    "m2": "M2 · Otimização",
+    "equipa": "Equipa"
   }
 }
