@@ -67,16 +67,15 @@ export function initViagem(root, wanted) {
     const v = modo === 'vistas' ? vista : 'principal';
     const im = new Image();
     im.alt = `Render do rover para ${cur.nome}, vista ${v}.`;
+    im.onload = () => {
+      if (tok !== imgTok || dead) return;
+      const antigas = [...media.children];
+      media.appendChild(im);
+      void im.offsetWidth; // o navegador regista a opacidade inicial, para a transição acontecer
+      im.classList.add('on');
+      setTimeout(() => antigas.forEach((o) => o.remove()), 700);
+    };
     im.src = asset(`${pasta(cur.id)}/${v}.webp`);
-    im.decode()
-      .catch(() => {})
-      .then(() => {
-        if (tok !== imgTok || dead || !im.naturalWidth) return;
-        const antigas = [...media.children];
-        media.appendChild(im);
-        requestAnimationFrame(() => im.classList.add('on'));
-        setTimeout(() => antigas.forEach((o) => o.remove()), 700);
-      });
   }
 
   /* ───────── vídeo: repete com uma dissolução sobre o render, em vez de um salto ───────── */
@@ -198,6 +197,7 @@ export function initViagem(root, wanted) {
     });
     lanes.forEach((l) => l.classList.toggle('on', l.dataset.id === id));
     root.style.setProperty('--dc', cur.cor);
+    $('.vg-ambient').style.backgroundImage = `url("${asset(`${pasta(cur.id)}/principal_t.webp`)}")`;
     root.style.setProperty('--dh', cur.horizonte);
     kicker.textContent = cur.origem ? `${cur.tipo}, ${data.ponto.toLowerCase()}` : cur.tipo;
     nome.textContent = cur.nome;

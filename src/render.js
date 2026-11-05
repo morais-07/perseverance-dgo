@@ -398,6 +398,7 @@ export function renderViagem() {
     </div>
 
     <div class="vg-stage" data-stage>
+      <div class="vg-ambient" aria-hidden="true"></div>
       <div class="vg-frame">
         <div class="vg-media" data-media></div>
         <video muted playsinline preload="metadata" aria-label="Vídeo do rover a andar neste destino."></video>
