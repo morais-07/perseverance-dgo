@@ -5,8 +5,8 @@ import site from './content/site.json';
 import m1 from './content/m1.json';
 import m2 from './content/m2.json';
 import * as R from './render.js';
-import { esc, hydrateSlots, icon, revealOnScroll } from './lib/util.js';
-import { runCleanups } from './lib/lifecycle.js';
+import { esc, hydrateSlots, icon, reducedMotion, revealOnScroll } from './lib/util.js';
+import { onLeave, runCleanups } from './lib/lifecycle.js';
 import { initCounters, initMarsVsEarth, initTimeline, initBeforeAfter, initSubTabs, paintSol, initDownloadButtons } from './modules/ui.js';
 import { initHero } from './modules/hero.js';
 import { initViewer } from './modules/viewer.js';
@@ -16,43 +16,46 @@ import { initGens } from './modules/gens.js';
 import { initViagem } from './modules/viagem.js';
 
 /** Secção cujo conteúdo já vem com o seu próprio `.wrap`. */
-const raw = (cls, inner, label = '') => `<section class="sec ${cls}" ${label ? `aria-labelledby="${label}"` : ''}>${inner}</section>`;
+const raw = (cls, inner, label = '', id = '') => `<section ${id ? `id="${id}"` : ''} class="sec ${cls}" ${label ? `aria-labelledby="${label}"` : ''}>${inner}</section>`;
 const wrap = (x) => `<div class="wrap">${x}</div>`;
 
-/** Navegação por separadores dentro de uma página (M0, M1). */
-const tabsNav = (base, tabs, cur) =>
-  `<nav class="pg-tabs" aria-label="Secções desta página">${tabs
-    .map((t, i) => `<a href="#${base}/${t.id}" ${t.id === cur ? 'aria-current="page"' : ''}><span class="mono">${String(i + 1).padStart(2, '0')}</span>${esc(t.rotulo)}</a>`)
+/** Índice das secções de uma página corrida. */
+const indice = (base, secs, fixo) =>
+  `<nav class="pg-tabs ${fixo ? 'fixa' : ''}" aria-label="Secções desta página">${secs
+    .map((t, i) => `<a href="#${base}/${t.id}" data-alvo="${base.slice(1)}-${t.id}"><span class="mono">${String(i + 1).padStart(2, '0')}</span>${esc(t.rotulo)}</a>`)
     .join('')}</nav>`;
 
-/** Página com separadores: devolve o separador pedido (ou o primeiro). */
-function tabbed(base, cls, head, tabs, tab) {
-  const cur = tabs.find((t) => t.id === tab) || tabs[0];
-  // Um separador «full» ocupa a largura toda da janela, por isso fica fora do `.wrap`.
-  const top = `${head}${tabsNav(base, tabs, cur.id)}`;
-  const html = cur.full ? raw(`${cls} sec-full`, `${wrap(top)}${cur.render()}`) : raw(cls, wrap(`${top}<div class="pg-body">${cur.render()}</div>`));
-  return { tab: cur.id, html };
-}
+/** Uma secção da página, com a âncora própria (ex.: m0-estrategia). */
+const bloco = (base, t) => `<div class="pg-sec" id="${base.slice(1)}-${t.id}">${t.render()}</div>`;
 
-const M0_TABS = [
+const M0_SECS = [
   { id: 'semanas', rotulo: 'Semana a semana', render: R.m0Semanas },
   { id: 'estrategia', rotulo: 'Estratégia e subsistemas', render: R.m0Estrategia },
   { id: 'montagem', rotulo: 'Montagem e render', render: R.m0Montagem },
   { id: 'processo', rotulo: 'Processo e design generativo', render: R.m0Processo },
 ];
 
-const m1Tabs = () =>
+const m1Secs = () =>
   m1.wip?.ativo
     ? [
-        { id: 'viagem', rotulo: 'Escolhe a próxima viagem', render: R.renderViagem, full: true },
+        { id: 'viagem', rotulo: 'Escolhe a próxima viagem', render: R.renderViagem },
         { id: 'plano', rotulo: 'Plano e estado', render: R.m1Plano },
       ]
     : [
-        { id: 'viagem', rotulo: 'Escolhe a próxima viagem', render: R.renderViagem, full: true },
+        { id: 'viagem', rotulo: 'Escolhe a próxima viagem', render: R.renderViagem },
         { id: 'semanas', rotulo: 'Semana a semana', render: R.m1Semanas },
         { id: 'subsistemas', rotulo: 'Subsistemas', render: R.m1Subsistemas },
         { id: 'parametrizacao', rotulo: 'Parametrização e simulação', render: R.m1Parametrizacao },
       ];
+
+/** M1: a viagem ocupa a largura toda da janela; o resto volta à coluna normal. */
+function m1Page() {
+  const [viagem, ...resto] = m1Secs();
+  return {
+    html: `${raw('light grid-mm sec-full', `${wrap(`${R.m1Head()}${indice('/m1', m1Secs())}`)}${bloco('/m1', viagem)}`)}
+      ${raw('light grid-mm', wrap(resto.map((t) => bloco('/m1', t)).join('')))}`,
+  };
+}
 
 const estado = (k) => (k === 'm0' || !{ m1, m2 }[k].wip?.ativo ? site.inicio.estadoConcluido : { m1, m2 }[k].wip.estado);
 
@@ -83,37 +86,36 @@ function homePage() {
 const PAGES = {
   '': { id: 'inicio', nav: 'inicio', home: true },
   historia: { id: 'historia', nav: 'historia', render: () => ({ html: raw('light grid-mm', R.renderHistoria(), 'historia-t') }) },
-  objetivo: { id: 'objetivo', nav: 'objetivo', render: () => ({ html: raw('dark', R.renderObjetivo(), 'objetivo-t') }) },
-  projeto: { id: 'projeto', nav: 'projeto', sub: true, render: () => ({ html: raw('dark', R.renderProjetoIntro(), 'projeto-t') }) },
-  porque: { id: 'porque', nav: 'projeto', sub: true, render: () => ({ html: raw('light grid-mm', R.renderPorque(), 'porque-t') }) },
-  m0: { id: 'm0', nav: 'projeto', sub: true, tabs: () => M0_TABS, render: (tab) => tabbed('/m0', 'dark', R.m0Head(), M0_TABS, tab) },
-  m1: { id: 'm1', nav: 'projeto', sub: true, tabs: m1Tabs, render: (tab) => tabbed('/m1', 'light grid-mm', R.m1Head(), m1Tabs(), tab) },
+  projeto: {
+    id: 'projeto',
+    nav: 'projeto',
+    sub: true,
+    render: () => ({
+      html: `${raw('dark', R.renderObjetivo(), 'objetivo-t', 'projeto-objetivo')}
+        ${raw('dark sec-cola', R.renderProjetoIntro(), 'projeto-t', 'projeto-atos')}
+        ${raw('light grid-mm', R.renderPorque(), 'porque-t', 'projeto-porque')}`,
+    }),
+  },
+  m0: { id: 'm0', nav: 'projeto', sub: true, render: () => ({ html: raw('dark', wrap(`${R.m0Head()}${indice('/m0', M0_SECS, true)}${M0_SECS.map((t) => bloco('/m0', t)).join('')}`), 'm0-t') }) },
+  m1: { id: 'm1', nav: 'projeto', sub: true, render: m1Page },
   m2: { id: 'm2', nav: 'projeto', sub: true, render: () => ({ html: raw('dark', wrap(`${R.m2Head()}${R.m2Corpo()}`), 'm2-t') }) },
   equipa: { id: 'equipa', nav: 'equipa', render: () => ({ html: raw('light grid-mm', R.renderEquipa(), 'equipa-t') }) },
 };
 
-/** Ordem de leitura do relatório: todas as páginas e, dentro delas, todos os separadores. */
-const ORDEM = ['', 'historia', 'objetivo', 'projeto', 'porque', 'm0', 'm1', 'm2', 'equipa'];
-function sequencia() {
-  return ORDEM.flatMap((k) => {
-    const def = PAGES[k];
-    if (!def.tabs) return [{ id: def.id, tab: '', rota: `/${k}`, titulo: site.paginas[def.id] }];
-    return def.tabs().map((t) => ({ id: def.id, tab: t.id, rota: `/${k}/${t.id}`, titulo: `${def.id.toUpperCase()} · ${t.rotulo}` }));
-  });
-}
+/** Ordem de leitura do relatório. */
+const ORDEM = ['', 'historia', 'projeto', 'm0', 'm1', 'm2', 'equipa'];
 
 /** Botões «Anterior» e «Seguinte» no fim de cada página. */
-function pager(def, tab) {
-  const seq = sequencia();
-  const i = seq.findIndex((p) => p.id === def.id && p.tab === (tab || ''));
-  const link = (p, cls, rot, ic) =>
-    p ? `<a class="pager-l ${cls}" href="#${p.rota}"><span class="pager-ic">${ic}</span><span><small>${esc(rot)}</small><b>${esc(p.titulo)}</b></span></a>` : '';
+function pager(def) {
+  const i = ORDEM.findIndex((k) => PAGES[k] === def);
+  const link = (k, cls, rot, ic) =>
+    k === undefined ? '' : `<a class="pager-l ${cls}" href="#/${k}"><span class="pager-ic">${ic}</span><span><small>${esc(rot)}</small><b>${esc(site.paginas[PAGES[k].id])}</b></span></a>`;
   const n = site.paginacao;
-  return `<nav class="pager dark" aria-label="${esc(n.rotulo)}">${link(seq[i - 1], 'ant', n.anterior, icon.prev)}${link(seq[i + 1], 'seg', n.seguinte, icon.next)}</nav>`;
+  return `<nav class="pager dark" aria-label="${esc(n.rotulo)}">${link(ORDEM[i - 1], 'ant', n.anterior, icon.prev)}${link(ORDEM[i + 1], 'seg', n.seguinte, icon.next)}</nav>`;
 }
 
 /* Ligações antigas (#historia, #semana-5, #viewer…) → rotas novas. */
-const LEGACY = { inicio: '/', sobre: '/', historia: '/historia', objetivo: '/objetivo', projeto: '/projeto', porque: '/porque', m0: '/m0', m1: '/m1', m2: '/m2', equipa: '/equipa', viewer: '/m0/montagem/viewer', 'viewer-bloco': '/m0/montagem', generativo: '/m0/processo/generativo' };
+const LEGACY = { inicio: '/', sobre: '/', historia: '/historia', objetivo: '/projeto/objetivo', projeto: '/projeto', porque: '/projeto/porque', m0: '/m0', m1: '/m1', m2: '/m2', equipa: '/equipa', viewer: '/m0/montagem/viewer', 'viewer-bloco': '/m0/montagem', generativo: '/m0/processo/generativo' };
 function legacy(id) {
   if (LEGACY[id]) return LEGACY[id];
   const w = id.match(/^semana-(\d+)$/);
@@ -129,6 +131,12 @@ function parse() {
     h = `#${r || '/'}`;
     history.replaceState(null, '', h);
   }
+  // Páginas que passaram a fazer parte de «O nosso projeto».
+  const antiga = { objetivo: '/projeto/objetivo', porque: '/projeto/porque' }[h.slice(2).split('/')[0]];
+  if (antiga) {
+    h = `#${antiga}`;
+    history.replaceState(null, '', h);
+  }
   const [page = '', tab, extra] = h.slice(2).split('/').map(decodeURIComponent);
   return { page: PAGES[page] ? page : '', tab, extra };
 }
@@ -142,19 +150,54 @@ function setNav(def) {
   sub.querySelectorAll('a').forEach((a) => a.setAttribute('aria-current', String(a.dataset.sec === def.id)));
 }
 
+/** Elemento pedido pela rota (ex.: #/m0/estrategia/metodo-A ou #/projeto/porque). */
+function alvo(page, tab, extra) {
+  return (extra && document.getElementById(extra)) || (tab && (document.getElementById(`${page}-${tab}`) || document.getElementById(tab))) || null;
+}
+
+/** Índice da página: leva à secção sem remontar a página e acompanha o scroll. */
+function initIndice(el) {
+  const nav = el.querySelector('.pg-tabs');
+  if (!nav) return;
+  const links = [...nav.querySelectorAll('a')];
+  const marcar = (id) => links.forEach((a) => (a.dataset.alvo === id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
+  links.forEach((a) =>
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      history.replaceState(null, '', a.getAttribute('href'));
+      document.getElementById(a.dataset.alvo)?.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
+    }),
+  );
+  // A secção atual é a última cujo início já passou de 40 % da altura da janela.
+  const secs = links.map((a) => document.getElementById(a.dataset.alvo)).filter(Boolean);
+  let pendente = false;
+  const atualizar = () => {
+    pendente = false;
+    const limite = innerHeight * 0.4;
+    const cur = secs.filter((x) => x.getBoundingClientRect().top <= limite).pop() || secs[0];
+    marcar(cur.id);
+  };
+  const aoRolar = () => {
+    if (pendente) return;
+    pendente = true;
+    requestAnimationFrame(atualizar);
+  };
+  addEventListener('scroll', aoRolar, { passive: true });
+  onLeave(() => removeEventListener('scroll', aoRolar));
+  atualizar();
+}
+
 function mount(def, tab, extra, firstLoad) {
   runCleanups();
   ScrollTrigger.getAll().forEach((t) => t.kill(true));
 
   const el = document.getElementById('page');
-  const out = def.home ? homePage() : def.render(tab);
-  el.innerHTML = out.html + pager(def, out.tab);
+  const out = def.home ? homePage() : def.render();
+  el.innerHTML = out.html + pager(def);
   el.dataset.page = def.id;
-  el.dataset.tab = out.tab || '';
   setNav(def);
 
-  const tabLabel = out.tab ? ` · ${def.tabs().find((x) => x.id === out.tab)?.rotulo}` : '';
-  document.title = def.home ? 'Perseverance, peça a peça · DGO 2026/27' : `${site.paginas[def.id]}${tabLabel} · Perseverance, peça a peça`;
+  document.title = def.home ? 'Perseverance, peça a peça · DGO 2026/27' : `${site.paginas[def.id]} · Perseverance, peça a peça`;
 
   hydrateSlots(el);
   revealOnScroll(el);
@@ -171,10 +214,10 @@ function mount(def, tab, extra, firstLoad) {
   initMinis(el);
   initViagem(el.querySelector('[data-viagem]'), extra);
   out.init?.(el);
+  initIndice(el);
 
-  // Posição: topo da página, ou a âncora pedida (ex.: #/m0/estrategia/metodo-A).
-  const anchorId = def.tabs ? (out.tab === 'viagem' ? null : extra) : tab;
-  const anchor = anchorId ? document.getElementById(anchorId) : null;
+  // Posição: topo da página, ou a secção pedida.
+  const anchor = alvo(el.dataset.page, tab, extra);
   scrollTo({ top: 0, behavior: 'instant' });
   if (anchor) requestAnimationFrame(() => anchor.scrollIntoView({ block: 'start', behavior: 'instant' }));
   ScrollTrigger.refresh();
@@ -185,8 +228,17 @@ function mount(def, tab, extra, firstLoad) {
 export function startRouter() {
   history.scrollRestoration = 'manual'; // recarregar a meio da página não pode saltar a animação inicial
   let first = true;
+  let atual = null;
   const route = () => {
     const { page, tab, extra } = parse();
+    // Dentro da mesma página basta ir à secção: não se volta a carregar nada.
+    if (page === atual) {
+      const a = alvo(PAGES[page].id, tab, extra);
+      if (a) a.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
+      else if (!tab) scrollTo({ top: 0, behavior: reducedMotion() ? 'auto' : 'smooth' });
+      return;
+    }
+    atual = page;
     mount(PAGES[page], tab, extra, first);
     first = false;
   };

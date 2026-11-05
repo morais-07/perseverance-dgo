@@ -10,15 +10,80 @@
     "v0": 2,
     "nota": "Salto simulado: o rover é lançado na vertical a 2 m/s (valor ilustrativo, como se passasse por cima de uma rocha). A altura e o tempo de voo vêm só da gravidade do destino: h = v₀² / 2g e t = 2v₀ / g."
   },
-  "fontes": "Valores de gravidade, temperatura e ambiente: [A CONFIRMAR: citar a fonte (NASA/ESA) de cada valor].",
+  "fontes": [
+    {
+      "rotulo": "Marte: NASA, Mars Fact Sheet (gravidade)",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html"
+    },
+    {
+      "rotulo": "Marte: NASA, Mars Facts (temperatura e superfície)",
+      "url": "https://science.nasa.gov/mars/facts/"
+    },
+    {
+      "rotulo": "Lua: NASA, Moon Fact Sheet (gravidade)",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+      "rotulo": "Lua: NASA, Moon Facts (temperatura, regolito e exosfera)",
+      "url": "https://science.nasa.gov/moon/facts/"
+    },
+    {
+      "rotulo": "Mercúrio: NASA, Mercury Fact Sheet (gravidade)",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/mercuryfact.html"
+    },
+    {
+      "rotulo": "Mercúrio: NASA, Mercury Facts (temperatura e exosfera)",
+      "url": "https://science.nasa.gov/mercury/facts/"
+    },
+    {
+      "rotulo": "Europa e Io: NASA, Jovian Satellite Fact Sheet (massa e raio)",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/joviansatfact.html"
+    },
+    {
+      "rotulo": "Europa: NASA, equipa que simula a superfície de Europa (temperatura média)",
+      "url": "https://science.nasa.gov/missions/europa-clipper/meet-the-team-simulating-europas-surface-on-earth"
+    },
+    {
+      "rotulo": "Europa: NASA, Europa Facts (gelo de água)",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/europa/europa-facts/"
+    },
+    {
+      "rotulo": "Titã: NASA, Saturnian Satellite Fact Sheet (massa e raio)",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturniansatfact.html"
+    },
+    {
+      "rotulo": "Titã: NASA, Titan Facts (temperatura, atmosfera e lagos)",
+      "url": "https://science.nasa.gov/saturn/moons/titan/facts/"
+    },
+    {
+      "rotulo": "Io: NASA/JPL, artigo sobre a missão Galileo, 2000 (temperatura noturna)",
+      "url": "https://www.jpl.nasa.gov/news/jupiters-volcanic-moon-io-strange-shapes-in-a-sizzling-world/"
+    },
+    {
+      "rotulo": "Io: NASA StarChild (temperatura da lava)",
+      "url": "https://starchild.gsfc.nasa.gov/docs/StarChild/solar_system_level2/io.html"
+    },
+    {
+      "rotulo": "Io: NASA, Io Facts (vulcões e dióxido de enxofre)",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/io/facts/"
+    },
+    {
+      "rotulo": "Vénus: NASA, Venus Fact Sheet (gravidade, temperatura e pressão)",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/venusfact.html"
+    },
+    {
+      "rotulo": "Vénus: NASA, Venus Facts (temperatura e nuvens de ácido sulfúrico)",
+      "url": "https://science.nasa.gov/venus/venus-facts/"
+    }
+  ],
   "adaptacaoModelo": "[FALTA: descrever o que muda no rover para {nome} (chassis, peças retiradas, materiais e parâmetros)]",
   "destinos": [
     {
       "id": "marte",
       "nome": "Marte",
       "tipo": "Planeta",
-      "g": 3.71,
-      "temperatura": "−125 a +20 °C",
+      "g": 3.73,
+      "temperatura": "−153 a +20 °C",
       "ambiente": "Rochas e poeira.",
       "porque": "É o planeta real do Perseverance e serve de referência. As rochas e a abrasão obrigam a paredes mais grossas.",
       "origem": true,
@@ -34,7 +99,7 @@
       "nome": "Lua",
       "tipo": "Satélite da Terra",
       "g": 1.62,
-      "temperatura": "−170 a +120 °C",
+      "temperatura": "−173 a +127 °C",
       "ambiente": "Vácuo e regolito.",
       "porque": "Gravidade baixa, por isso é o caso mais leve. Testa o ciclo térmico, que provoca fadiga.",
       "orb": [
@@ -94,7 +159,7 @@
       "nome": "Io",
       "tipo": "Lua de Júpiter",
       "g": 1.8,
-      "temperatura": "lava fria e quente",
+      "temperatura": "≈ −180 °C; lava acima de 1200 °C",
       "ambiente": "Vulcânico, com enxofre.",
       "porque": "Testa a corrosão por enxofre e um terreno muito irregular.",
       "orb": [
@@ -109,8 +174,8 @@
       "nome": "Vénus",
       "tipo": "Planeta",
       "g": 8.87,
-      "temperatura": "≈ 460 °C",
-      "ambiente": "92 bar e ácido sulfúrico.",
+      "temperatura": "≈ 465 °C",
+      "ambiente": "92 bar e nuvens de ácido sulfúrico.",
       "porque": "É o caso limite: gravidade alta, calor e corrosão. O alumínio não aguenta e é preciso usar titânio ou Inconel.",
       "orb": [
         "#f5d27a",
@@ -129,5 +194,7 @@
     "repetir": "Repetir o salto",
     "terra": "Terra"
   },
-  "massaNota": "Com a massa de referência do Perseverance"
+  "massaNota": "Com a massa de referência do Perseverance",
+  "fontesTitulo": "Ver as fontes dos valores",
+  "fontesNota": "A NASA não indica a gravidade de Europa, Titã e Io: foi calculada com g = G·M/R², a partir da massa e do raio das tabelas da NASA. A temperatura de Europa é a média no equador, a de Io é a noturna, medida pela missão Galileo, e a de Vénus arredonda os 464 a 467 °C indicados pela NASA."
 }

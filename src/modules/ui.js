@@ -55,7 +55,7 @@ export function initMarsVsEarth() {
   if (!host) return;
   const m = 1025;
   const wE = m * 9.80665;
-  const wM = m * 3.71;
+  const wM = m * 3.73;
   const rows = [
     { k: 'Terra', v: wE, pct: 100, cls: '' },
     { k: 'Marte', v: wM, pct: (wM / wE) * 100, cls: 'mars' },

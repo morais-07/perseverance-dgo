@@ -23,11 +23,6 @@
       "rotulo": "História e Contexto"
     },
     {
-      "id": "objetivo",
-      "rota": "/objetivo",
-      "rotulo": "Objetivo"
-    },
-    {
       "id": "projeto",
       "rota": "/projeto",
       "rotulo": "O Nosso Projeto"
@@ -43,11 +38,6 @@
       "id": "projeto",
       "rota": "/projeto",
       "rotulo": "Visão geral"
-    },
-    {
-      "id": "porque",
-      "rota": "/porque",
-      "rotulo": "O Porquê da Escolha"
     },
     {
       "id": "m0",
@@ -101,16 +91,10 @@
         "texto": "A missão Mars 2020, do lançamento à aterragem em Jezero."
       },
       {
-        "rota": "/objetivo",
+        "rota": "/projeto",
         "codigo": "02",
-        "titulo": "Objetivo",
-        "texto": "O que queremos modelar, parametrizar e otimizar, e como o vamos avaliar."
-      },
-      {
-        "rota": "/porque",
-        "codigo": "03",
-        "titulo": "O porquê da escolha",
-        "texto": "Porque escolhemos o Perseverance e não outro rover."
+        "titulo": "O nosso projeto",
+        "texto": "O que queremos fazer, como contamos o semestre e porque escolhemos o Perseverance."
       },
       {
         "rota": "/m0",
@@ -135,13 +119,17 @@
       },
       {
         "rota": "/equipa",
-        "codigo": "04",
+        "codigo": "03",
         "titulo": "Equipa",
         "texto": "Quem somos e quem fez o quê."
       }
     ]
   },
-  "paginacao": { "anterior": "Anterior", "seguinte": "Seguinte", "rotulo": "Mudar de página" },
+  "paginacao": {
+    "anterior": "Anterior",
+    "seguinte": "Seguinte",
+    "rotulo": "Mudar de página"
+  },
   "paginas": {
     "inicio": "Início",
     "historia": "História e contexto",

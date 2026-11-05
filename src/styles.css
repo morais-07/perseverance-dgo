@@ -786,7 +786,16 @@ body.inner { padding-top: var(--nav-h); }
 .light .pg-tabs a { border-color: var(--line-l); }
 .pg-tabs a .mono { font-size: 0.68rem; opacity: 0.65; }
 .pg-tabs a:hover { border-color: var(--mars); }
-.pg-tabs a[aria-current='page'] { background: var(--mars); border-color: var(--mars); color: #000; }
+.pg-tabs a[aria-current='true'] { background: var(--mars); border-color: var(--mars); color: #000; }
+.pg-tabs { margin-bottom: var(--s5); }
+.pg-sec { scroll-margin-top: var(--s2); }
+.pg-sec > .block:first-child { margin-top: 0; }
+.pg-sec + .pg-sec { margin-top: var(--s8); }
+.sec-cola { padding-top: 0; }
+@media (min-width: 761px) {
+  .pg-tabs.fixa { position: sticky; top: calc(var(--nav-h) + var(--subnav-h)); z-index: 5; margin-inline: calc(var(--s3) * -1); padding: var(--s2) var(--s3); background: var(--night); border-bottom: 1px solid var(--line-d); }
+  .pg-tabs.fixa ~ .pg-sec, .pg-tabs.fixa ~ .pg-sec [id] { scroll-margin-top: 72px; }
+}
 .pg-body > .block:first-child { margin-top: 0; }
 
 .home-map .sec-head { margin-bottom: var(--s7); }
@@ -803,7 +812,7 @@ body.inner { padding-top: var(--nav-h); }
 
 /* ═════════ M1 · Escolhe a próxima viagem ═════════ */
 .sec-full { padding-block: var(--s6) 0; }
-.sec-full .titleblock, .sec-full > .wrap > .lead { display: none; }
+.sec-full .titleblock { display: none; }
 .sec-full .ms-head { margin-bottom: var(--s5); }
 .sec-full .ms-code { font-size: clamp(2.6rem, 6vw, 4.4rem); }
 .sec-full .pg-tabs { margin-bottom: var(--s5); }
@@ -904,6 +913,9 @@ button.lab-lane:hover .lab-n { text-decoration: underline; }
 .vg-table summary { cursor: pointer; font-weight: 600; padding: var(--s3) 0; }
 .vg-table .table-wrap { margin-top: var(--s3); border-color: var(--line-d); background: rgba(255, 255, 255, 0.03); }
 .vg-table table { color: #e9e9ee; }
+.vg-fontes { margin-top: 0; }
+.vg-fontes ol { margin: var(--s3) 0 0; padding-left: 1.4em; display: grid; gap: var(--s2); font-size: 0.92rem; }
+.vg-fontes a { color: var(--mars); }
 .vg-table th, .vg-table td { border-bottom-color: var(--line-d); }
 .vg-table thead th { color: var(--dust); border-bottom-color: var(--line-d); }
 
@@ -951,5 +963,5 @@ a.pager-l:hover .pager-ic { background: var(--mars); color: #000; }
 .hero-motion { position: absolute; z-index: 4; right: var(--gutter); top: calc(var(--nav-h) + var(--s6) + var(--s2)); min-height: 36px; padding: 0 var(--s3); font-size: 0.8rem; color: #fff; background: rgba(8, 8, 12, 0.6); border: 1px solid var(--line-d); border-radius: 999px; }
 .hero-motion:hover { border-color: var(--mars); }
 .home-ia { padding-top: 0; }
-@media (min-width: 600px) { .home-cards { grid-template-columns: repeat(2, 1fr); } .home-card:last-child { grid-column: span 2; } }
-@media (min-width: 1000px) { .home-cards { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 600px) { .home-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .home-cards { grid-template-columns: repeat(3, 1fr); } }

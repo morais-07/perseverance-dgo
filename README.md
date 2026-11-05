@@ -45,10 +45,10 @@ O site tem várias páginas (um «router» por `#`, funciona no GitHub Pages sem
 | Endereço | Página |
 |---|---|
 | `#/` | Início (hero 3D + mapa do relatório) |
-| `#/historia`, `#/objetivo`, `#/equipa` | Páginas simples |
-| `#/projeto`, `#/porque` | O Nosso Projeto (visão geral) e O Porquê da Escolha |
-| `#/m0/semanas`, `/estrategia`, `/montagem`, `/processo` | M0, com 4 separadores |
-| `#/m1/viagem`, `#/m1/plano` | M1: «Escolhe a próxima viagem» e plano (quando M1 estiver feito, aparecem também semanas, subsistemas e parametrização) |
+| `#/historia`, `#/equipa` | Páginas simples |
+| `#/projeto` | O Nosso Projeto: objetivo, os quatro atos e o porquê da escolha, numa só página (`#/projeto/porque` vai direto à secção) |
+| `#/m0` | M0 numa só página, com índice fixo; `#/m0/estrategia`, `/montagem` e `/processo` vão direto à secção |
+| `#/m1` | M1 numa só página: «Escolhe a próxima viagem» e o plano (quando M1 estiver feito, aparecem também as outras secções) |
 | `#/m1/viagem/europa` | Abre já num destino (útil para partilhar) |
 | `#/m2` | M2 |
 
@@ -98,7 +98,7 @@ O GitHub recusa ficheiros > 100 MB e avisa acima de 50 MB. Se `perseverance_cad.
 
 ## 4. O que está implementado
 
-- **Várias páginas** (menu no topo, submenu em «O Nosso Projeto» e separadores no M0 e no M1).
+- **Várias páginas** (menu no topo, submenu em «O Nosso Projeto» e índice de secções no M0 e no M1).
 - **M1 · Escolhe a próxima viagem:** sete destinos (Marte, Lua, Mercúrio, Europa, Titã, Io, Vénus) com o rover de base a andar em cada um; céu, chão, luz e atmosfera mudam, e o salto simulado depende só da gravidade. Teclado: setas no seletor; botão para pausar a animação.
 - **Início:** o rover (GLB real da NASA) controlado pelo scroll: roda, aproxima-se e abre em vista explodida, com os cinco subsistemas etiquetados. Hero fixo ~260 % de ecrã. No telemóvel e com `prefers-reduced-motion` o hero é simplificado (imagem estática / pose final).
 - **História e Contexto:** cronologia interativa (teclado: setas), números animados, «sete minutos de terror» com ligação ao vídeo oficial, peso na Terra vs Marte, fontes.
@@ -140,7 +140,7 @@ src/
   content/          TODO o texto (JSON)
   lib/              util.js · rover.js (carregamento, subsistemas, explosão) · lifecycle.js (limpeza ao mudar de página)
   modules/          hero · viewer · mini · ui · rocker · gens · viagem (cena 3D dos destinos)
-  router.js         páginas, separadores e endereços (#/…)
+  router.js         páginas, secções e endereços (#/…)
   render.js         constrói o HTML a partir dos JSON
   styles.css        tokens e estilos
 scripts/            copiar-draco · gerar-slots · otimizar-imagens

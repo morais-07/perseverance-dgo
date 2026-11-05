@@ -54,7 +54,7 @@ export function renderHero() {
       <img class="hero-fallback" src="./media/m0/render_rover.webp" alt="Render do rover Perseverance modelado pela equipa." width="1200" height="800" fetchpriority="high" />
       <canvas aria-hidden="true"></canvas>
       <div class="hero-labels" aria-hidden="true"></div>
-      <div class="hero-corner tl" aria-hidden="true">PRV-000 · ESC 1:20 · FOLHA 1/6</div>
+      <div class="hero-corner tl" aria-hidden="true">PRV-000 · ESC 1:20 · FOLHA 1/7</div>
       <div class="hero-corner tr" data-prov aria-hidden="true">${esc(site.modeloProvisorio.toUpperCase())}</div>
       <div class="hero-copy">
         <h1><span>${esc(site.titulo)}</span><span>${esc(site.tituloLinha2)}</span></h1>
@@ -62,7 +62,7 @@ export function renderHero() {
         <p class="meta"><span>${esc(site.curso)}</span><span>${esc(site.instituicao)}</span><span>${esc(site.ano)}</span></p>
       </div>
       <div class="hero-actions">
-        <a class="btn" href="#/m0/montagem">${esc(site.botoes.explorar)}</a>
+        <a class="btn" href="#/m0/montagem/viewer-bloco">${esc(site.botoes.explorar)}</a>
         ${downloadButton('ghost')}
       </div>
       <div class="hero-tele" aria-hidden="true">
@@ -100,7 +100,7 @@ export function renderSobre() {
 export function renderHistoria() {
   const h = historia;
   return `<div class="wrap">
-    ${titleblock('PRV-HIS-002', '2/6')}
+    ${titleblock('PRV-HIS-002', '2/7')}
     ${sectionHead('historia', 'História e contexto', h.titulo, h.intro)}
     <h3 class="rv">${esc(h.timelineTitulo)}</h3>
     <div class="tl rv" data-tl>
@@ -128,7 +128,7 @@ export function renderHistoria() {
       <div>
         <h3>O mesmo rover, pesos diferentes</h3>
         <p>Em Marte a gravidade à superfície é cerca de 38 % da terrestre: o mesmo rover de 1025 kg pesa muito menos. É por isso que a suspensão e o braço não precisam de ser dimensionados como se estivessem na Terra.</p>
-        <p class="tiny">g<sub>Terra</sub> = 9,81 m/s² · g<sub>Marte</sub> ≈ 3,71 m/s² · peso = m·g</p>
+        <p class="tiny">g<sub>Terra</sub> = 9,81 m/s² · g<sub>Marte</sub> ≈ 3,73 m/s² · peso = m·g</p>
       </div>
       <div class="bars" data-mve></div>
     </div>
@@ -147,7 +147,7 @@ export const historiaNumbers = historia.numeros;
 export function renderObjetivo() {
   const o = objetivo;
   return `<div class="wrap">
-    ${titleblock('PRV-OBJ-003', '3/6')}
+    ${titleblock('PRV-PRJ-003', '3/7')}
     ${sectionHead('objetivo', 'Objetivo', o.titulo, o.texto)}
     <div class="obj-grid">
       ${o.cartoes.map((c) => `<article class="obj rv"><span class="code">${esc(c.codigo)} · ${esc(c.fase)}</span><h3>${esc(c.titulo)}</h3><p>${esc(c.texto)}</p>
@@ -159,10 +159,9 @@ export function renderObjetivo() {
 /* ───────── O Nosso Projeto ───────── */
 export function renderProjetoIntro() {
   return `<div class="wrap">
-    ${titleblock('PRV-PRJ-004', '4/6')}
     ${sectionHead('projeto', 'O nosso projeto', 'Uma história em quatro atos', 'Do problema ao resultado: a escolha do rover, a modelação e montagem, a parametrização e a otimização da suspensão. É assim que contamos o semestre.')}
     <div class="arc rv">
-      <a href="#/porque"><span class="k">ATO I</span><span class="h">O problema</span><span class="p">Porquê o Perseverance?</span></a>
+      <a href="#/projeto/porque"><span class="k">ATO I</span><span class="h">O problema</span><span class="p">Porquê o Perseverance?</span></a>
       <a href="#/m0"><span class="k">ATO II</span><span class="h">Modelação e montagem</span><span class="p">M0 · modelar tudo e montar o rover</span></a>
       <a href="#/m1"><span class="k">ATO III</span><span class="h">Parametrização</span><span class="p">M1 · estratégias computacionais</span></a>
       <a href="#/m2"><span class="k">ATO IV</span><span class="h">Otimização</span><span class="p">M2 · otimizar a suspensão</span></a>
@@ -242,7 +241,7 @@ const metodoCard = (mt) => `<article class="metodo rv" id="metodo-${esc(mt.id)}"
   <p class="mt-van">${esc(mt.vantagem)}</p>
 </article>`;
 
-export const m0Head = () => `${titleblock('PRV-M00-005', '5/6')}${msHead('m0', m0, 'Ato II — modelação e montagem')}`;
+export const m0Head = () => `${titleblock('PRV-M00-004', '4/7')}${msHead('m0', m0, 'Ato II — modelação e montagem')}`;
 
 export const m0Semanas = () => `<div class="block"><h3 class="rv">${esc(m0.semanasTitulo)}</h3>${weeksOf('M0')}</div>`;
 
@@ -339,7 +338,7 @@ const wipBlock = (d) => `
     <ul class="wip-list">${d.wip.planeado.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
   </div>`;
 
-export const m1Head = () => `${titleblock('PRV-M01-006', '5/6')}${msHead('m1', m1, 'Ato III — parametrização')}`;
+export const m1Head = () => `${titleblock('PRV-M01-005', '5/7')}${msHead('m1', m1, 'Ato III — parametrização')}`;
 
 export const m1Plano = () => wipBlock(m1);
 
@@ -446,7 +445,7 @@ export function renderViagem() {
         ${pista(lab.terra, d.gTerra, null, 'marte')}
         ${d.destinos.map((x) => pista(x.nome, x.g, x.id, x.id)).join('')}
       </div></div>
-      <p class="note">${esc(d.salto.nota)} ${tbc(d.fontes)}</p>
+      <p class="note">${esc(d.salto.nota)}</p>
     </div>
 
     <details class="vg-table">
@@ -457,11 +456,17 @@ export function renderViagem() {
         <tbody>${d.destinos.map((x) => `<tr><th scope="row">${esc(x.nome)}</th><td class="mono">${fmt(x.g, 2)} m/s²</td><td>${esc(x.temperatura)}. ${esc(x.ambiente)}</td><td>${esc(x.porque)}</td></tr>`).join('')}</tbody>
       </table></div>
     </details>
+
+    <details class="vg-table vg-fontes">
+      <summary>${esc(d.fontesTitulo)}</summary>
+      <p class="note">${esc(d.fontesNota)}</p>
+      <ol>${d.fontes.map((f) => `<li><a href="${esc(f.url)}" target="_blank" rel="noopener noreferrer">${esc(f.rotulo)}</a></li>`).join('')}</ol>
+    </details>
   </div>`;
 }
 
 /* M2 */
-export const m2Head = () => `${titleblock('PRV-M02-007', '5/6')}${msHead('m2', m2, 'Ato IV — otimização')}`;
+export const m2Head = () => `${titleblock('PRV-M02-006', '6/7')}${msHead('m2', m2, 'Ato IV — otimização')}`;
 
 export function m2Corpo() {
   const d = m2;
@@ -523,7 +528,7 @@ function renderViewer() {
 export function renderEquipa() {
   const e = equipa;
   return `<div class="wrap">
-    ${titleblock('PRV-EQP-008', '6/6')}
+    ${titleblock('PRV-EQP-007', '7/7')}
     ${sectionHead('equipa', 'Equipa', e.titulo, e.texto)}
     <div class="team">${e.membros.map((m) => `<article class="member rv">${slot(m.foto, { ar: 'ar-4-5' })}<div class="body"><span class="role">${tbc(m.funcao)}</span><h3>${tbc(m.nome)}</h3>
       <div class="meta"><span>${tbc(m.mec)}</span><span>${tbc(m.email)}</span></div><h4>Subsistemas</h4><ul class="chips">${m.subsistemas.map((s) => `<li>${tbc(s)}</li>`).join('')}</ul></div></article>`).join('')}</div>
