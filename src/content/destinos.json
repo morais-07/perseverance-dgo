@@ -76,7 +76,7 @@
       "url": "https://science.nasa.gov/venus/venus-facts/"
     }
   ],
-  "adaptacaoModelo": "[FALTA: descrever o que muda no rover para {nome} (chassis, peças retiradas, materiais e parâmetros)]",
+  "adaptacaoModelo": "[FALTA: o que muda no braço de {nome}]",
   "destinos": [
     {
       "id": "marte",
@@ -92,7 +92,18 @@
         "#8f3c1b"
       ],
       "cor": "#9a4a2a",
-      "horizonte": "#c9794a"
+      "horizonte": "#c9794a",
+      "rover": {
+        "massa": 222.7,
+        "delta": -37,
+        "material": "Al + Ti",
+        "nota": "O planeta do projeto.",
+        "codigo": "MAR-057",
+        "familia": "tubo oco",
+        "matJ": "Al 7075 CNC",
+        "braco": 0.48,
+        "fs": 3.53
+      }
     },
     {
       "id": "lua",
@@ -107,7 +118,29 @@
         "#6f6f75"
       ],
       "cor": "#c9c9cc",
-      "horizonte": "#16171d"
+      "horizonte": "#16171d",
+      "rover": {
+        "massa": 188.5,
+        "delta": -46,
+        "material": "Al 7075",
+        "nota": "Gravidade de 1,62 m/s².",
+        "codigo": "LUA-052",
+        "familia": "tubo oco",
+        "matJ": "Al 7075 CNC",
+        "braco": 0.25,
+        "fs": 2.3
+      },
+      "chassis": {
+        "comprimento": 1750,
+        "largFrente": 0.7,
+        "largTras": 0.6,
+        "altPontas": 0.5,
+        "nCostelas": 24,
+        "espCostela": 5,
+        "largAnel": 12,
+        "raioLongarina": 9,
+        "nLongarinas": 4
+      }
     },
     {
       "id": "mercurio",
@@ -122,7 +155,29 @@
         "#5f5750"
       ],
       "cor": "#a8774a",
-      "horizonte": "#1c1715"
+      "horizonte": "#1c1715",
+      "rover": {
+        "massa": 330.5,
+        "delta": -6,
+        "material": "Ti 6Al-4V",
+        "nota": "O calor obriga a usar titânio.",
+        "codigo": "MER-013",
+        "familia": "tubo oco",
+        "matJ": "Ti-6Al-4V CNC",
+        "braco": 0.74,
+        "fs": 3.13
+      },
+      "chassis": {
+        "comprimento": 1750,
+        "largFrente": 0.8,
+        "largTras": 0.8,
+        "altPontas": 0.6,
+        "nCostelas": 30,
+        "espCostela": 8,
+        "largAnel": 16,
+        "raioLongarina": 11,
+        "nLongarinas": 5
+      }
     },
     {
       "id": "europa",
@@ -137,7 +192,29 @@
         "#6e8fa6"
       ],
       "cor": "#d6e8f5",
-      "horizonte": "#101a26"
+      "horizonte": "#101a26",
+      "rover": {
+        "massa": 202.9,
+        "delta": -42,
+        "material": "Al 7075",
+        "nota": "Gelo, com coeficiente de atrito de 0,5.",
+        "codigo": "EUR-101",
+        "familia": "treliça",
+        "matJ": "Al 7075 CNC",
+        "braco": 0.44,
+        "fs": 5.01
+      },
+      "chassis": {
+        "comprimento": 1650,
+        "largFrente": 0.9,
+        "largTras": 0.9,
+        "altPontas": 0.6,
+        "nCostelas": 30,
+        "espCostela": 6,
+        "largAnel": 14,
+        "raioLongarina": 12,
+        "nLongarinas": 6
+      }
     },
     {
       "id": "tita",
@@ -152,7 +229,29 @@
         "#8a5a1c"
       ],
       "cor": "#c8651c",
-      "horizonte": "#c98f3d"
+      "horizonte": "#c98f3d",
+      "rover": {
+        "massa": 171.2,
+        "delta": -51,
+        "material": "Al 7075",
+        "nota": "Terreno macio e frio: é a suspensão mais leve.",
+        "codigo": "TIT-101",
+        "familia": "treliça",
+        "matJ": "Al 7075 CNC",
+        "braco": 0.42,
+        "fs": 11
+      },
+      "chassis": {
+        "comprimento": 1850,
+        "largFrente": 0.7,
+        "largTras": 0.6,
+        "altPontas": 0.5,
+        "nCostelas": 20,
+        "espCostela": 4,
+        "largAnel": 10,
+        "raioLongarina": 8,
+        "nLongarinas": 4
+      }
     },
     {
       "id": "io",
@@ -167,7 +266,29 @@
         "#b0501e"
       ],
       "cor": "#e6cf2e",
-      "horizonte": "#3d1d10"
+      "horizonte": "#3d1d10",
+      "rover": {
+        "massa": 220.4,
+        "delta": -37,
+        "material": "Al + Ti L-PBF",
+        "nota": "",
+        "codigo": "IO-101",
+        "familia": "treliça",
+        "matJ": "Al 7075 CNC",
+        "braco": 0.46,
+        "fs": 4.69
+      },
+      "chassis": {
+        "comprimento": 1550,
+        "largFrente": 0.8,
+        "largTras": 0.7,
+        "altPontas": 0.7,
+        "nCostelas": 34,
+        "espCostela": 8,
+        "largAnel": 18,
+        "raioLongarina": 13,
+        "nLongarinas": 6
+      }
     },
     {
       "id": "venus",
@@ -182,7 +303,29 @@
         "#a8741c"
       ],
       "cor": "#a8801f",
-      "horizonte": "#d9a94a"
+      "horizonte": "#d9a94a",
+      "rover": {
+        "massa": 474.9,
+        "delta": 35,
+        "material": "Ti + Inconel",
+        "nota": "Mais pesada do que a original, mas é o único material que aguenta a temperatura.",
+        "codigo": "VÉN-079",
+        "familia": "nervuras",
+        "matJ": "Ti-6Al-4V CNC",
+        "braco": 1.55,
+        "fs": 2.93
+      },
+      "chassis": {
+        "comprimento": 1450,
+        "largFrente": 0.7,
+        "largTras": 0.8,
+        "altPontas": 0.7,
+        "nCostelas": 36,
+        "espCostela": 12,
+        "largAnel": 24,
+        "raioLongarina": 16,
+        "nLongarinas": 6
+      }
     }
   ],
   "adaptacaoTitulo": "O que muda neste rover",
@@ -196,5 +339,7 @@
   },
   "massaNota": "Com a massa de referência do Perseverance",
   "fontesTitulo": "Ver as fontes dos valores",
-  "fontesNota": "A NASA não indica a gravidade de Europa, Titã e Io: foi calculada com g = G·M/R², a partir da massa e do raio das tabelas da NASA. A temperatura de Europa é a média no equador, a de Io é a noturna, medida pela missão Galileo, e a de Vénus arredonda os 464 a 467 °C indicados pela NASA."
+  "fontesNota": "A NASA não indica a gravidade de Europa, Titã e Io: foi calculada com g = G·M/R², a partir da massa e do raio das tabelas da NASA. A temperatura de Europa é a média no equador, a de Io é a noturna, medida pela missão Galileo, e a de Vénus arredonda os 464 a 467 °C indicados pela NASA.",
+  "massaSuspensaoOriginal": 352.2,
+  "chassisFusion": "Chassis: usa o modelo paramétrico do Fusion, e não o do BeeGraphy."
 }

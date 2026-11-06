@@ -14,14 +14,15 @@ import { initMinis } from './modules/mini.js';
 import { initRocker } from './modules/rocker.js';
 import { initGens } from './modules/gens.js';
 import { initViagem } from './modules/viagem.js';
+import { initSuspensao } from './modules/suspensao.js';
 
 /** Secção cujo conteúdo já vem com o seu próprio `.wrap`. */
 const raw = (cls, inner, label = '', id = '') => `<section ${id ? `id="${id}"` : ''} class="sec ${cls}" ${label ? `aria-labelledby="${label}"` : ''}>${inner}</section>`;
 const wrap = (x) => `<div class="wrap">${x}</div>`;
 
 /** Índice das secções de uma página corrida. */
-const indice = (base, secs, fixo) =>
-  `<nav class="pg-tabs ${fixo ? 'fixa' : ''}" aria-label="Secções desta página">${secs
+const indice = (base, secs, tipo = '') =>
+  `<nav class="pg-tabs ${tipo}" aria-label="Secções desta página">${secs
     .map((t, i) => `<a href="#${base}/${t.id}" data-alvo="${base.slice(1)}-${t.id}"><span class="mono">${String(i + 1).padStart(2, '0')}</span>${esc(t.rotulo)}</a>`)
     .join('')}</nav>`;
 
@@ -35,25 +36,23 @@ const M0_SECS = [
   { id: 'processo', rotulo: 'Processo e design generativo', render: R.m0Processo },
 ];
 
-const m1Secs = () =>
-  m1.wip?.ativo
-    ? [
-        { id: 'viagem', rotulo: 'Escolhe a próxima viagem', render: R.renderViagem },
-        { id: 'plano', rotulo: 'Plano e estado', render: R.m1Plano },
-      ]
-    : [
-        { id: 'viagem', rotulo: 'Escolhe a próxima viagem', render: R.renderViagem },
-        { id: 'semanas', rotulo: 'Semana a semana', render: R.m1Semanas },
-        { id: 'subsistemas', rotulo: 'Subsistemas', render: R.m1Subsistemas },
-        { id: 'parametrizacao', rotulo: 'Parametrização e simulação', render: R.m1Parametrizacao },
-      ];
+const M1_SECS = [
+  { id: 'viagem', rotulo: 'Escolhe a próxima viagem', render: R.renderViagem },
+  { id: 'estrategia', rotulo: 'Estratégia', render: R.m1Estrategia },
+  { id: 'braco', rotulo: 'Braço', render: R.m1Braco },
+  { id: 'chassis', rotulo: 'Chassis', render: R.m1Chassis },
+  { id: 'suspensao', rotulo: 'Suspensão', render: R.m1Suspensao },
+  { id: 'semanas', rotulo: 'Semana a semana', render: R.m1Semanas },
+];
 
-/** M1: a viagem ocupa a largura toda da janela; o resto volta à coluna normal. */
+/** M1: a viagem ocupa a largura toda da janela; o índice fica fixo por cima de tudo o que vem a seguir. */
 function m1Page() {
-  const [viagem, ...resto] = m1Secs();
+  const [viagem, ...resto] = M1_SECS;
   return {
-    html: `${raw('light grid-mm sec-full', `${wrap(`${R.m1Head()}${indice('/m1', m1Secs())}`)}${bloco('/m1', viagem)}`)}
-      ${raw('light grid-mm', wrap(resto.map((t) => bloco('/m1', t)).join('')))}`,
+    html: `${raw('light grid-mm sec-cabeca', wrap(R.m1Head()))}
+      ${indice('/m1', M1_SECS, 'banda')}
+      ${raw('dark sec-viagem', bloco('/m1', viagem))}
+      ${raw('dark sec-cola', wrap(resto.map((t) => bloco('/m1', t)).join('')))}`,
   };
 }
 
@@ -96,7 +95,7 @@ const PAGES = {
         ${raw('light grid-mm', R.renderPorque(), 'porque-t', 'projeto-porque')}`,
     }),
   },
-  m0: { id: 'm0', nav: 'projeto', sub: true, render: () => ({ html: raw('dark', wrap(`${R.m0Head()}${indice('/m0', M0_SECS, true)}${M0_SECS.map((t) => bloco('/m0', t)).join('')}`), 'm0-t') }) },
+  m0: { id: 'm0', nav: 'projeto', sub: true, render: () => ({ html: raw('dark', wrap(`${R.m0Head()}${indice('/m0', M0_SECS, 'fixa')}${M0_SECS.map((t) => bloco('/m0', t)).join('')}`), 'm0-t') }) },
   m1: { id: 'm1', nav: 'projeto', sub: true, render: m1Page },
   m2: { id: 'm2', nav: 'projeto', sub: true, render: () => ({ html: raw('dark', wrap(`${R.m2Head()}${R.m2Corpo()}`), 'm2-t') }) },
   equipa: { id: 'equipa', nav: 'equipa', render: () => ({ html: raw('light grid-mm', R.renderEquipa(), 'equipa-t') }) },
@@ -155,6 +154,34 @@ function alvo(page, tab, extra) {
   return (extra && document.getElementById(extra)) || (tab && (document.getElementById(`${page}-${tab}`) || document.getElementById(tab))) || null;
 }
 
+/**
+ * Vai até à secção e mantém-na no sítio enquanto as imagens acima dela carregam e mudam a altura da página.
+ * Para assim que a pessoa mexe na página, ou ao fim de 4 segundos.
+ */
+function irPara(sec, suave = false) {
+  const animar = suave && !reducedMotion();
+  sec.scrollIntoView({ block: 'start', behavior: animar ? 'smooth' : 'instant' });
+  const acertar = () => sec.scrollIntoView({ block: 'start', behavior: 'instant' });
+  const ro = new ResizeObserver(acertar);
+  const manter = () => {
+    acertar();
+    ro.observe(document.getElementById('page'));
+  };
+  // Com scroll suave, só se fixa a posição depois de a animação acabar.
+  const inicio = animar ? setTimeout(manter, 1200) : null;
+  const parar = () => {
+    ro.disconnect();
+    clearTimeout(inicio);
+    clearTimeout(limite);
+    EVENTOS.forEach((n) => removeEventListener(n, parar));
+  };
+  const limite = setTimeout(parar, 4000);
+  EVENTOS.forEach((n) => addEventListener(n, parar, { passive: true }));
+  onLeave(parar);
+  if (!animar) manter();
+}
+const EVENTOS = ['wheel', 'touchstart', 'keydown', 'mousedown'];
+
 /** Índice da página: leva à secção sem remontar a página e acompanha o scroll. */
 function initIndice(el) {
   const nav = el.querySelector('.pg-tabs');
@@ -165,7 +192,8 @@ function initIndice(el) {
     a.addEventListener('click', (e) => {
       e.preventDefault();
       history.replaceState(null, '', a.getAttribute('href'));
-      document.getElementById(a.dataset.alvo)?.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
+      const sec = document.getElementById(a.dataset.alvo);
+      if (sec) irPara(sec, true);
     }),
   );
   // A secção atual é a última cujo início já passou de 40 % da altura da janela.
@@ -213,13 +241,14 @@ function mount(def, tab, extra, firstLoad) {
   initViewer(el.querySelector('#viewer'));
   initMinis(el);
   initViagem(el.querySelector('[data-viagem]'), extra);
+  initSuspensao(el.querySelector('[data-suspensao]'));
   out.init?.(el);
   initIndice(el);
 
   // Posição: topo da página, ou a secção pedida.
   const anchor = alvo(el.dataset.page, tab, extra);
   scrollTo({ top: 0, behavior: 'instant' });
-  if (anchor) requestAnimationFrame(() => anchor.scrollIntoView({ block: 'start', behavior: 'instant' }));
+  if (anchor) requestAnimationFrame(() => irPara(anchor));
   ScrollTrigger.refresh();
   dispatchEvent(new Event('scroll')); // atualiza a barra de progresso
   if (!firstLoad) el.focus({ preventScroll: true }); // leitores de ecrã anunciam a nova página
@@ -234,7 +263,7 @@ export function startRouter() {
     // Dentro da mesma página basta ir à secção: não se volta a carregar nada.
     if (page === atual) {
       const a = alvo(PAGES[page].id, tab, extra);
-      if (a) a.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
+      if (a) irPara(a, true);
       else if (!tab) scrollTo({ top: 0, behavior: reducedMotion() ? 'auto' : 'smooth' });
       return;
     }

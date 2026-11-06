@@ -5,16 +5,15 @@
   "titulo": "Design paramétrico, algorítmico e generativo",
   "tema": "Design paramétrico, algorítmico e generativo. Scripting em CAD.",
   "texto": [
-    "[A CONFIRMAR: parâmetros definidos e primeiros scripts ou design tables]",
-    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+    "Semana de pré-design generativo. Testámos tabelas de parâmetros no Fusion, com elipses, círculos e planos a controlar a forma das peças e várias configurações a partir do mesmo modelo.",
+    "Nuno: escolha da estratégia «um rover para cada planeta» e primeira versão do sketch paramétrico do joelho (captura do Fusion e OpenCV)."
   ],
   "etiqueta": null,
   "apresentacao": false,
-  "slot": {
-    "kind": "image",
-    "file": "media/m1/semana_05.webp",
-    "desc": "Imagem, GIF ou captura da semana 5: design paramétrico, algorítmico e generativo. Pode ser CAD, esboço, simulação ou foto de trabalho.",
-    "size": "1600×900",
-    "alt": "Trabalho da equipa na semana 5: design paramétrico, algorítmico e generativo."
-  }
+  "galeria": [
+    {
+      "file": "media/m1/semana5/slide_01.webp",
+      "alt": "Pré-design generativo: formas por parâmetros, tabela de configurações, peças de suporte e exploração de designs do joelho."
+    }
+  ]
 }

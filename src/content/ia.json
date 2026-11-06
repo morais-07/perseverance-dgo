@@ -11,6 +11,10 @@
       "valor": "Apenas o website: estrutura e código, organização do conteúdo e geração de texto (redação dos textos de contexto sobre a missão)."
     },
     {
+      "rotulo": "M1 · suspensão (Nuno)",
+      "valor": "Claude (Anthropic) como copiloto na escrita dos scripts Python (leitura do STEP, calibração, gerador de variantes, análise de esforços, figuras) e na preparação dos slides. A definição do problema, a escolha dos planetas, critérios e materiais, a modelação no Rhino/Grasshopper, as simulações no Intact e a validação dos resultados foram feitas pelo Nuno."
+    },
+    {
       "rotulo": "Prompts",
       "valor": "Prompt de arranque do website e prompt com as alterações pedidas, ambos usados com o Claude Code.",
       "links": [

@@ -149,10 +149,13 @@
     "texto": "Esta fase ainda não está feita. Quando estiver, esta secção passa a mostrar a otimização da suspensão e o seu resultado. Para já, fica o plano.",
     "titulo": "O que vamos fazer em M2",
     "planeado": [
-      "Otimizar a suspensão com o design generativo do Autodesk Fusion: Design Space, Design Conditions e Design Criteria, com a massa como critério principal.",
-      "Explorar as soluções com gráficos de dispersão e escolher o design de melhor compromisso.",
-      "Validar a solução escolhida com simulação estrutural (FEA).",
-      "Garantir que é fabricável (manufatura aditiva ou fresagem CNC, em alumínio ou titânio) e estudar estruturas reticuladas para aliviar peso."
+      "Partir das variantes do M1 (suspensão por planeta) e otimizar com vários objetivos ao mesmo tempo: massa, fator de segurança e fabrico (NSGA-II/Wallacei), com otimização topológica 3D e estruturas reticuladas graduadas.",
+      "Otimização multiobjetivo: algoritmo evolutivo (NSGA-II / Wallacei) a partir das populações do M1, para obter a frente de Pareto de massa, fator de segurança e custo.",
+      "Otimização topológica 3D: SIMP e Generative Design nas mesmas zonas de projeto, com as cargas de cada planeta, para comparar com as famílias do M1.",
+      "Restrições de fabrico: CNC de 5 eixos ou L-PBF, com espessura mínima, ângulo de overhang, suportes, tempo e custo de produção.",
+      "Lattices de densidade graduada: esvaziar as zonas maciças com treliças volumétricas cuja densidade segue a tensão.",
+      "Modelo substituto (IA): uma rede treinada com as variantes 2D e os resultados do Intact para prever o fator de segurança 3D.",
+      "Otimizar a cinemática: posição dos pivôs, distância entre rodas e altura ao solo de cada planeta, para otimizar o conjunto e não só cada peça."
     ]
   }
 }

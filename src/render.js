@@ -205,6 +205,7 @@ function weekHtml(w) {
       <h4>${esc(w.titulo)}</h4>
       <p class="tema"><span class="sr">Tema da aula: </span>${esc(w.tema)}</p>
       ${w.texto.map((t) => `<p>${tbc(t)}</p>`).join('')}
+      ${w.ligacao ? `<p class="ext-link"><a href="${asset(w.ligacao.ficheiro)}" target="_blank" rel="noopener noreferrer">${esc(w.ligacao.rotulo)}</a></p>` : ''}
     </div>
     ${w.galeria ? galeria(w) : w.slot ? slot(w.slot) : '<div class="noslide">Sem slide nesta semana</div>'}
   </article>`;
@@ -298,38 +299,6 @@ export function weekRoute(n) {
 }
 
 /* M1 */
-function subCard(s) {
-  const render = { kind: 'image', file: `media/m1/${s.id}_render.webp`, desc: `Render do subsistema «${s.nome}», fundo neutro, vista de três quartos.`, size: '1600×900', alt: `Render do subsistema ${s.nome} no modelo CAD da equipa.` };
-  const arvore = { kind: 'image', file: `media/m1/${s.id}_arvore.webp`, desc: `Captura da árvore de operações (feature tree) de «${s.nome}», ou capturas do progresso.`, size: '1200×800', alt: `Árvore de operações do CAD do subsistema ${s.nome}.` };
-  const cota = s.cota || null;
-  return `<article class="sub-card rv" id="sub-${s.id}">
-    <div class="sub-media">
-      <div class="sub-pane" data-pane="3d">
-        <div class="mini" data-sub="${s.id}" style="min-height:340px">
-          <div class="mini-load"><span class="m">${esc(subs.modeloProvisorio ? 'Viewer 3D do subsistema' : '')}</span><button type="button">Carregar viewer 3D</button></div>
-          <div class="mini-ui" aria-hidden="true"><span><b>${esc(s.codigo)}</b></span><span>${esc(m1.viewerMini.arrastar)}</span><span>${esc(m1.viewerMini.provisorio)}</span></div>
-        </div>
-      </div>
-      <div class="sub-pane" data-pane="render" hidden>${slot(render, { cota })}</div>
-      <div class="sub-pane" data-pane="tree" hidden>${slot(arvore)}</div>
-      <div class="sub-tabs" role="tablist" aria-label="Vistas de ${esc(s.nome)}">
-        <button role="tab" aria-selected="true" data-tab="3d">3D</button>
-        <button role="tab" aria-selected="false" data-tab="render">Render</button>
-        <button role="tab" aria-selected="false" data-tab="tree">Árvore CAD</button>
-      </div>
-    </div>
-    <div class="sub-body">
-      <div class="sub-id"><span>${esc(s.codigo)}</span><span>SUBSISTEMA ${String(s.n).padStart(2, '0')}</span></div>
-      <h3>${esc(s.nome)}</h3>
-      <p class="real">${esc(s.nomeReal)}</p>
-      <p>${esc(s.funcao)}</p>
-      <div><h4>Componentes</h4><ul class="chips">${s.componentes.map((c) => `<li>${tbc(c)}</li>`).join('')}</ul></div>
-      <div><h4>Números-chave</h4>${figs(s.numeros)}</div>
-      <div><h4>Simplificações e pressupostos</h4><ul class="simp">${s.simplificacoes.map((c) => `<li>${tbc(c)}</li>`).join('')}</ul></div>
-    </div>
-  </article>`;
-}
-
 const wipBlock = (d) => `
   <div class="wip rv">
     <span class="wip-badge">${esc(d.wip.estado)}</span>
@@ -340,39 +309,147 @@ const wipBlock = (d) => `
 
 export const m1Head = () => `${titleblock('PRV-M01-005', '5/7')}${msHead('m1', m1, 'Ato III — parametrização')}`;
 
-export const m1Plano = () => wipBlock(m1);
+/** Caixa «Decisão e porquê», para mostrar as escolhas da equipa. */
+const decisaoBox = (d) => `<aside class="m1-decisao"><h5>${esc(m1.suspensao.decisaoTitulo)}${d.data ? ` <span class="mono">${esc(d.data)}</span>` : ''}</h5><p>${esc(d.texto)}</p></aside>`;
+
+/** Figura que se pode ampliar (usa a mesma caixa de luz das galerias). */
+const fig = (grupo, file, alt, legenda = '') => `<figure class="m1-fig rv">
+    <button type="button" class="gal-t" data-gal="${grupo}" data-full="${esc(file)}" data-alt="${esc(alt)}" aria-label="Ampliar: ${esc(alt)}"><img src="${asset(file)}" alt="" loading="lazy" decoding="async" /></button>
+    ${legenda ? `<figcaption>${esc(legenda)}</figcaption>` : ''}
+  </figure>`;
+
+export function m1Estrategia() {
+  const e = m1.estrategia;
+  return `<div class="block"><h3 class="rv">${esc(e.titulo)}</h3>
+    <p class="m1-destaque rv">${esc(e.destaque)}</p><p class="rv">${esc(e.texto)}</p>
+    <div class="m1-equipa">${e.equipa
+      .map((m) => `<article class="rv"><h4>${esc(m.parte)}</h4><p class="m1-quem">${esc(m.nome)}</p><p class="m1-ferr">${esc(m.ferramenta)}</p><ul>${m.itens.map((i) => `<li>${esc(i)}</li>`).join('')}</ul></article>`)
+      .join('')}</div>
+    <p class="m1-fecho rv">${esc(e.fecho)}</p></div>`;
+}
+
+export function m1Braco() {
+  const b = m1.braco;
+  const lista = (x) => `<ul>${x.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`;
+  return `<div class="block"><h3 class="rv">${esc(b.titulo)}</h3><p class="m1-quem rv">${esc(b.responsavel)}</p><p class="rv">${esc(b.texto)}</p>
+    <div class="m1-duas">
+      <div class="rv"><h4 class="m1-sub">${esc(b.desafioTitulo)}</h4><p>${esc(b.desafio)}</p>${decisaoBox({ texto: b.decisao })}</div>
+      ${fig('m1-braco', 'media/m1/braco/parametros.webp', 'Braço no Fusion, com o painel de parâmetros dos tubos.')}
+    </div>
+    <h4 class="m1-sub m1-sep rv">${esc(b.regrasTitulo)}</h4><p class="rv">${esc(b.regras)}</p>
+    <div class="m1-braco-regras">
+      <figure class="m1-fig m1-foto rv"><button type="button" class="gal-t" data-gal="m1-braco" data-full="media/m1/braco/componentes.webp" data-alt="${esc(b.fotoAlt)}" aria-label="Ampliar: ${esc(b.fotoAlt)}"><img src="${asset('media/m1/braco/componentes.webp')}" alt="" loading="lazy" /></button></figure>
+      <div class="rv">
+        <h4 class="m1-lista-t">${esc(b.legendaTitulo)}</h4>
+        <ul class="m1-legenda">${b.legenda.map(([n, c, cor]) => `<li><i style="background:${cor}" aria-hidden="true"></i><b>${esc(n)}:</b> ${esc(c)}</li>`).join('')}</ul>
+      </div>
+      <div class="m1-listas-col m1-listas rv">
+        <div><h4>Para variar o alcance</h4>${lista(b.alcance)}<p class="note">${esc(b.alcanceNota)}</p></div>
+        <div><h4>Para variar a robustez</h4>${lista(b.robustez)}</div>
+        <p>${esc(b.furos)}</p>
+      </div>
+    </div>
+    <h4 class="m1-sub m1-sep rv">${esc(b.variantes)}</h4>
+    <div class="m1-grade m1-grade-braco">${destinos.destinos.map((x) => fig('m1-bracos', `media/m1/braco/${x.id}.webp`, `Braço do rover para ${x.nome}.`, x.nome)).join('')}</div></div>`;
+}
+
+export function m1Chassis() {
+  const c = m1.chassis;
+  const seeds = [['original', 'Design original (seed 0)'], ['6', 'Seed 6'], ['10', 'Seed 10'], ['846', 'Seed 846']];
+  return `<div class="block"><h3 class="rv">${esc(c.titulo)}</h3><p class="rv">${esc(c.texto)}</p>
+    ${fig('m1-chassis', 'media/m1/chassis/fusion_e_beegraphy.webp', 'À esquerda, o chassis paramétrico do Fusion; à direita, o chassis orgânico do BeeGraphy.', 'À esquerda, o chassis do Fusion; à direita, o do BeeGraphy.')}
+    <div class="m1-duas m1-sep">
+      ${fig('m1-chassis', 'media/m1/chassis/fusion.webp', 'Chassis no Fusion, com o painel de parâmetros.')}
+      <div class="rv"><h4 class="m1-sub">${esc(c.fusion.titulo)}</h4><p>${esc(c.fusion.texto)}</p></div>
+    </div>
+    <div class="m1-duas m1-sep">
+      ${fig('m1-chassis', 'media/m1/chassis/nos.webp', 'Grafo de nós do chassis no BeeGraphy.')}
+      <div class="rv"><h4 class="m1-sub">${esc(c.beegraphy.titulo)}</h4><p>${esc(c.beegraphy.texto)}</p></div>
+    </div>
+    <div class="m1-duas m1-sep">
+      <div class="m1-listas m1-listas-col rv"><div><h4>O que pode mudar</h4><ul>${c.muda.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
+        <div><h4>O que fica sempre igual</h4><ul>${c.fixo.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div></div>
+      ${fig('m1-chassis', 'media/m1/chassis/sliders.webp', 'Chassis no BeeGraphy, com os sliders dos parâmetros.')}
+    </div>
+    <h4 class="m1-sub m1-sep rv">${esc(c.valores.titulo)}</h4><p class="rv">${esc(c.valores.texto)}</p>
+    <div class="table-wrap rv"><table>
+      <caption class="sr">${esc(c.valores.titulo)}</caption>
+      <thead><tr><th scope="col">Slider</th>${destinos.destinos.filter((x) => x.chassis).map((x) => `<th scope="col">${esc(x.nome)}</th>`).join('')}</tr></thead>
+      <tbody>${c.valores.linhas.map(([k, r, dec]) => `<tr><th scope="row">${esc(r)}</th>${destinos.destinos.filter((x) => x.chassis).map((x) => `<td class="mono">${fmt(x.chassis[k], dec)}</td>`).join('')}</tr>`).join('')}</tbody>
+    </table></div>
+    <h4 class="m1-sub m1-sep rv">${esc(c.seeds.titulo)}</h4><p class="rv">${esc(c.seeds.texto)}</p>
+    <div class="m1-grade m1-grade-4">${seeds.map(([f, r]) => fig('m1-seeds', `media/m1/chassis/seed_${f}.webp`, `Chassis gerado no BeeGraphy: ${r}.`, r)).join('')}</div></div>`;
+}
+
+export function m1Suspensao() {
+  const s = m1.suspensao;
+  const ordem = [...destinos.destinos].sort((a, b) => a.rover.massa - b.rover.massa);
+  const maxM = Math.max(...ordem.map((x) => x.rover.massa));
+  const orig = destinos.massaSuspensaoOriginal;
+  const sinal = (v) => (v > 0 ? `+${v}` : `−${Math.abs(v)}`);
+  const r = s.resultados;
+  const c = s.conclusoes;
+  const pilula = (n, t) => `<h4 class="m1-pilula"><span>${n}</span>${esc(t)}</h4>`;
+  const passo = (p, i) => {
+    const [princ, ...resto] = p.media;
+    return `<li class="m1-passo rv">
+      ${pilula(i + 1, p.titulo)}
+      <div class="m1-duas m1-duas-topo">
+        <div><p>${esc(p.resumo)}</p>${decisaoBox(p.decisao)}</div>
+        ${fig(`m1-passo${i}`, princ.file, princ.alt, princ.legenda)}
+      </div>
+      <details class="m1-det"><summary>${esc(s.detalheBotao)}</summary>
+        <ul>${p.detalhe.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+        ${resto.length ? `<div class="m1-grade m1-grade-det">${resto.map((f) => fig(`m1-passo${i}`, f.file, f.alt, f.legenda)).join('')}</div>` : ''}
+      </details>
+    </li>`;
+  };
+  return `<div class="block"><h3 class="rv">${esc(s.titulo)}</h3><p class="m1-quem rv">${esc(s.responsavel)}</p>
+    <p class="m1-destaque m1-apoio rv">${esc(s.apoio)}</p>
+    <p class="rv">${esc(s.m0m1)} <a href="#/m0">${esc(s.m0m1Link)}</a>.</p>
+    <ol class="m1-passos">${s.passos.map(passo).join('')}
+      <li class="m1-passo rv">
+        ${pilula(5, r.titulo)}
+        <p>${esc(r.resumo)}</p>
+        <div class="m1-duas m1-duas-topo" data-suspensao>
+          <div>
+            <p class="note">${esc(r.seletor)}</p>
+            <div class="susp-sel" role="group" aria-label="Escolher o destino">
+              <div class="susp-ref" aria-hidden="true"><span>${esc(r.original)}</span></div>
+              ${ordem
+                .map(
+                  (x) => `<button type="button" class="susp-l" data-susp="${x.id}" data-nome="${esc(x.nome)}" data-legenda="${esc(`${x.nome}: ${fmt(x.rover.massa, 1)} kg, ${sinal(x.rover.delta)} % face ao original. Material: ${x.rover.material}.`)}" aria-pressed="false">
+                  <span class="susp-n">${esc(x.nome)}</span><span class="susp-t" aria-hidden="true"><i style="width:${((x.rover.massa / maxM) * 100).toFixed(2)}%"></i></span><span class="susp-v mono">${fmt(x.rover.massa, 1)}</span><span class="susp-d mono">${sinal(x.rover.delta)} %</span></button>`,
+                )
+                .join('')}
+            </div>
+          </div>
+          <figure class="m1-susp-fig"><img data-susp-img alt="" width="1653" height="1140" /><figcaption data-susp-cap aria-live="polite"></figcaption><p class="note">${esc(r.legenda)}</p></figure>
+        </div>
+        <details class="m1-det"><summary>${esc(s.detalheBotao)}</summary>
+          <ul>${r.notas.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+          <div class="table-wrap"><table>
+            <caption class="sr">Resultados da suspensão por destino</caption>
+            <thead><tr><th scope="col">Destino</th><th scope="col">Massa</th><th scope="col">Face aos ${fmt(orig, 1)} kg</th><th scope="col">Material</th><th scope="col">Família do joelho</th><th scope="col">Braço do joelho</th><th scope="col">FS 3D do joelho</th></tr></thead>
+            <tbody>${ordem.map((x) => `<tr><th scope="row">${esc(x.nome)}</th><td class="mono">${fmt(x.rover.massa, 1)} kg</td><td class="mono">${sinal(x.rover.delta)} %</td><td>${esc(x.rover.material)}</td><td>${esc(x.rover.familia)}</td><td class="mono">${fmt(x.rover.braco, 2)} kg</td><td class="mono">${fmt(x.rover.fs, 2)}</td></tr>`).join('')}</tbody>
+          </table></div>
+          <div class="m1-grade m1-grade-det">${fig('m1-passo5', r.tabelaFig.file, r.tabelaFig.alt, r.tabelaFig.legenda)}</div>
+        </details>
+      </li>
+      <li class="m1-passo rv">
+        ${pilula(6, c.titulo)}
+        <p>${esc(c.resumo)}</p>
+        <div class="m1-limites"><h5>${esc(c.limitesTitulo)}</h5><ul>${c.limites.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
+        <details class="m1-det"><summary>${esc(s.detalheBotao)}</summary>
+          <ul class="m1-conc">${c.itens.map(([t, x]) => `<li><b>${esc(t)}</b> ${esc(x)}</li>`).join('')}</ul>
+        </details>
+        <p><a href="#/m2">${esc(c.proximo)}</a></p>
+      </li>
+    </ol></div>`;
+}
 
 export function m1Semanas() {
   return `<div class="block"><h3 class="rv">M1 · semana a semana</h3>${weeksOf('M1')}</div>`;
-}
-
-export function m1Subsistemas() {
-  const d = m1;
-  return `<div class="block"><h3 class="rv">${esc(d.cartoesTitulo)}</h3><div class="sub-grid">${subs.subsistemas.map(subCard).join('')}</div></div>
-    <div class="block"><h3 class="rv">${esc(d.extrasTitulo)}</h3><p class="note rv">${esc(d.extrasNota)}</p>
-      <div class="extra-grid rv">${subs.extras.filter((e) => e.id === 'aca' || e.id === 'antena').map((e) => `<div class="extra"><span class="badge">EXTRA · ${esc(e.codigo)}</span><h4>${esc(e.nome)}</h4><p class="mono" style="font-size:.74rem">${esc(e.nomeReal)}</p><p>${tbc(e.funcao)}</p></div>`).join('')}</div></div>`;
-}
-
-export function m1Parametrizacao() {
-  const d = m1;
-  const ad = d.antesDepois;
-  return `<div class="block"><h3 class="rv">${esc(ad.titulo)}</h3><p class="rv">${esc(ad.texto)}</p>
-      <div class="ba rv" data-ba role="group" aria-label="Comparação antes e depois">
-        <div class="ba-frame">
-          <div class="layer">${slot({ ...ad.antes, kind: 'image' })}</div>
-          <div class="layer after">${slot(ad.depois)}</div>
-          <span class="ba-lab l">${esc(ad.rotuloAntes)}</span><span class="ba-lab r">${esc(ad.rotuloDepois)}</span>
-          <div class="ba-handle" aria-hidden="true"></div>
-          <input type="range" min="0" max="100" value="50" aria-label="Arrastar para comparar a fotografia real e o nosso modelo" />
-        </div>
-      </div>
-    </div>
-    <div class="block"><h3 class="rv">${esc(d.parametrico.titulo)}</h3>
-      <div class="two-col rv"><div><p>${tbc(d.parametrico.texto)}</p>
-        <div class="table-wrap param-table"><table><thead><tr><th>Parâmetro</th><th>Valor</th><th>Unidade</th></tr></thead><tbody>${d.parametrico.parametros.map((p) => `<tr><th scope="row">${tbc(p.nome)}</th><td>${tbc(p.valor)}</td><td>${tbc(p.unidade)}</td></tr>`).join('')}</tbody></table></div></div>
-        ${slot(d.parametrico.slot)}</div></div>
-    <div class="block"><h3 class="rv">${esc(d.simulacao.titulo)}</h3><p class="rv">${tbc(d.simulacao.texto)}</p>
-      <div class="slots-2 rv">${d.simulacao.slots.map((x) => slot(x)).join('')}</div></div>`;
 }
 
 /* ───────── M1 · Escolhe a próxima viagem ───────── */

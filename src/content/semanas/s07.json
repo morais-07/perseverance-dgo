@@ -5,16 +5,27 @@
   "titulo": "Design generativo com AGD (Autodesk)",
   "tema": "AGD Autodesk.",
   "texto": [
-    "[A CONFIRMAR: primeiros resultados no AGD e comparação com a solução própria]",
-    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+    "Braço: diâmetros e comprimentos dos tubos controlados por parâmetros no Fusion. Chassis: conceito no BeeGraphy, com sliders de comprimento, largura e altura, e modelo no Fusion com os parâmetros principais.",
+    "Nuno: geração de 2700 variantes por LHS, filtro 2D e primeira validação 3D no Rhino/Grasshopper com o Intact."
   ],
-  "etiqueta": null,
+  "etiqueta": "Decisão",
   "apresentacao": false,
-  "slot": {
-    "kind": "image",
-    "file": "media/m1/semana_07.webp",
-    "desc": "Imagem, GIF ou captura da semana 7: design generativo com agd (autodesk). Pode ser CAD, esboço, simulação ou foto de trabalho.",
-    "size": "1600×900",
-    "alt": "Trabalho da equipa na semana 7: design generativo com agd (autodesk)."
-  }
+  "galeria": [
+    {
+      "file": "media/m1/semana7/slide_01.webp",
+      "alt": "Braço parametrizado no Fusion, com o painel de parâmetros."
+    },
+    {
+      "file": "media/m1/semana7/slide_02.webp",
+      "alt": "Chassis conceito no BeeGraphy, com os sliders."
+    },
+    {
+      "file": "media/m1/semana7/slide_03.webp",
+      "alt": "Chassis no Fusion, com os parâmetros principais."
+    },
+    {
+      "file": "media/m1/semana7/slide_04.webp",
+      "alt": "Suspensão: joelho traseiro, do assembly às populações de variantes."
+    }
+  ]
 }

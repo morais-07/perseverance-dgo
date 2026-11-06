@@ -29,12 +29,7 @@ for (const f of readdirSync(join(C, 'semanas')).sort()) {
   add(`Semana ${w.semana} (${w.fase})`, w.slot);
 }
 
-// M1 / M2 completos (só se «wip» estiver desligado)
-if (!wipM1) {
-  add('M1 · Antes/depois (nosso modelo)', m1.antesDepois.depois);
-  add('M1 · Design table', m1.parametrico.slot);
-  m1.simulacao.slots.forEach((s) => add('M1 · Simulação / AGD', s));
-}
+// M2 completo (só se «wip» estiver desligado)
 if (!wipM2) {
   m2.otimizacao.iteracoes.forEach((g) => add(`M2 · Otimização, geração ${g.gen}`, { kind: 'image', file: g.slotFile, desc: `Geração ${g.gen}: forma obtida e mapa de tensões.`, size: '1600×900' }));
   add('M2 · Pós-processamento', m2.otimizacao.posProcessamento.slot);

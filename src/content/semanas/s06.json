@@ -5,16 +5,15 @@
   "titulo": "Integração de simulação estrutural",
   "tema": "Integração de simulação numérica estrutural.",
   "texto": [
-    "[A CONFIRMAR: peça simulada, malha, cargas e condições de fronteira]",
-    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+    "Nuno: leitura direta do STEP em Python, calibração do sketch de 16 parâmetros (IoU 0,948) e análise analítica dos esforços.",
+    "Braço: parâmetros dos tubos e das juntas numa tabela do Fusion. Chassis: tabela de parâmetros no Fusion e um primeiro design conceitual no BeeGraphy."
   ],
   "etiqueta": null,
   "apresentacao": false,
-  "slot": {
-    "kind": "image",
-    "file": "media/m1/semana_06.webp",
-    "desc": "Imagem, GIF ou captura da semana 6: integração de simulação estrutural. Pode ser CAD, esboço, simulação ou foto de trabalho.",
-    "size": "1600×900",
-    "alt": "Trabalho da equipa na semana 6: integração de simulação estrutural."
-  }
+  "galeria": [
+    {
+      "file": "media/m1/semana6/slide_01.webp",
+      "alt": "Suspensão, parametrização do chassis e design conceitual: análise 2D, variantes no Rhino e modelos no Fusion e no BeeGraphy."
+    }
+  ]
 }

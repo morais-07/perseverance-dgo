@@ -2,90 +2,356 @@
   "codigo": "M1",
   "titulo": "Parametrização",
   "periodo": "15 out — 5 nov 2026 · peso 30 %",
-  "intro": "Depois de modelar e montar o rover, o M1 é dedicado às estratégias computacionais em CAD: parametrizar o chassis, a suspensão e as rodas, e explorar um chassis mais orgânico com superfícies.",
-  "cartoesTitulo": "Os cinco subsistemas",
-  "extrasTitulo": "Extras (se houver tempo)",
-  "extrasNota": "Sem comprometer o layout: estes subsistemas só entram no modelo final se o calendário permitir.",
-  "viewerMini": {
-    "carregar": "Carregar viewer 3D",
-    "provisorio": "Modelo provisório — NASA",
-    "arrastar": "Arrastar para rodar · rolar para ampliar"
+  "intro": "Depois de modelar e montar o rover, o M1 levou-o a sete mundos. Parametrizámos o braço, o chassis e a suspensão, e gerámos variantes para as condições de cada planeta e lua.",
+  "wip": {
+    "ativo": false
   },
-  "antesDepois": {
-    "titulo": "Antes / depois",
-    "texto": "À esquerda, a fotografia de referência do rover real; à direita, o nosso modelo. Arrasta o cursor — ou usa as setas do teclado — para comparar.",
-    "antes": {
-      "file": "media/historia/selfie_2025.webp",
-      "alt": "Autorretrato do rover Perseverance em Marte (fotografia real).",
-      "credito": "Imagem: NASA/JPL-Caltech/MSSS"
-    },
-    "depois": {
-      "kind": "image",
-      "file": "media/m1/comparacao_render_dgo.webp",
-      "desc": "Render do nosso modelo com o mesmo ângulo e enquadramento da fotografia de referência.",
-      "size": "1600×900",
-      "alt": "Render do modelo CAD da equipa, no mesmo ângulo da fotografia de referência."
-    },
-    "rotuloAntes": "REAL · NASA/JPL",
-    "rotuloDepois": "NOSSO MODELO"
-  },
-  "parametrico": {
-    "titulo": "Modelação paramétrica e design tables",
-    "texto": "[A CONFIRMAR: que parâmetros controlam a geometria (ex.: diâmetro e largura da roda, comprimento do braço oscilante), como foram ligados a uma design table e que variantes foram geradas automaticamente.]",
-    "parametros": [
+  "estrategia": {
+    "titulo": "Um rover para cada planeta",
+    "destaque": "Não é geração aleatória: o planeta é o motor.",
+    "texto": "Cada subsistema é gerado para as condições de cada planeta. A gravidade, a temperatura, a atmosfera, o terreno e o desgaste definem as cargas, o material e a forma.",
+    "equipa": [
       {
-        "nome": "[A CONFIRMAR: parâmetro 1]",
-        "valor": "[A CONFIRMAR]",
-        "unidade": "[ ]"
+        "nome": "Nuno Mourinha",
+        "parte": "Suspensão e rodas",
+        "ferramenta": "Python, Rhino/Grasshopper e Intact",
+        "itens": [
+          "Gerador paramétrico próprio, a partir do STEP do M0",
+          "O planeta escolhe a família de forma e o material",
+          "2700 variantes, filtro 2D e validação 3D no Intact"
+        ]
       },
       {
-        "nome": "[A CONFIRMAR: parâmetro 2]",
-        "valor": "[A CONFIRMAR]",
-        "unidade": "[ ]"
+        "nome": "David Coelho",
+        "parte": "Braço",
+        "ferramenta": "Fusion 360",
+        "itens": [
+          "Um único modelo CAD com todas as dimensões em variáveis",
+          "7 configurações, uma para cada destino",
+          "Alcance e robustez controlados à parte"
+        ]
       },
       {
-        "nome": "[A CONFIRMAR: parâmetro 3]",
-        "valor": "[A CONFIRMAR]",
-        "unidade": "[ ]"
+        "nome": "Rafael Morais",
+        "parte": "Chassis",
+        "ferramenta": "Fusion 360 e BeeGraphy",
+        "itens": [
+          "Modelo totalmente paramétrico no Fusion",
+          "Geração paramétrica e generativa no BeeGraphy"
+        ]
       }
     ],
-    "slot": {
-      "kind": "image",
-      "file": "media/m1/design_table.webp",
-      "desc": "Captura da design table e da variação de geometria (duas ou três variantes lado a lado).",
-      "size": "1600×900",
-      "alt": "Variantes da geometria geradas a partir de uma design table."
+    "fecho": "Três caminhos, três ferramentas e o mesmo motor: as condições de cada planeta. No fim, convergem num rover completo para cada um dos sete destinos."
+  },
+  "braco": {
+    "titulo": "Braço: um modelo, sete configurações",
+    "responsavel": "David Coelho",
+    "texto": "No M1, o braço foi parametrizado no Autodesk Fusion. O objetivo era criar, a partir de um único modelo CAD, 7 configurações diferentes, uma para cada corpo celeste. Para isso, todas as dimensões do braço passaram a ser variáveis.",
+    "desafioTitulo": "O que foi difícil",
+    "desafio": "Quando o braço foi modelado no M0, ninguém contava que as posições e as dimensões viessem a mudar. Muitos esboços estavam presos por distâncias que só faziam sentido na configuração original, e a abordagem Top-Down deixou os componentes dependentes uns dos outros.",
+    "decisao": "Redefinir as restrições de forma geométrica, com cada esboço posicionado em relação a outro corpo, para acompanhar os corpos adjacentes quando as dimensões mudam. Os componentes 6 e 7 foram modelados de novo, com base nos originais, numa abordagem Bottom-Up.",
+    "regrasTitulo": "Duas regras para centenas de variáveis",
+    "regras": "Como há centenas de variáveis independentes, a parametrização divide-se em dois critérios: variar o alcance e variar a robustez.",
+    "alcance": [
+      "Comprimento do tubo 1 (componente 3)",
+      "Comprimento do tubo 2 (componente 6)"
+    ],
+    "alcanceNota": "Só duas variáveis, para que mudar o alcance não comprometa as outras.",
+    "robustez": [
+      "Diâmetro do tubo 1: muda também, em escala relativa, os outros corpos do componente 3",
+      "Diâmetro do tubo 2: muda também, em escala relativa, os outros corpos do componente 6",
+      "Fatores de escala 1, 2, 7, 8 e 9: mudam, em escala relativa, os corpos do componente com o mesmo número"
+    ],
+    "furos": "Para reduzir a massa, os tubos 1 e 2 têm furos transversais, com o número e o diâmetro controlados por variáveis próprias.",
+    "legendaTitulo": "Os componentes do braço",
+    "legenda": [
+      [
+        "Componente 1",
+        "suporte preto e rótulas cinzentas",
+        "#3a3a3f"
+      ],
+      [
+        "Componente 2",
+        "azul",
+        "#2f3c8f"
+      ],
+      [
+        "Componente 3",
+        "amarelo",
+        "#e0a832"
+      ],
+      [
+        "Componente 6",
+        "verde",
+        "#3f8f4f"
+      ],
+      [
+        "Componente 7",
+        "vermelho",
+        "#c23b2e"
+      ],
+      [
+        "Componente 8",
+        "disco preto",
+        "#1d1d20"
+      ]
+    ],
+    "fotoAlt": "Braço do rover com cada componente numa cor: suporte preto e rótulas cinzentas, azul, amarelo, verde, vermelho e disco preto.",
+    "variantes": "As variantes dos sete destinos"
+  },
+  "chassis": {
+    "titulo": "Chassis: dois caminhos",
+    "texto": "O chassis foi feito de duas formas: um modelo paramétrico mais direto no Fusion e um modelo orgânico gerado no BeeGraphy.",
+    "fusion": {
+      "titulo": "Fusion: 100 % paramétrico",
+      "texto": "Muda-se um valor e todo o chassis se ajusta em cerca de 0,5 s."
+    },
+    "beegraphy": {
+      "titulo": "BeeGraphy: 217 nós em 16 grupos",
+      "texto": "O modelo segue sempre a mesma lógica: sliders, cálculo e geometria."
+    },
+    "muda": [
+      "Comprimento",
+      "Largura e altura das pontas",
+      "Número e espessura das costelas",
+      "Largura dos anéis",
+      "Número e raio das longarinas"
+    ],
+    "fixo": [
+      "1198 mm entre os suportes laterais",
+      "317 mm e 218 mm até ao suporte de cima"
+    ],
+    "seeds": {
+      "titulo": "Designs por seed",
+      "texto": "Uma seed alimenta um randomizer, que sorteia 10 variáveis dentro dos limites definidos. A seed 0 dá o design original; de 1 a 1000 dá um design aleatório, sempre igual para o mesmo número."
+    },
+    "valores": {
+      "titulo": "O chassis de cada destino",
+      "texto": "Valores dos sliders do BeeGraphy usados em cada rover. O chassis de Marte não está na tabela porque usa o modelo paramétrico do Fusion.",
+      "linhas": [
+        [
+          "comprimento",
+          "Comprimento (mm)",
+          0
+        ],
+        [
+          "largFrente",
+          "Largura da ponta da frente (proporção)",
+          1
+        ],
+        [
+          "largTras",
+          "Largura da ponta de trás (proporção)",
+          1
+        ],
+        [
+          "altPontas",
+          "Altura das pontas, frente e trás (proporção)",
+          1
+        ],
+        [
+          "nCostelas",
+          "Número de costelas",
+          0
+        ],
+        [
+          "espCostela",
+          "Espessura das costelas (mm)",
+          0
+        ],
+        [
+          "largAnel",
+          "Largura dos anéis (mm)",
+          0
+        ],
+        [
+          "raioLongarina",
+          "Raio das longarinas (mm)",
+          0
+        ],
+        [
+          "nLongarinas",
+          "Número de longarinas",
+          0
+        ]
+      ]
     }
   },
-  "simulacao": {
-    "titulo": "Simulação estrutural e comparação com AGD",
-    "texto": "[A CONFIRMAR: peça simulada, malha, cargas e condições de fronteira; comparação entre a solução paramétrica própria e a solução do Autodesk Generative Design.]",
-    "slots": [
+  "suspensao": {
+    "titulo": "Suspensão e rodas: um rover para cada planeta",
+    "responsavel": "Nuno Mourinha",
+    "apoio": "O Perseverance foi desenhado para Marte. No M1 perguntámos: como teria de ser a suspensão se o mesmo rover fosse para outro planeta ou lua?",
+    "m0m1": "Do M0 ao M1: em vez de otimizar uma peça só para Marte, construímos um gerador paramétrico próprio (Python, Rhino/Grasshopper e Intact) que gera a suspensão para 7 destinos. O STEP limpo que saiu do M0 é a entrada do M1.",
+    "m0m1Link": "Ver o trabalho do M0",
+    "detalheBotao": "Ver detalhe",
+    "decisaoTitulo": "Decisão e porquê",
+    "passos": [
       {
-        "kind": "image",
-        "file": "media/m1/simulacao_tensoes.webp",
-        "desc": "Mapa de tensões de von Mises da peça simulada, com legenda e escala.",
-        "size": "1600×900",
-        "alt": "Mapa de tensões de von Mises da peça simulada."
+        "titulo": "Estratégia: um rover para cada planeta",
+        "resumo": "A massa do rover fica fixa (1025 kg, o valor real da NASA). O que muda de planeta para planeta são as cargas (gravidade), o material e a família de forma escolhidos, e a degradação do material com a temperatura. Para cada um dos 7 destinos geramos variantes da suspensão e ficamos com as mais leves que resistem.",
+        "detalhe": [
+          "Os 7 destinos são Marte, Lua, Mercúrio, Vénus, Io, Europa e Titã.",
+          "As peças trabalhadas são o joelho traseiro (o primeiro a ser feito, usado como modelo para as outras), o joelho do meio, as barras e as rodas.",
+          "Critério de resistência: fator de segurança mínimo de 2,0."
+        ],
+        "decisao": {
+          "data": "24/10",
+          "texto": "O planeta passa a ser o motor das variantes. A massa do rover não muda, para comparar os planetas entre si."
+        },
+        "media": [
+          {
+            "file": "media/m1/suspensao/passo1_planetas.webp",
+            "alt": "Joelho do meio: a melhor variante validada em 3D para cada um dos 7 destinos.",
+            "legenda": "A melhor variante do joelho do meio em cada destino."
+          }
+        ]
       },
       {
-        "kind": "image",
-        "file": "media/m1/agd_comparacao.webp",
-        "desc": "Comparação da solução própria com as soluções geradas no AGD (Autodesk).",
-        "size": "1600×900",
-        "alt": "Comparação entre a solução própria e as soluções do AGD."
+        "titulo": "Do STEP à análise",
+        "resumo": "Partimos do STEP da peça original e transformámos a geometria num sketch paramétrico de 16 parâmetros, que reproduz a peça base com IoU = 0,948.",
+        "detalhe": [
+          "v1: captura do Fusion 360, OpenCV para separar a geometria a preservar (verde, em HSV), pontos de ancoragem e uma spline entre eles.",
+          "v2 (a usada): leitor_step.py lê o STEP em Python puro. geometria_step.py corta a peça no plano (eixo da roda × vertical) e tira a silhueta a 0,25 mm/píxel; a zona a preservar é a que está dentro da largura da roda + 20 mm. calibrar_sketch.py ajusta os 16 parâmetros com Nelder-Mead até a silhueta coincidir com a original (IoU 0,948 = design base).",
+          "Análise analítica dos esforços ao longo do eixo médio: esforço normal, corte, momento fletor, tensão e correção de viga curva de Winkler.",
+          "Volta ao 3D: secções, loft NURBS e união booleana com as zonas preservadas do STEP."
+        ],
+        "decisao": {
+          "data": "",
+          "texto": "Trocar a captura de ecrã (v1) pela leitura direta do STEP (v2), porque a imagem dependia da vista e das cores e não dava medidas reais. Com cotas medidas à mão, o sketch coincidia com a peça em IoU 0,715; calibrado ao STEP, passou a 0,948."
+        },
+        "media": [
+          {
+            "file": "media/m1/suspensao/passo2_calibracao_sketch.webp",
+            "alt": "O sketch paramétrico com cotas medidas à mão (IoU 0,715) e calibrado ao STEP (IoU 0,948), lado a lado.",
+            "legenda": "À esquerda, com cotas medidas à mão; à direita, calibrado ao STEP."
+          },
+          {
+            "file": "media/m1/suspensao/passo2_inventario_step.webp",
+            "alt": "O STEP lido automaticamente: 19 peças, eixos e contactos.",
+            "legenda": "O STEP lido automaticamente: 19 peças, eixos e contactos."
+          },
+          {
+            "file": "media/m1/suspensao/passo2_geometria_step.webp",
+            "alt": "Perfil do joelho: a cinzento a zona de projeto e a verde a zona a preservar.",
+            "legenda": "Perfil do joelho: a cinzento a zona de projeto, a verde a zona a preservar."
+          },
+          {
+            "file": "media/m1/suspensao/passo2_esforcos.webp",
+            "alt": "Esforços internos ao longo do eixo médio da peça.",
+            "legenda": "Esforços internos ao longo do eixo médio."
+          },
+          {
+            "file": "media/m1/suspensao/passo2_winkler.webp",
+            "alt": "Cotovelo do braço como viga curva: distribuição de tensões na secção.",
+            "legenda": "Correção de viga curva no cotovelo."
+          }
+        ]
+      },
+      {
+        "titulo": "Geração por planeta",
+        "resumo": "Cada variante é descrita por «genes»: curva de Bézier A → P1 → P2 → B, largura, profundidade, conicidade, família de forma e material. Com amostragem por hipercubo latino (LHS) gerámos 2700 variantes.",
+        "detalhe": [
+          "Os genes cobrem o espaço de forma de maneira uniforme (LHS) e há um refinamento local à volta das melhores.",
+          "Foram escolhidos 7 corpos com superfície sólida que cobrem os extremos do espaço, para verificar que a geometria 3D se gera sem erros em todo o espaço."
+        ],
+        "decisao": {
+          "data": "27/10",
+          "texto": "LHS, filtro 2D e validação 3D, em vez de testar tudo em 3D, que é muito mais lento."
+        },
+        "media": [
+          {
+            "file": "media/m1/suspensao/passo3_genes.webp",
+            "alt": "Genes de uma variante: eixo em curva de Bézier, largura, ângulo e curvatura.",
+            "legenda": "Os genes de uma variante."
+          },
+          {
+            "file": "media/m1/suspensao/passo3_dispersao.webp",
+            "alt": "Espaço de soluções do joelho do meio: massa e fator de segurança em cada destino.",
+            "legenda": "Espaço de soluções: massa e fator de segurança."
+          }
+        ]
+      },
+      {
+        "titulo": "Filtro e validação 3D (Rhino, Grasshopper e Intact)",
+        "resumo": "Um filtro analítico em 2D elimina as variantes que falham. As que passam são construídas em 3D no Rhino/Grasshopper e simuladas no Intact. Ficam as mais leves que cumprem o critério e, no fim, as 2 melhores por peça e planeta.",
+        "detalhe": [
+          "Fluxo: populações, filtro, mais leves, 3D e 2 melhores.",
+          "Critério 3D: o percentil 99,9 do Danger Level tem de ser inferior a 1/FS (com FS = 2).",
+          "Uma simulação que falha conta como chumbo."
+        ],
+        "decisao": {
+          "data": "31/10",
+          "texto": "Usar o percentil 99,9 em vez do máximo, para não chumbar peças por causa de um único elemento da malha com pico numérico."
+        },
+        "media": [
+          {
+            "file": "media/m1/suspensao/passo4_danger_level.webp",
+            "alt": "Danger Level no braço do joelho de Marte no Intact e histograma do critério de validação.",
+            "legenda": "O critério 3D no Intact."
+          },
+          {
+            "file": "media/m1/suspensao/passo4_grasshopper.webp",
+            "alt": "Definição do Grasshopper que comanda a geração 3D e o Intact.",
+            "legenda": "A definição do Grasshopper."
+          }
+        ]
       }
-    ]
-  },
-  "wip": {
-    "ativo": true,
-    "estado": "Em desenvolvimento",
-    "texto": "Esta fase ainda não está feita. Quando estiver, esta secção passa a mostrar o trabalho de parametrização da equipa. Para já, fica o plano.",
-    "titulo": "O que vamos fazer em M1",
-    "planeado": [
-      "Parametrizar o chassis, a suspensão e as rodas, ligando a geometria a parâmetros e a design tables.",
-      "Fazer um chassis mais orgânico, usando superfícies.",
-      "Justificar cada parâmetro de base da suspensão, para a poder submeter ao design generativo no M2."
-    ]
+    ],
+    "resultados": {
+      "titulo": "Montagem e resultados",
+      "resumo": "Com as melhores peças de cada planeta montámos a suspensão completa. Original: 352,2 kg. Em Titã baixa para 171,2 kg (−51 %); em Vénus sobe para 474,9 kg (+35 %).",
+      "seletor": "Massa da suspensão completa, em kg. Escolhe um destino para ver a suspensão.",
+      "original": "Original: 352,2 kg",
+      "legenda": "A laranja, as peças geradas para o destino; a cinzento, as peças originais e as zonas preservadas.",
+      "notas": [
+        "Fator de segurança mínimo das peças usadas: 2,18.",
+        "Rodas: fator de segurança em 3D entre 10 e 30.",
+        "Em Marte e Mercúrio a barra esquerda ficou a original, porque nenhuma variante mais leve passou.",
+        "Um lado da suspensão original tem 170,3 kg."
+      ],
+      "tabelaFig": {
+        "file": "media/m1/suspensao/passo5_tabela_montagem.webp",
+        "alt": "Tabela da suspensão por planeta: material, massa e fator de segurança de cada peça.",
+        "legenda": "Massa e fator de segurança de cada peça."
+      }
+    },
+    "conclusoes": {
+      "titulo": "Conclusões e próxima fase",
+      "resumo": "O mesmo rover pode ter uma suspensão até 51 % mais leve num corpo de baixa gravidade. Onde a gravidade e a temperatura são altas (Vénus), a peça tem de ficar mais pesada do que a original.",
+      "itens": [
+        [
+          "O planeta muda a forma, não só a espessura.",
+          "3 famílias (tubo, treliça e nervuras) e 7 suspensões diferentes."
+        ],
+        [
+          "Menos massa na maioria dos destinos.",
+          "De −37 % a −51 % na suspensão completa em 5 dos 7 planetas e luas; no braço do joelho, de −69 % a −84 %."
+        ],
+        [
+          "Explorar barato, validar caro.",
+          "Milhares de variantes 2D em minutos, e só as melhores vão ao 3D (2700, 326 e 70 no joelho do meio)."
+        ],
+        [
+          "A temperatura pesa mais do que a gravidade.",
+          "Mercúrio e Vénus obrigam a titânio e Inconel; Vénus fica 35 % mais pesado."
+        ],
+        [
+          "O 2D é conservador.",
+          "As rodas têm FS 3D de 10 a 30, por isso ainda há massa para tirar."
+        ],
+        [
+          "Um processo fechado e automático.",
+          "STEP, genes, filtro, Intact e STEP de volta ao Fusion."
+        ]
+      ],
+      "limitesTitulo": "O que não resultou e o que falta",
+      "limites": [
+        "A fadiga mecânica não foi considerada, só a degradação térmica.",
+        "Não houve verificação de interferências na montagem.",
+        "As falhas de simulação do Intact contam como chumbo, por isso algumas variantes podem ter sido rejeitadas sem razão física.",
+        "A licença do Intact ficou suspensa a meio (04/11) e foi preciso reativá-la."
+      ],
+      "proximo": "Ver o plano do M2"
+    }
   }
 }

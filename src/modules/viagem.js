@@ -14,12 +14,11 @@ const salto = (g) => ({ h: v0 ** 2 / (2 * g), t: (2 * v0) / g });
 const sheetHtml = (d) => {
   const s = salto(d.g);
   const peso = data.massaRover * d.g;
+  const r = d.rover;
+  const dif = r.delta > 0 ? `+${r.delta}` : `−${Math.abs(r.delta)}`;
   return `<div class="vg-why">
       <h4>Porque o escolhemos</h4>
       <p class="vg-why-txt">${esc(d.porque)}</p>
-      <h4>${esc(data.adaptacaoTitulo)}</h4>
-      <p>${tbc(data.adaptacaoModelo.replace('{nome}', d.nome))}</p>
-      <p class="note">${esc(data.corNota)}</p>
     </div>
     <dl class="vg-facts">
       <div><dt>Gravidade</dt><dd>${fmt(d.g, 2)} m/s²<small>${fmt((d.g / data.gTerra) * 100, 0)} % da gravidade da Terra</small></dd></div>
@@ -27,7 +26,24 @@ const sheetHtml = (d) => {
       <div><dt>Ambiente</dt><dd>${esc(d.ambiente)}</dd></div>
       <div><dt>Peso do rover</dt><dd>${fmt(Math.round(peso))} N<small>${esc(data.massaNota)}, ${data.massaRover} kg</small></dd></div>
       <div><dt>Salto a ${v0} m/s</dt><dd>${fmt(s.h * 100, 0)} cm<small>${fmt(s.t, 2)} s no ar</small></dd></div>
-    </dl>`;
+    </dl>
+    <div class="vg-muda">
+      <div class="vg-muda-txt">
+        <h4>${esc(data.adaptacaoTitulo)}</h4>
+        <p class="vg-muda-num"><b>${fmt(r.massa, 1)} kg</b> de suspensão, ${dif} % face aos ${fmt(data.massaSuspensaoOriginal, 1)} kg originais.</p>
+        <p>Material: ${esc(r.material)}. ${esc(r.nota)}</p>
+        <p>No joelho do meio, a variante ${esc(r.codigo)} usa a família ${esc(r.familia)}, em ${esc(r.matJ)}: braço de ${fmt(r.braco, 2)} kg e fator de segurança 3D de ${fmt(r.fs, 2)}.</p>
+        ${
+          d.chassis
+            ? `<p>Chassis: comprimento de ${fmt(d.chassis.comprimento)} mm, ${d.chassis.nCostelas} costelas de ${d.chassis.espCostela} mm de espessura, anéis de ${d.chassis.largAnel} mm de largura e ${d.chassis.nLongarinas} longarinas de ${d.chassis.raioLongarina} mm de raio.</p>`
+            : `<p>${esc(data.chassisFusion)}</p>`
+        }
+        <p>${tbc(data.adaptacaoModelo.replace('{nome}', d.nome))}</p>
+        <p class="note">${esc(data.corNota)}</p>
+      </div>
+      <figure><img src="${asset(`media/m1/suspensao/passo5_suspensao_${d.id}.webp`)}" alt="Suspensão completa para ${esc(d.nome)}: a laranja, as peças geradas." loading="lazy" /><figcaption>Suspensão</figcaption></figure>
+      <figure class="vg-muda-braco"><img src="${asset(`media/m1/braco/${d.id}.webp`)}" alt="Braço do rover para ${esc(d.nome)}." loading="lazy" /><figcaption>Braço</figcaption></figure>
+    </div>`;
 };
 
 export function initViagem(root, wanted) {
@@ -199,7 +215,7 @@ export function initViagem(root, wanted) {
     root.style.setProperty('--dc', cur.cor);
     $('.vg-ambient').style.backgroundImage = `url("${asset(`${pasta(cur.id)}/principal_t.webp`)}")`;
     root.style.setProperty('--dh', cur.horizonte);
-    kicker.textContent = cur.origem ? `${cur.tipo}, ${data.ponto.toLowerCase()}` : cur.tipo;
+    kicker.textContent = cur.origem ? `${cur.tipo}, ${data.ponto[0].toLowerCase()}${data.ponto.slice(1)}` : cur.tipo;
     nome.textContent = cur.nome;
     if (!reduced) {
       nome.classList.remove('in');

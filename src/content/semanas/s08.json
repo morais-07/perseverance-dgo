@@ -5,16 +5,87 @@
   "titulo": "Apresentação da fase 1",
   "tema": "Apresentação M1 e entrega do projeto da fase 1 (30 %), com atualização do website.",
   "texto": [
-    "[A CONFIRMAR: resultados apresentados em aula e feedback dos docentes]",
-    "[A CONFIRMAR: o que fez cada elemento da equipa]"
+    "Apresentámos a estratégia de um rover para cada planeta, o braço, o chassis e a suspensão, com as conclusões e o plano para o M2.",
+    "Nuno: suspensão completa para 7 destinos (de −51 % em Titã a +35 % em Vénus) e plano de otimização para o M2."
   ],
   "etiqueta": null,
   "apresentacao": true,
-  "slot": {
-    "kind": "image",
-    "file": "media/m1/semana_08.webp",
-    "desc": "Imagem, GIF ou captura da semana 8: apresentação da fase 1. Pode ser CAD, esboço, simulação ou foto de trabalho.",
-    "size": "1600×900",
-    "alt": "Trabalho da equipa na semana 8: apresentação da fase 1."
+  "galeria": [
+    {
+      "file": "media/m1/semana8/slide_01.webp",
+      "alt": "Título: apresentação M1 do DGO."
+    },
+    {
+      "file": "media/m1/semana8/slide_02.webp",
+      "alt": "Equipa: David Coelho, Nuno Mourinha e Rafael Morais."
+    },
+    {
+      "file": "media/m1/semana8/slide_03.webp",
+      "alt": "Os sete rovers, cada um no seu planeta ou lua."
+    },
+    {
+      "file": "media/m1/semana8/slide_04.webp",
+      "alt": "Estratégia: um rover para cada planeta."
+    },
+    {
+      "file": "media/m1/semana8/slide_05.webp",
+      "alt": "Braço: modelo parametrizado no Fusion."
+    },
+    {
+      "file": "media/m1/semana8/slide_06.webp",
+      "alt": "Braço: as variantes dos sete destinos."
+    },
+    {
+      "file": "media/m1/semana8/slide_07.webp",
+      "alt": "Chassis: Fusion e BeeGraphy."
+    },
+    {
+      "file": "media/m1/semana8/slide_08.webp",
+      "alt": "Chassis no Fusion: modelo 100 % paramétrico."
+    },
+    {
+      "file": "media/m1/semana8/slide_09.webp",
+      "alt": "Chassis no BeeGraphy: o modelo completo."
+    },
+    {
+      "file": "media/m1/semana8/slide_10.webp",
+      "alt": "Chassis no BeeGraphy: o que pode mudar e o que fica igual."
+    },
+    {
+      "file": "media/m1/semana8/slide_11.webp",
+      "alt": "Chassis no BeeGraphy: designs por seed."
+    },
+    {
+      "file": "media/m1/semana8/slide_12.webp",
+      "alt": "Suspensão: do STEP à análise."
+    },
+    {
+      "file": "media/m1/semana8/slide_13.webp",
+      "alt": "Suspensão: geração por planeta."
+    },
+    {
+      "file": "media/m1/semana8/slide_14.webp",
+      "alt": "Suspensão: filtro, 3D e montagem."
+    },
+    {
+      "file": "media/m1/semana8/slide_15.webp",
+      "alt": "Suspensão: montagem completa, parte 1."
+    },
+    {
+      "file": "media/m1/semana8/slide_16.webp",
+      "alt": "Suspensão: montagem completa, parte 2."
+    },
+    {
+      "file": "media/m1/semana8/slide_17.webp",
+      "alt": "Conclusões e próxima fase (M2)."
+    },
+    {
+      "file": "media/m1/semana8/slide_18.webp",
+      "alt": "Obrigado e questões."
+    }
+  ],
+  "ligacao": {
+    "rotulo": "Ver a apresentação da suspensão (PDF)",
+    "ficheiro": "downloads/apresentacao_M1_Nuno.pdf"
   }
 }

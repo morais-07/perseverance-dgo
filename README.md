@@ -48,7 +48,7 @@ O site tem várias páginas (um «router» por `#`, funciona no GitHub Pages sem
 | `#/historia`, `#/equipa` | Páginas simples |
 | `#/projeto` | O Nosso Projeto: objetivo, os quatro atos e o porquê da escolha, numa só página (`#/projeto/porque` vai direto à secção) |
 | `#/m0` | M0 numa só página, com índice fixo; `#/m0/estrategia`, `/montagem` e `/processo` vão direto à secção |
-| `#/m1` | M1 numa só página: «Escolhe a próxima viagem» e o plano (quando M1 estiver feito, aparecem também as outras secções) |
+| `#/m1` | M1 numa só página: «Escolhe a próxima viagem», estratégia, braço, chassis, suspensão, conclusões e semanas |
 | `#/m1/viagem/europa` | Abre já num destino (útil para partilhar) |
 | `#/m2` | M2 |
 
