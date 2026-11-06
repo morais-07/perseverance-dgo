@@ -991,7 +991,6 @@ a.pager-l:hover .pager-ic { background: var(--mars); color: #000; }
 .m1-limites { margin-top: var(--s4); padding: var(--s4); border: 1px dashed var(--line-d); border-radius: var(--r); max-width: 80ch; }
 .m1-limites ul { list-style: disc; padding-left: 1.2em; display: grid; gap: var(--s1); font-size: 0.94rem; }
 .m1-foto { max-width: 300px; }
-.m1-foto .gal-t { background: var(--paper); }
 .m1-braco-regras { display: grid; grid-template-columns: minmax(180px, 280px) minmax(180px, 0.7fr) minmax(0, 1.3fr); gap: var(--s5) var(--s6); align-items: start; }
 .m1-lista-t { font-size: 1.05rem; font-weight: 700; margin-bottom: var(--s2); color: var(--mars); }
 .m1-legenda li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1) var(--s2); padding: var(--s1) 0; font-size: 0.92rem; }

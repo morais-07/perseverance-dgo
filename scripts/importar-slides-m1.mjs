@@ -26,7 +26,6 @@ for (const [pasta, lista] of Object.entries(GALERIAS)) {
 
 /* Figuras: [ficheiro de saída, slide, x0, y0, x1, y1], em coordenadas de um slide com 1600×900. */
 const FIGURAS = [
-  ['braco/parametros', 's07_02', 280, 254, 1560, 860],
   ['braco/marte', 'm1_08', 26, 130, 294, 450],
   ['braco/lua', 'm1_08', 338, 130, 546, 450],
   ['braco/mercurio', 'm1_08', 608, 130, 846, 450],

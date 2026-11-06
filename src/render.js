@@ -320,7 +320,7 @@ function botoes(lista) {
       const ic = b.tipo === 'link' ? '<span class="ext-arrow" aria-hidden="true">↗</span>' : icon.down;
       if (!b.destino) return `<a class="btn ghost" href="#/m1" aria-disabled="true" data-nodownload="1" data-aviso="${esc(t.aviso)}">${ic}<span>${esc(b.rotulo)}<span class="btn-meta">${esc(t.estado)}</span></span></a>`;
       const alvo = b.tipo === 'link' ? `href="${esc(b.destino)}" target="_blank" rel="noopener noreferrer"` : `href="${asset(b.destino)}" download`;
-      return `<a class="btn ghost" ${alvo}>${ic}<span>${esc(b.rotulo)}</span></a>`;
+      return `<a class="btn ghost" ${alvo}>${ic}<span>${esc(b.rotulo)}${b.meta ? `<span class="btn-meta">${esc(b.meta)}</span>` : ''}</span></a>`;
     })
     .join('')}</div>`;
 }
@@ -377,7 +377,7 @@ export function m1Braco() {
   const t = b.passosTitulos;
   const destinosB = destinos.destinos;
   const passos = [
-    { titulo: t[0], resumo: p(esc(b.texto)), lado: fig('m1-braco', 'media/m1/braco/parametros.webp', 'Braço no Fusion, com o painel de parâmetros dos tubos.') },
+    { titulo: t[0], resumo: p(esc(b.texto)), lado: fig('m1-braco', 'media/m1/braco/modelo.webp', 'Modelo do braço no Fusion.') },
     { titulo: t[1], resumo: p(esc(b.desafio)), decisao: decisaoBox({ texto: b.decisao }) },
     {
       titulo: t[2],

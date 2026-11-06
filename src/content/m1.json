@@ -103,7 +103,7 @@
     ],
     "fotoAlt": "Braço do rover com cada componente numa cor: rótulas cinzentas, azul, amarelo, verde, vermelho, disco preto e suporte preto.",
     "variantes": "As variantes dos sete destinos",
-    "legendaNota": "Os componentes 4 e 5 foram integrados no componente 6.",
+    "legendaNota": "Os componentes 4 e 5 foram integrados no componente 3.",
     "valores": {
       "titulo": "O braço de cada destino",
       "texto": "Valores das variáveis usados em cada configuração.",
@@ -708,26 +708,30 @@
       {
         "tipo": "ficheiro",
         "rotulo": "Descarregar o CAD do braço",
-        "destino": ""
+        "destino": "downloads/braco_parametrizado.zip",
+        "meta": "ZIP · Fusion (.f3z) e instruções · 1,6 MB"
       }
     ],
     "chassis": [
       {
         "tipo": "ficheiro",
         "rotulo": "Descarregar o CAD do chassis paramétrico",
-        "destino": ""
+        "destino": "downloads/chassis_parametrico.zip",
+        "meta": "ZIP · Fusion (.f3d), painel de sliders e instruções · 1,5 MB"
       },
       {
         "tipo": "link",
         "rotulo": "Abrir os sliders no BeeGraphy",
-        "destino": ""
+        "destino": "https://beegraphy.com/market/product/chassis-conceito-entrega-0ab",
+        "meta": "Abre noutro separador · não precisa de conta"
       }
     ],
     "suspensao": [
       {
         "tipo": "ficheiro",
         "rotulo": "Descarregar os ficheiros e o CAD das suspensões",
-        "destino": ""
+        "destino": "downloads/suspensao_nuno.zip",
+        "meta": "ZIP · código, Grasshopper, modelos e resultados · 76 MB"
       }
     ]
   }
