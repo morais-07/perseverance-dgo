@@ -32,7 +32,7 @@ const M0_SECS = [
   { id: 'semanas', rotulo: 'Semana a semana', render: R.m0Semanas },
   { id: 'estrategia', rotulo: 'Estratégia e subsistemas', render: R.m0Estrategia },
   { id: 'montagem', rotulo: 'Montagem e render', render: R.m0Montagem },
-  { id: 'processo', rotulo: 'Processo e design generativo', render: R.m0Processo },
+  { id: 'processo', rotulo: 'Processo e próximo passo', render: R.m0Processo },
 ];
 
 const M1_SECS = [

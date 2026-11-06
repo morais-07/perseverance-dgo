@@ -136,47 +136,47 @@
     ]
   },
   "generativo": {
-    "titulo": "Próximo passo: design generativo (Autodesk Fusion)",
-    "credito": "Explorado por Nuno Mourinha, na suspensão.",
-    "intro": "Depois da consolidação geométrica das peças, o projeto avança para a exploração com o Design Generativo do Autodesk Fusion. O objetivo é submeter componentes estruturais, como suportes e juntas da suspensão, a algoritmos que geram geometrias otimizadas com base em variáveis rigorosamente definidas.",
-    "pilaresTitulo": "Os pilares da configuração",
+    "titulo": "Próximo passo: um rover para cada planeta",
+    "credito": "Cada elemento continua no seu subsistema: David Coelho no braço, Rafael Morais no chassis e Nuno Mourinha na suspensão e nas rodas.",
+    "intro": "Com o rover modelado e montado, o M1 passa à parametrização. Em vez de trabalhar só para Marte, vamos perguntar como teria de ser o rover se fosse para outro planeta ou lua, e adaptar cada subsistema às condições de cada destino.",
+    "pilaresTitulo": "O que vamos fazer",
     "pilares": [
       {
-        "titulo": "Design Space",
-        "sub": "Definição geométrica",
-        "texto": "Instrui-se o algoritmo sobre o que pode ou não ser alterado. Definimos as Preserve Geometries (zonas a manter, como os furos dos eixos e as interfaces de ligação entre as peças da suspensão) e deixamos o software remodelar livremente o material de ligação entre elas."
+        "titulo": "Os destinos",
+        "sub": "O planeta é o motor",
+        "texto": "Marte, Lua, Mercúrio, Vénus, Europa, Titã e Io. A gravidade, a temperatura, o ambiente e o terreno definem as cargas, o material e a forma."
       },
       {
-        "titulo": "Design Conditions",
-        "sub": "Restrições e cargas",
-        "texto": "Configuramos os cenários de carga do mundo real: fixações estruturais e diferentes casos de estudo, como o rover em repouso, impacto extremo (a roda a cair num buraco) ou colisões laterais contra rochas."
+        "titulo": "Braço",
+        "sub": "Fusion",
+        "texto": "Um único modelo CAD, com todas as dimensões em variáveis, para criar uma configuração para cada destino."
       },
       {
-        "titulo": "Design Criteria",
-        "sub": "Objetivos da otimização",
-        "texto": "O critério principal é a minimização da massa, mantendo a integridade estrutural perante as cargas aplicadas."
+        "titulo": "Chassis",
+        "sub": "Fusion e BeeGraphy",
+        "texto": "Um modelo paramétrico no Fusion e um modelo orgânico gerado no BeeGraphy, com valores próprios para cada destino."
       },
       {
-        "titulo": "Manufatura e materiais",
-        "sub": "Fabricável",
-        "texto": "A otimização topológica só vale se a peça for fabricável. Restringimos os métodos a manufatura aditiva (impressão 3D de metais) e fresagem CNC, e escolhemos alumínio e titânio, pela elevada relação resistência-peso."
+        "titulo": "Suspensão e rodas",
+        "sub": "Python, Rhino e Intact",
+        "texto": "Um gerador próprio que parte do STEP do M0, cria variantes para cada destino e valida as melhores em 3D."
       }
     ],
     "reestruturacaoTitulo": "Reestruturação do fluxo",
-    "reestruturacao": "Na sequência do feedback técnico, decidimos ajustar a transição para esta fase. Antes de gerar formas, vamos consolidar a parametrização (M1) do modelo, para justificar cada parâmetro de base antes de o submeter ao algoritmo.",
-    "proximosTitulo": "Depois de computados os modelos generativos",
+    "reestruturacao": "Na sequência do feedback técnico, decidimos deixar a otimização para o M2. Primeiro parametrizamos o modelo no M1, para justificar cada parâmetro antes de o otimizar.",
+    "proximosTitulo": "Depois da parametrização (M2)",
     "proximos": [
       {
-        "titulo": "Exploração de soluções",
-        "texto": "Gráficos de dispersão (scatter plots) no Fusion para cruzar dados, como massa contra fator de segurança, e isolar o design vencedor, o de melhor compromisso."
+        "titulo": "Otimização multiobjetivo",
+        "texto": "Partir das variantes do M1 e otimizar a massa, o fator de segurança e o fabrico ao mesmo tempo."
       },
       {
-        "titulo": "Validação mecânica",
-        "texto": "Submeter o modelo escolhido a simulações estruturais clássicas (FEA) e validar o seu comportamento cinemático na montagem final."
+        "titulo": "Otimização topológica 3D",
+        "texto": "Aplicar a otimização topológica às mesmas zonas de projeto, com as cargas de cada planeta, e comparar com as variantes do M1."
       },
       {
-        "titulo": "Escalabilidade e reticulados",
-        "texto": "Integrar as peças geradas com a escalabilidade paramétrica do resto do rover e, na otimização estrutural (M2), introduzir estruturas reticuladas (lattices) para reduzir ainda mais o peso em zonas de baixa tensão."
+        "titulo": "Fabrico e reticulados",
+        "texto": "Ter em conta as restrições de fabrico e introduzir estruturas reticuladas para reduzir ainda mais o peso."
       }
     ]
   }
