@@ -768,11 +768,7 @@ body.inner { padding-top: var(--nav-h); }
 .home-card:hover .hc-go { transform: translateX(5px); }
 
 /* ═════════ M1 · Escolhe a próxima viagem ═════════ */
-.sec-cabeca { padding-block: var(--s6) var(--s5); }
-.sec-cabeca .titleblock { display: none; }
-.sec-cabeca .ms-head { margin-bottom: var(--s5); }
-.sec-cabeca .ms-code { font-size: clamp(2.6rem, 6vw, 4.4rem); }
-.sec-cabeca .lead { margin-bottom: 0; }
+.sec-cabeca { padding-bottom: var(--s5); }
 .sec-viagem { padding: 0; }
 .viagem .vg-head .lead, .viagem .lab-head p { color: #c9cad3; }
 .viagem { --dc: var(--mars); --dh: #333; background: var(--night); color: #e9e9ee; padding-bottom: var(--s8); }
@@ -1060,3 +1056,4 @@ a.pager-l:hover .pager-ic { background: var(--mars); color: #000; }
 @media (max-width: 860px) { .m1-parte { padding: var(--s4); } .m1-braco-foto { grid-template-columns: minmax(0, 1fr); } }
 .m1-passos { grid-template-columns: minmax(0, 1fr); }
 .m1-passo, .m1-det { min-width: 0; }
+.lead + .obj-grid { margin-top: var(--s7); }

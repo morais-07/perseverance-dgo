@@ -148,7 +148,7 @@ export function renderObjetivo() {
   const o = objetivo;
   return `<div class="wrap">
     ${titleblock('PRV-PRJ-003', '3/7')}
-    ${sectionHead('objetivo', 'Objetivo', o.titulo, o.texto)}
+    ${msHead('objetivo', { codigo: site.inicio.cartoes.find((c) => c.rota === '/projeto').codigo, titulo: o.titulo, intro: o.texto }, 'Objetivo')}
     <div class="obj-grid">
       ${o.cartoes.map((c) => `<article class="obj rv"><span class="code">${esc(c.codigo)} · ${esc(c.fase)}</span><h3>${esc(c.titulo)}</h3><p>${esc(c.texto)}</p>
         <div class="crit"><h4>${esc(o.criteriosTitulo)}</h4><ul>${c.criterios.map((k) => `<li><span>${tbc(k)}</span></li>`).join('')}</ul></div></article>`).join('')}
@@ -215,7 +215,7 @@ const weeksOf = (fase) => `<div class="weeks">${semanas.filter((w) => w.fase ===
 const msHead = (id, d, ato) => `
   <header class="ms-head rv">
     <div class="ms-code" aria-hidden="true">${esc(d.codigo)}</div>
-    <div><p class="per">${esc(ato)} · ${esc(d.periodo)}</p><h2 id="${id}-t">${esc(d.titulo)}</h2></div>
+    <div><p class="per">${esc(ato)}${d.periodo ? ` · ${esc(d.periodo)}` : ''}</p><h2 id="${id}-t">${esc(d.titulo)}</h2></div>
   </header>
   <p class="lead rv">${tbc(d.intro)}</p>`;
 

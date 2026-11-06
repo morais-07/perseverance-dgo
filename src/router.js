@@ -48,7 +48,7 @@ const M1_SECS = [
 function m1Page() {
   const [viagem, ...resto] = M1_SECS;
   return {
-    html: `${raw('light grid-mm sec-cabeca', wrap(R.m1Head()))}
+    html: `${raw('dark sec-cabeca', wrap(R.m1Head()))}
       ${indice('/m1', M1_SECS, 'banda')}
       ${raw('dark sec-viagem', bloco('/m1', viagem))}
       ${raw('dark sec-cola', wrap(resto.map((t) => bloco('/m1', t)).join('')))}`,
