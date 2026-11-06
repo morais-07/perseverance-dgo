@@ -62,7 +62,7 @@ export function initViewer(root) {
     }
     if (dead) return;
     const rover = buildRover(model.gltf);
-    const stage = createStage(canvas, { floorY: -rover.size.y / 2 - 0.02, envIntensity: model.provisional ? 0.85 : 0.5 });
+    const stage = createStage(canvas, { floorY: -rover.size.y / 2 - 0.02, envIntensity: 0.5 });
     stage.scene.add(rover.pivot);
     const { camera, renderer } = stage;
     const R = rover.radius;
@@ -84,10 +84,6 @@ export function initViewer(root) {
 
     const st = { selected: null, isolate: false, hidden: new Set(), ex: 0, auto: controls.autoRotate };
     const btn = (a) => root.querySelector(`[data-act="${a}"]`);
-
-    /* ── provisório ── */
-    $('.v-prov').hidden = !model.provisional;
-    if (!model.provisional) document.querySelector('[data-viewer-note]')?.replaceChildren('Modelo da equipa: modelado no Fusion, materiais no Blender, exportado para GLB.');
 
     /* ── hotspots ── */
     const hsHost = $('.v-hotspots');

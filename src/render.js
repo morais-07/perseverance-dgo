@@ -55,7 +55,7 @@ export function renderHero() {
       <canvas aria-hidden="true"></canvas>
       <div class="hero-labels" aria-hidden="true"></div>
       <div class="hero-corner tl" aria-hidden="true">PRV-000 · ESC 1:20 · FOLHA 1/7</div>
-      <div class="hero-corner tr" data-prov aria-hidden="true">${esc(site.modeloProvisorio.toUpperCase())}</div>
+      <div class="hero-corner tr" aria-hidden="true">${esc(site.modeloRotulo.toUpperCase())}</div>
       <div class="hero-copy">
         <h1><span>${esc(site.titulo)}</span><span>${esc(site.tituloLinha2)}</span></h1>
         <p class="sub">${esc(site.subtitulo)}</p>
@@ -262,7 +262,7 @@ export function m0Montagem() {
   return `<div class="block" id="viewer-bloco"><h3 class="rv">${esc(d.montagemTitulo)}</h3><p class="rv">${esc(d.montagemTexto)}</p>
       ${d.montagemFalta ? `<p class="rv">${tbc(d.montagemFalta)}</p>` : ''}
       ${renderViewer()}
-      <p class="note rv" data-viewer-note style="margin-top:12px">Modelo provisório: <a href="${esc(subs.modeloProvisorio.origem)}" target="_blank" rel="noopener noreferrer" style="color:var(--mars)">NASA 3D Resources — Mars 2020 Perseverance Rover</a> (${esc(subs.modeloProvisorio.licenca)}).</p>
+      <p class="note rv" style="margin-top:12px">${esc(subs.modeloFinal.nota)}</p>
     </div>
     <div class="block"><h3 class="rv">${esc(d.renderRover.titulo)}</h3>
       <div class="slots-2 rv">${slot(d.renderRover.imagem)}${slot(d.renderRover.video)}</div></div>`;
@@ -662,7 +662,6 @@ function renderViewer() {
   return `<div class="viewer rv" id="viewer" role="region" aria-label="Visualizador 3D do rover">
     <canvas tabindex="0" aria-label="Modelo 3D do rover. Setas rodam, + e − ampliam, 0 repõe a vista, E explode."></canvas>
     <div class="v-hotspots"></div>
-    <div class="v-ui v-prov" hidden>${esc(site.modeloProvisorio)}</div>
     <div class="v-ui v-chips" role="group" aria-label="Subsistemas">
       ${subs.subsistemas.map((s) => `<div class="chip" data-id="${s.id}"><button type="button" data-act="select" aria-pressed="false"><span class="swatch" style="background:${s.cor}"></span><i>${String(s.n).padStart(2, '0')}</i>${esc(s.nome)}</button><button type="button" class="eye" aria-pressed="false" aria-label="Ocultar ${esc(s.nome)}">${icon.eye}</button></div>`).join('')}
       <button type="button" class="all chips-all">MOSTRAR TUDO</button>

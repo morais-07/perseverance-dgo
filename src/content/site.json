@@ -6,7 +6,6 @@
   "instituicao": "Universidade de Aveiro · Departamento de Engenharia Mecânica",
   "ano": "2026/27",
   "docentes": "Docentes: João Dias-de-Oliveira (regente) e António Gil d'Orey Andrade Campos",
-  "modeloProvisorio": "Modelo provisório — NASA",
   "botoes": {
     "explorar": "Explorar o modelo 3D",
     "descarregar": "Descarregar CAD"
@@ -70,7 +69,7 @@
   },
   "rodape": {
     "texto": "Projeto de grupo da UC 43449 — Design Generativo e Otimização · Mestrado em Engenharia Aeroespacial · Universidade de Aveiro.",
-    "creditos": "Modelo 3D provisório e imagens: NASA/JPL-Caltech (domínio público). O logótipo da NASA não é utilizado. O logótipo DGO pertence à unidade curricular.",
+    "creditos": "O modelo 3D do site é da equipa. Modelo de referência e imagens: NASA/JPL-Caltech (domínio público). O logótipo da NASA não é utilizado. O logótipo DGO pertence à unidade curricular.",
     "dica": "Dica: escreve «dare» em qualquer ponto da página."
   },
   "sobre": {
@@ -140,5 +139,6 @@
     "m1": "M1 · Parametrização",
     "m2": "M2 · Otimização",
     "equipa": "Equipa"
-  }
+  },
+  "modeloRotulo": "Modelo da equipa · DGO"
 }

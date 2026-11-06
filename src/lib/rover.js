@@ -6,7 +6,7 @@ import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.j
 import { clone as cloneSkinned } from 'three/examples/jsm/utils/SkeletonUtils.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import cfg from '../content/subsistemas.json';
-import { asset, exists } from './util.js';
+import { asset } from './util.js';
 
 export const SUBS = cfg.subsistemas;
 const ALL = [...cfg.subsistemas, ...cfg.extras];
@@ -40,12 +40,11 @@ export function loadGLB(file) {
   return glbs.get(file);
 }
 
-/** Usa o modelo final (public/models/perseverance_dgo.glb) se existir; senão o provisório da NASA. */
+/** Modelo da equipa (public/models/perseverance_dgo.glb). */
 export function loadRoverModel() {
   if (modelPromise) return modelPromise;
   modelPromise = (async () => {
-    const final = await exists(cfg.modeloFinal.ficheiro);
-    const file = final ? cfg.modeloFinal.ficheiro : cfg.modeloProvisorio.ficheiro;
+    const file = cfg.modeloFinal.ficheiro;
     const { loader, draco } = makeLoader();
     const gltf = await new Promise((res, rej) =>
       loader.load(
@@ -62,8 +61,8 @@ export function loadRoverModel() {
     progress = 1;
     listeners.forEach((fn) => fn(1));
     // O modelo da equipa vem do Blender com a frente do rover em +X; o site espera a frente em +Z.
-    if (final && cfg.modeloFinal.rotacaoY) gltf.scene.rotation.y = THREE.MathUtils.degToRad(cfg.modeloFinal.rotacaoY);
-    return { gltf, provisional: !final };
+    if (cfg.modeloFinal.rotacaoY) gltf.scene.rotation.y = THREE.MathUtils.degToRad(cfg.modeloFinal.rotacaoY);
+    return { gltf };
   })();
   modelPromise.catch(() => (modelPromise = null));
   return modelPromise;
@@ -75,7 +74,6 @@ function subOf(name) {
   for (const s of ALL) {
     if (n === s.id || n.startsWith(s.id + '_') || n.startsWith(s.id + '.') || n.startsWith(s.id + '-')) return s.id;
   }
-  for (const s of ALL) if (s.nodesNasa?.includes(name)) return s.id;
   return 'chassis';
 }
 

@@ -1,4 +1,4 @@
-// Interações da página: navegação, progresso, contadores, cronologia, comparação antes/depois, Sol, easter egg.
+// Interações da página: navegação, progresso, contadores, cronologia, Sol, easter egg.
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { esc, fmt, icon, reducedMotion, asset } from '../lib/util.js';
@@ -102,40 +102,10 @@ export function initTimeline() {
   show(0);
 }
 
-/* ───────── Antes / depois ───────── */
-export function initBeforeAfter() {
-  document.querySelectorAll('[data-ba]').forEach((ba) => {
-    const input = ba.querySelector('input');
-    const set = () => ba.style.setProperty('--pos', input.value + '%');
-    input.addEventListener('input', set);
-    set();
-  });
-}
-
-/* ───────── Separadores 3D / Render / Árvore ───────── */
-export function initSubTabs() {
-  document.querySelectorAll('.sub-media').forEach((m) => {
-    const tabs = [...m.querySelectorAll('.sub-tabs button')];
-    tabs.forEach((t) =>
-      t.addEventListener('click', () => {
-        tabs.forEach((x) => x.setAttribute('aria-selected', String(x === t)));
-        m.querySelectorAll('.sub-pane').forEach((p) => (p.hidden = p.dataset.pane !== t.dataset.tab));
-      }),
-    );
-    m.querySelector('.sub-tabs').addEventListener('keydown', (e) => {
-      const i = tabs.findIndex((x) => x.getAttribute('aria-selected') === 'true');
-      const n = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
-      if (n === null) return;
-      const t = tabs[(n + tabs.length) % tabs.length];
-      t.click();
-      t.focus();
-    });
-  });
-}
-
 /* ───────── Sol marciano ───────── */
 const LANDING = Date.UTC(2021, 1, 18, 20, 55, 0); // Sol 0: aterragem em Jezero
 const SOL_MS = 88775.244 * 1000;
+
 export function paintSol() {
   const sol = Math.floor((Date.now() - LANDING) / SOL_MS);
   document.querySelectorAll('[data-sol]').forEach((e) => (e.textContent = fmt(sol)));

@@ -77,7 +77,7 @@ Cada espaço de media mostra **o nome exato do ficheiro** que espera. Põe o fic
 - Para um slot novo num JSON: `{ "kind": "image", "file": "media/m1/x.webp", "desc": "…", "size": "1600×900", "alt": "texto alternativo" }`.
 - Imagens NASA: indicar sempre `"credito": "Imagem: NASA/JPL-Caltech"`. Ver `public/media/referencias/CREDITOS.md`.
 
-### Trocar o modelo 3D provisório pelo nosso
+### Atualizar o modelo 3D
 
 Segue [`docs/exportar-modelo.md`](docs/exportar-modelo.md). Resumo: exportar GLB com nós de topo chamados `mastro`, `braco`, `suspensao`, `chassis`, `mmrtg`, otimizar com `gltf-transform` e guardar em `public/models/perseverance_dgo.glb`. O site passa a usá-lo e a etiqueta «Modelo provisório — NASA» desaparece. Para o botão de download, ver o mesmo documento.
 
@@ -122,9 +122,8 @@ O GitHub recusa ficheiros > 100 MB e avisa acima de 50 MB. Se `perseverance_cad.
 - **Datas e valores da história confirmados** em fontes NASA/JPL (anúncio, lançamento, aterragem, Ingenuity, primeira amostra, bordo da cratera, entrada a ≈ 19 500 km/h, sky crane a ≈ 20 m); as fontes estão no fim da secção História.
 - **M0 e M1 ajustados ao guião da UC:** o M0 inclui levantamento de forma (engenharia inversa) e superfícies; o M1 inclui modelação paramétrica, simulação estrutural e AGD, ao lado dos cartões de subsistema.
 - **Peso e datas da UC** (M0 20 % a 8 out, M1 30 % a 5 nov, M2 40 % a 17 dez) vêm do guião e das slides da aula 1.
-- **Modelo provisório:** `public/models/perseverance_nasa.glb` — NASA 3D Resources, *Mars 2020 Perseverance Rover* (Brian Kumanchik, NASA/JPL-Caltech, domínio público). URL: https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Mars%202020%20Perseverance%20Rover
+- **Modelo de referência:** NASA 3D Resources, *Mars 2020 Perseverance Rover* (Brian Kumanchik, NASA/JPL-Caltech, domínio público). https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Mars%202020%20Perseverance%20Rover
 - **Tudo o que falta aparece a vermelho** no site: texto em `[FALTA: …]` e caixas de imagem «FALTA IMAGEM» com o nome exato do ficheiro esperado.
-- **Mapa de nós do modelo da NASA:** o mapeamento de nós para subsistemas (`nodesNasa` em `subsistemas.json`) foi feito pelo nome dos nós; pode haver peças pequenas no subsistema «errado». É só para o modelo provisório.
 - **Ficheiros em falta de propósito:** `perseverance_dgo.glb`, `perseverance_cad.zip` e todos os renders, capturas e fotografias da equipa.
 - **Logótipo:** o da NASA não é usado. O logótipo DGO foi extraído das slides da UC.
 
@@ -132,7 +131,7 @@ O GitHub recusa ficheiros > 100 MB e avisa acima de 50 MB. Se `perseverance_cad.
 
 ```
 public/
-  models/           perseverance_nasa.glb (provisório) · perseverance_dgo.glb (nosso) · subsistemas/*.glb
+  models/           perseverance_dgo.glb (rover da equipa) · rovers/<destino>.glb (M1)
   media/{hero,historia,m0,m1,m2,equipa,logo,referencias}/
   downloads/        perseverance_cad.zip
   draco/            descodificadores (copiados do Three.js)

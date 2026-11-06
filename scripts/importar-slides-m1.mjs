@@ -37,19 +37,6 @@ const FIGURAS = [
   ['chassis/fusion_e_beegraphy', 'm1_09', 40, 400, 1580, 880],
   ['chassis/fusion', 'm1_10', 44, 170, 1050, 690],
   ['chassis/sliders', 'm1_12', 800, 220, 1510, 790],
-  ['suspensao/analise', 'm1_14', 50, 578, 1380, 820],
-  ['suspensao/genes', 'm1_15', 50, 218, 568, 640],
-  ['suspensao/familias', 'm1_15', 590, 218, 1553, 640],
-  ['suspensao/filtro', 'm1_16', 50, 218, 676, 538],
-  ['suspensao/rhino', 'm1_16', 699, 218, 1175, 538],
-  ['suspensao/danger', 'm1_16', 50, 618, 634, 853],
-  ['suspensao/tita', 'm1_17', 40, 235, 435, 475],
-  ['suspensao/lua', 'm1_17', 440, 235, 835, 475],
-  ['suspensao/europa', 'm1_17', 40, 552, 435, 792],
-  ['suspensao/marte', 'm1_17', 440, 552, 835, 792],
-  ['suspensao/io', 'm1_18', 40, 235, 435, 475],
-  ['suspensao/mercurio', 'm1_18', 440, 235, 835, 475],
-  ['suspensao/venus', 'm1_18', 40, 552, 435, 792],
 ];
 for (const [saida, slide, x0, y0, x1, y1] of FIGURAS) {
   const f = path.join(SAIDA, `${saida}.webp`);

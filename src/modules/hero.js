@@ -100,7 +100,7 @@ export async function initHero(hero) {
   const rover = buildRover(model.gltf);
   let stage;
   try {
-    stage = createStage(canvas, { floorY: -rover.size.y / 2 - 0.02, envIntensity: model.provisional ? 0.85 : 0.5 });
+    stage = createStage(canvas, { floorY: -rover.size.y / 2 - 0.02, envIntensity: 0.5 });
   } catch (err) {
     console.warn('[hero] WebGL recusado', err);
     desistir('A placa gráfica recusou o WebGL, por isso aparece uma imagem em vez da animação. Para a ver, ativa a aceleração por hardware nas definições do navegador.');
@@ -159,7 +159,6 @@ export async function initHero(hero) {
     }
   };
 
-  if (!model.provisional) hero.querySelector('[data-prov]').textContent = 'MODELO DA EQUIPA · DGO';
   hero.classList.add('ready');
   apply();
 

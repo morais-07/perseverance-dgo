@@ -8,8 +8,7 @@ O site mostra modelos em **GLB** (glTF binário). O CAD (Fusion) exporta **STEP*
 
 | Ficheiro (em `public/`) | Para quê |
 |---|---|
-| `models/perseverance_dgo.glb` | Modelo completo. Se existir, **substitui automaticamente** o modelo provisório da NASA (e a etiqueta «Modelo provisório» desaparece). |
-| `models/subsistemas/<id>.glb` | (Opcional) GLB só de um subsistema para o mini viewer da M1. `<id>` = `mastro`, `braco`, `suspensao`, `chassis`, `mmrtg`. |
+| `models/perseverance_dgo.glb` | Modelo completo do rover, usado na animação inicial e no visualizador do M0. |
 | `downloads/perseverance_cad.zip` | Pacote CAD para o botão «Descarregar CAD». Depois de existir, põe `"disponivel": true` em `src/content/site.json` → `download`. |
 
 ### Nós com nome (obrigatório para isolar/explodir)
@@ -83,7 +82,6 @@ Exporta cada subsistema isolado e otimiza-o para **< 3 MB**:
 gltf-transform optimize mastro.glb public/models/subsistemas/mastro.glb --compress draco --texture-compress webp --texture-size 1024
 ```
 
-Se não existir, o mini viewer isola o subsistema a partir do modelo completo (funciona sempre).
 
 ## 4. Pacote CAD para download
 
