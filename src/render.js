@@ -203,7 +203,7 @@ function weekHtml(w) {
     <div>
       <div class="wk-top"><b>SEMANA ${String(w.semana).padStart(2, '0')}</b><span class="dt">${esc(w.data)} · ${esc(w.fase)}</span>${tag}${apres}</div>
       <h4>${esc(w.titulo)}</h4>
-      <p class="tema"><span class="sr">Tema da aula: </span>${esc(w.tema)}</p>
+      <p class="tema">Tema da aula: ${esc(w.tema)}</p>
       ${w.texto.map((t) => `<p>${tbc(t)}</p>`).join('')}
       ${w.ligacao ? `<p class="ext-link"><a href="${asset(w.ligacao.ficheiro)}" target="_blank" rel="noopener noreferrer">${esc(w.ligacao.rotulo)}</a></p>` : ''}
     </div>
@@ -312,6 +312,19 @@ export const m1Head = () => `${titleblock('PRV-M01-005', '5/7')}${msHead('m1', m
 /** Caixa «Decisão e porquê», para mostrar as escolhas da equipa. */
 const decisaoBox = (d) => `<aside class="m1-decisao"><h5>${esc(m1.suspensao.decisaoTitulo)}${d.data ? ` <span class="mono">${esc(d.data)}</span>` : ''}</h5><p>${esc(d.texto)}</p></aside>`;
 
+/** Botões de download ou de ligação de uma secção. Sem `destino`, ficam desativados e avisam que ainda não estão disponíveis. */
+function botoes(lista) {
+  const t = m1.transferencias;
+  return `<div class="m1-botoes rv">${lista
+    .map((b) => {
+      const ic = b.tipo === 'link' ? '<span class="ext-arrow" aria-hidden="true">↗</span>' : icon.down;
+      if (!b.destino) return `<a class="btn ghost" href="#/m1" aria-disabled="true" data-nodownload="1" data-aviso="${esc(t.aviso)}">${ic}<span>${esc(b.rotulo)}<span class="btn-meta">${esc(t.estado)}</span></span></a>`;
+      const alvo = b.tipo === 'link' ? `href="${esc(b.destino)}" target="_blank" rel="noopener noreferrer"` : `href="${asset(b.destino)}" download`;
+      return `<a class="btn ghost" ${alvo}>${ic}<span>${esc(b.rotulo)}</span></a>`;
+    })
+    .join('')}</div>`;
+}
+
 /** Figura que se pode ampliar (usa a mesma caixa de luz das galerias). */
 const fig = (grupo, file, alt, legenda = '') => `<figure class="m1-fig rv">
     <button type="button" class="gal-t" data-gal="${grupo}" data-full="${esc(file)}" data-alt="${esc(alt)}" aria-label="Ampliar: ${esc(alt)}"><img src="${asset(file)}" alt="" loading="lazy" decoding="async" /></button>
@@ -328,57 +341,129 @@ export function m1Estrategia() {
     <p class="m1-fecho rv">${esc(e.fecho)}</p></div>`;
 }
 
+/** Texto com `nomes de variáveis` em código. */
+const cod = (t) => tbc(t).replace(/`([^`]+)`/g, '<code>$1</code>');
+const comTitulo = (itens) => itens.map(([t, x]) => `<li><b>${esc(t)}</b> ${cod(x)}</li>`).join('');
+const lista = (x) => `<ul>${x.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`;
+
+/** Imagem com legenda: mostra o aviso habitual enquanto o ficheiro não existir. */
+const imgLeg = (i) => `<figure class="m1-slot rv">${slot(i)}<figcaption>${cod(i.legenda)}</figcaption></figure>`;
+const tabela = (legenda, colunas, linhas) => `<div class="table-wrap"><table>
+    <caption class="sr">${esc(legenda)}</caption>
+    <thead><tr>${colunas.map((c) => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead>
+    <tbody>${linhas.map(([a, ...r]) => `<tr><th scope="row">${a}</th>${r.map((x) => `<td>${x}</td>`).join('')}</tr>`).join('')}</tbody>
+  </table></div>`;
+const subt = (t) => `<h4 class="m1-lista-t m1-sep-p">${esc(t)}</h4>`;
+
+/** Início de cada componente: o mesmo em todos, para se ver logo que a página mudou de componente. */
+const parteHead = (titulo, responsavel, botoesLista) => `<header class="m1-parte rv"><h3>${esc(titulo)}</h3><p class="m1-quem">${esc(responsavel)}</p>${botoes(botoesLista)}</header>`;
+
+/** Um passo numerado, com a mesma estrutura em todos os componentes. */
+const pilula = (n, t) => `<h4 class="m1-pilula"><span>${n}</span>${esc(t)}</h4>`;
+function passoM1(n, { titulo, resumo, decisao = '', lado = '', abaixo = '', detalhe = '' }) {
+  const texto = `${resumo}${decisao}`;
+  return `<li class="m1-passo rv">
+    ${pilula(n, titulo)}
+    ${lado ? `<div class="m1-duas m1-duas-topo"><div>${texto}</div>${lado}</div>` : texto}
+    ${abaixo}
+    ${detalhe ? `<details class="m1-det"><summary>${esc(m1.suspensao.detalheBotao)}</summary>${detalhe}</details>` : ''}
+  </li>`;
+}
+const p = (t) => `<p>${t}</p>`;
+
 export function m1Braco() {
   const b = m1.braco;
-  const lista = (x) => `<ul>${x.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`;
-  return `<div class="block"><h3 class="rv">${esc(b.titulo)}</h3><p class="m1-quem rv">${esc(b.responsavel)}</p><p class="rv">${esc(b.texto)}</p>
-    <div class="m1-duas">
-      <div class="rv"><h4 class="m1-sub">${esc(b.desafioTitulo)}</h4><p>${esc(b.desafio)}</p>${decisaoBox({ texto: b.decisao })}</div>
-      ${fig('m1-braco', 'media/m1/braco/parametros.webp', 'Braço no Fusion, com o painel de parâmetros dos tubos.')}
-    </div>
-    <h4 class="m1-sub m1-sep rv">${esc(b.regrasTitulo)}</h4><p class="rv">${esc(b.regras)}</p>
-    <div class="m1-braco-regras">
-      <figure class="m1-fig m1-foto rv"><button type="button" class="gal-t" data-gal="m1-braco" data-full="media/m1/braco/componentes.webp" data-alt="${esc(b.fotoAlt)}" aria-label="Ampliar: ${esc(b.fotoAlt)}"><img src="${asset('media/m1/braco/componentes.webp')}" alt="" loading="lazy" /></button></figure>
-      <div class="rv">
-        <h4 class="m1-lista-t">${esc(b.legendaTitulo)}</h4>
-        <ul class="m1-legenda">${b.legenda.map(([n, c, cor]) => `<li><i style="background:${cor}" aria-hidden="true"></i><b>${esc(n)}:</b> ${esc(c)}</li>`).join('')}</ul>
-      </div>
-      <div class="m1-listas-col m1-listas rv">
-        <div><h4>Para variar o alcance</h4>${lista(b.alcance)}<p class="note">${esc(b.alcanceNota)}</p></div>
-        <div><h4>Para variar a robustez</h4>${lista(b.robustez)}</div>
-        <p>${esc(b.furos)}</p>
-      </div>
-    </div>
-    <h4 class="m1-sub m1-sep rv">${esc(b.variantes)}</h4>
-    <div class="m1-grade m1-grade-braco">${destinos.destinos.map((x) => fig('m1-bracos', `media/m1/braco/${x.id}.webp`, `Braço do rover para ${x.nome}.`, x.nome)).join('')}</div></div>`;
+  const v = b.valores;
+  const t = b.passosTitulos;
+  const destinosB = destinos.destinos;
+  const passos = [
+    { titulo: t[0], resumo: p(esc(b.texto)), lado: fig('m1-braco', 'media/m1/braco/parametros.webp', 'Braço no Fusion, com o painel de parâmetros dos tubos.') },
+    { titulo: t[1], resumo: p(esc(b.desafio)), decisao: decisaoBox({ texto: b.decisao }) },
+    {
+      titulo: t[2],
+      resumo: p(esc(b.regras)),
+      lado: `<div class="m1-braco-foto">
+        <figure class="m1-fig m1-foto"><button type="button" class="gal-t" data-gal="m1-braco" data-full="media/m1/braco/componentes.webp" data-alt="${esc(b.fotoAlt)}" aria-label="Ampliar: ${esc(b.fotoAlt)}"><img src="${asset('media/m1/braco/componentes.webp')}" alt="" loading="lazy" /></button></figure>
+        <div><h5 class="m1-lista-t">${esc(b.legendaTitulo)}</h5><ul class="m1-legenda">${b.legenda.map(([n, c, cor]) => `<li><i style="background:${cor}" aria-hidden="true"></i><b>${esc(n)}:</b> ${esc(c)}</li>`).join('')}</ul><p class="note">${esc(b.legendaNota)}</p></div>
+      </div>`,
+      detalhe: `<div class="m1-listas"><div><h4>Para variar o alcance</h4>${lista(b.alcance)}<p class="note">${esc(b.alcanceNota)}</p></div><div><h4>Para variar a robustez</h4>${lista(b.robustez)}</div></div>${p(cod(b.furos))}`,
+    },
+    {
+      titulo: t[3],
+      resumo: p(esc(b.variantesTexto)),
+      abaixo: `<div class="m1-grade m1-grade-braco">${destinosB.map((x) => fig('m1-bracos', `media/m1/braco/${x.id}.webp`, `Braço do rover para ${x.nome}.`, x.nome)).join('')}</div>`,
+      detalhe: `${subt(v.titulo)}${p(esc(v.texto))}
+        ${tabela(v.titulo, [v.coluna, ...destinosB.map((x) => x.nome)], v.linhas.map(([k, rot, dec]) => [esc(rot), ...destinosB.map((x) => `<span class="mono">${fmt(x.braco[k], dec && x.braco[k] % 1 ? dec : 0)}</span>`)]))}
+        ${subt(v.justificacaoTitulo)}<p class="note">${esc(v.justificacaoNota)}</p>
+        ${tabela(v.justificacaoTitulo, v.justificacaoColunas, destinosB.map((x) => [esc(x.nome), esc(v.justificacao[x.id])]))}`,
+    },
+  ];
+  return `<div class="block">${parteHead(b.titulo, b.responsavel, m1.transferencias.braco)}
+    <ol class="m1-passos">${passos.map((x, i) => passoM1(i + 1, x)).join('')}</ol></div>`;
 }
 
 export function m1Chassis() {
   const c = m1.chassis;
+  const d = c.fusionDetalhe;
+  const t = c.passosTitulos;
   const seeds = [['original', 'Design original (seed 0)'], ['6', 'Seed 6'], ['10', 'Seed 10'], ['846', 'Seed 846']];
-  return `<div class="block"><h3 class="rv">${esc(c.titulo)}</h3><p class="rv">${esc(c.texto)}</p>
-    ${fig('m1-chassis', 'media/m1/chassis/fusion_e_beegraphy.webp', 'À esquerda, o chassis paramétrico do Fusion; à direita, o chassis orgânico do BeeGraphy.', 'À esquerda, o chassis do Fusion; à direita, o do BeeGraphy.')}
-    <div class="m1-duas m1-sep">
-      ${fig('m1-chassis', 'media/m1/chassis/fusion.webp', 'Chassis no Fusion, com o painel de parâmetros.')}
-      <div class="rv"><h4 class="m1-sub">${esc(c.fusion.titulo)}</h4><p>${esc(c.fusion.texto)}</p></div>
-    </div>
-    <div class="m1-duas m1-sep">
-      ${fig('m1-chassis', 'media/m1/chassis/nos.webp', 'Grafo de nós do chassis no BeeGraphy.')}
-      <div class="rv"><h4 class="m1-sub">${esc(c.beegraphy.titulo)}</h4><p>${esc(c.beegraphy.texto)}</p></div>
-    </div>
-    <div class="m1-duas m1-sep">
-      <div class="m1-listas m1-listas-col rv"><div><h4>O que pode mudar</h4><ul>${c.muda.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
-        <div><h4>O que fica sempre igual</h4><ul>${c.fixo.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div></div>
-      ${fig('m1-chassis', 'media/m1/chassis/sliders.webp', 'Chassis no BeeGraphy, com os sliders dos parâmetros.')}
-    </div>
-    <h4 class="m1-sub m1-sep rv">${esc(c.valores.titulo)}</h4><p class="rv">${esc(c.valores.texto)}</p>
-    <div class="table-wrap rv"><table>
-      <caption class="sr">${esc(c.valores.titulo)}</caption>
-      <thead><tr><th scope="col">Slider</th>${destinos.destinos.filter((x) => x.chassis).map((x) => `<th scope="col">${esc(x.nome)}</th>`).join('')}</tr></thead>
-      <tbody>${c.valores.linhas.map(([k, r, dec]) => `<tr><th scope="row">${esc(r)}</th>${destinos.destinos.filter((x) => x.chassis).map((x) => `<td class="mono">${fmt(x.chassis[k], dec)}</td>`).join('')}</tr>`).join('')}</tbody>
-    </table></div>
-    <h4 class="m1-sub m1-sep rv">${esc(c.seeds.titulo)}</h4><p class="rv">${esc(c.seeds.texto)}</p>
-    <div class="m1-grade m1-grade-4">${seeds.map(([f, r]) => fig('m1-seeds', `media/m1/chassis/seed_${f}.webp`, `Chassis gerado no BeeGraphy: ${r}.`, r)).join('')}</div></div>`;
+  const comValores = destinos.destinos.filter((x) => x.chassis);
+  const v = c.valores;
+  const r = c.seeds.randomizer;
+  const passos = [
+    { titulo: t.dois, resumo: p(esc(c.texto)), abaixo: fig('m1-chassis', 'media/m1/chassis/fusion_e_beegraphy.webp', 'À esquerda, o chassis paramétrico do Fusion; à direita, o chassis orgânico do BeeGraphy.', 'À esquerda, o chassis do Fusion; à direita, o do BeeGraphy.') },
+    {
+      titulo: c.fusion.titulo,
+      resumo: `${p(esc(d.intro))}${p(esc(c.fusion.texto))}`,
+      lado: fig('m1-chassis', 'media/m1/chassis/fusion.webp', 'Chassis no Fusion, com o painel de parâmetros.'),
+      detalhe: `${subt(d.valores.titulo)}<div class="m1-duas m1-duas-topo">${p(cod(d.valores.texto))}${imgLeg(d.valores.img)}</div>
+        ${subt(d.alterar.titulo)}${p(esc(d.alterar.texto))}`,
+    },
+    {
+      titulo: t.painel,
+      resumo: p(esc(d.painel.texto)),
+      lado: imgLeg(d.painel.img),
+      detalhe: `${subt(d.painel.comandosLegenda)}${tabela(d.painel.comandosLegenda, d.painel.colunas, d.painel.comandos.map(([x, y]) => [esc(x), esc(y)]))}
+        ${subt(d.painel.faixasTitulo)}${tabela(d.painel.faixasTitulo, d.painel.faixasColunas, d.painel.faixas.map(([x, y, z]) => [`<code>${esc(x)}</code>`, esc(y), esc(z)]))}`,
+    },
+    { titulo: t.configuracoes, resumo: p(esc(d.configuracoes.texto)), abaixo: `<div class="m1-grade m1-grade-det">${d.configuracoes.par.map(imgLeg).join('')}</div>` },
+    {
+      titulo: c.beegraphy.titulo,
+      resumo: p(esc(c.beegraphy.texto)),
+      lado: fig('m1-chassis', 'media/m1/chassis/nos.webp', 'Grafo de nós do chassis no BeeGraphy.'),
+      detalhe: `${subt(c.construcao.titulo)}<ol class="m1-fluxo">${c.construcao.passos.map(([x, y]) => `<li><b>${esc(x)}</b><span>${esc(y)}</span></li>`).join('')}</ol>
+        <p class="m1-sep-p">${esc(c.construcao.formulaTexto)}</p><pre class="m1-codigo"><code>${esc(c.construcao.formula)}</code></pre>`,
+    },
+    {
+      titulo: t.difícil,
+      resumo: p(esc(c.dificil.resumo)),
+      decisao: `<aside class="m1-decisao"><h5>${esc(m1.suspensao.decisaoTitulo)}</h5><ul class="m1-marcas">${comTitulo(c.decisoes)}</ul></aside>`,
+      detalhe: `<ul class="m1-marcas">${comTitulo(c.dificil.itens)}</ul>`,
+    },
+    {
+      titulo: t.valores,
+      resumo: p(esc(v.texto)),
+      lado: fig('m1-chassis', 'media/m1/chassis/sliders.webp', 'Chassis no BeeGraphy, com os sliders dos parâmetros.'),
+      detalhe: `<div class="m1-listas"><div><h4>O que pode mudar</h4>${lista(c.muda)}</div><div><h4>O que fica sempre igual</h4>${lista(c.fixo)}<p class="note">${esc(c.fixoNota)}</p></div></div>
+        ${subt(v.titulo)}${tabela(v.titulo, ['Slider', ...comValores.map((x) => x.nome)], v.linhas.map(([k, rot, dec]) => [esc(rot), ...comValores.map((x) => `<span class="mono">${fmt(x.chassis[k], dec)}</span>`)]))}
+        <p class="note m1-sep-p">${cod(v.iguais)}</p>
+        ${subt(v.justificacaoTitulo)}<p class="note">${esc(v.justificacaoNota)}</p>
+        ${tabela(v.justificacaoTitulo, ['Destino', v.justificacaoTitulo], comValores.map((x) => [esc(x.nome), esc(v.justificacao[x.id])]))}`,
+    },
+    {
+      titulo: t.seeds,
+      resumo: p(esc(c.seeds.texto)),
+      abaixo: `<div class="m1-grade m1-grade-4">${seeds.map(([f, rot]) => fig('m1-seeds', `media/m1/chassis/seed_${f}.webp`, `Chassis gerado no BeeGraphy: ${rot}.`, rot)).join('')}</div>`,
+      detalhe: `<div class="m1-duas m1-duas-topo">
+          <div>${subt(r.titulo)}${p(cod(r.texto))}<pre class="m1-codigo"><code>${esc(r.passo)}</code></pre><ul class="m1-marcas">${r.notas.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
+          <div class="m1-fig-pequena">${fig('m1-randomizer', 'media/m1/chassis/randomizer.webp', r.alt, r.legenda)}</div>
+        </div>
+        ${tabela('Intervalos do randomizer', ['Variável', 'Mínimo', 'Máximo', 'Passo'], r.intervalos.map(([n, a, b, x]) => [esc(n), `<span class="mono">${esc(a)}</span>`, `<span class="mono">${esc(b)}</span>`, `<span class="mono">${esc(x)}</span>`]))}
+        ${subt(r.codigoBotao)}<pre class="m1-codigo"><code>${esc(r.codigo)}</code></pre>`,
+    },
+  ];
+  return `<div class="block">${parteHead(c.titulo, c.responsavel, m1.transferencias.chassis)}
+    <ol class="m1-passos">${passos.map((x, i) => passoM1(i + 1, x)).join('')}</ol></div>`;
 }
 
 export function m1Suspensao() {
@@ -389,22 +474,18 @@ export function m1Suspensao() {
   const sinal = (v) => (v > 0 ? `+${v}` : `−${Math.abs(v)}`);
   const r = s.resultados;
   const c = s.conclusoes;
-  const pilula = (n, t) => `<h4 class="m1-pilula"><span>${n}</span>${esc(t)}</h4>`;
-  const passo = (p, i) => {
-    const [princ, ...resto] = p.media;
-    return `<li class="m1-passo rv">
-      ${pilula(i + 1, p.titulo)}
-      <div class="m1-duas m1-duas-topo">
-        <div><p>${esc(p.resumo)}</p>${decisaoBox(p.decisao)}</div>
-        ${fig(`m1-passo${i}`, princ.file, princ.alt, princ.legenda)}
-      </div>
-      <details class="m1-det"><summary>${esc(s.detalheBotao)}</summary>
-        <ul>${p.detalhe.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
-        ${resto.length ? `<div class="m1-grade m1-grade-det">${resto.map((f) => fig(`m1-passo${i}`, f.file, f.alt, f.legenda)).join('')}</div>` : ''}
-      </details>
-    </li>`;
+  const passo = (x, i) => {
+    const [princ, ...resto] = x.media;
+    return passoM1(i + 1, {
+      titulo: x.titulo,
+      resumo: p(esc(x.resumo)),
+      decisao: decisaoBox(x.decisao),
+      lado: fig(`m1-passo${i}`, princ.file, princ.alt, princ.legenda),
+      detalhe: `<ul>${x.detalhe.map((y) => `<li>${esc(y)}</li>`).join('')}</ul>
+        ${resto.length ? `<div class="m1-grade m1-grade-det">${resto.map((f) => fig(`m1-passo${i}`, f.file, f.alt, f.legenda)).join('')}</div>` : ''}`,
+    });
   };
-  return `<div class="block"><h3 class="rv">${esc(s.titulo)}</h3><p class="m1-quem rv">${esc(s.responsavel)}</p>
+  return `<div class="block">${parteHead(s.titulo, s.responsavel, m1.transferencias.suspensao)}
     <p class="m1-destaque m1-apoio rv">${esc(s.apoio)}</p>
     <p class="rv">${esc(s.m0m1)} <a href="#/m0">${esc(s.m0m1Link)}</a>.</p>
     <ol class="m1-passos">${s.passos.map(passo).join('')}

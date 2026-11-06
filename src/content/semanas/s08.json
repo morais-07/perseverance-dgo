@@ -5,8 +5,8 @@
   "titulo": "Apresentação da fase 1",
   "tema": "Apresentação M1 e entrega do projeto da fase 1 (30 %), com atualização do website.",
   "texto": [
-    "Apresentámos a estratégia de um rover para cada planeta, o braço, o chassis e a suspensão, com as conclusões e o plano para o M2.",
-    "Nuno: suspensão completa para 7 destinos (de −51 % em Titã a +35 % em Vénus) e plano de otimização para o M2."
+    "Apresentámos a estratégia de um rover para cada planeta e o trabalho nos três subsistemas: o braço, com 7 configurações a partir de um único modelo; o chassis, no Fusion e no BeeGraphy; e a suspensão completa para 7 destinos, de −51 % em Titã a +35 % em Vénus.",
+    "Fechámos com as conclusões e o plano para o M2."
   ],
   "etiqueta": null,
   "apresentacao": true,

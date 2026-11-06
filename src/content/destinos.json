@@ -76,7 +76,6 @@
       "url": "https://science.nasa.gov/venus/venus-facts/"
     }
   ],
-  "adaptacaoModelo": "[FALTA: o que muda no braço de {nome}]",
   "destinos": [
     {
       "id": "marte",
@@ -103,6 +102,19 @@
         "matJ": "Al 7075 CNC",
         "braco": 0.48,
         "fs": 3.53
+      },
+      "braco": {
+        "dTubo1": 77,
+        "compTubo1": 613,
+        "compTubo2": 485,
+        "dTubo2": 79,
+        "escala7": 1,
+        "escala8": 1,
+        "escala9": 1,
+        "c6Nr": 6,
+        "c6D": 50,
+        "c3Nr": 6,
+        "c3D": 50
       }
     },
     {
@@ -140,6 +152,19 @@
         "largAnel": 12,
         "raioLongarina": 9,
         "nLongarinas": 4
+      },
+      "braco": {
+        "dTubo1": 60,
+        "compTubo1": 613,
+        "compTubo2": 785,
+        "dTubo2": 59,
+        "escala7": 0.7,
+        "escala8": 1,
+        "escala9": 0.6,
+        "c6Nr": 3,
+        "c6D": 30,
+        "c3Nr": 3,
+        "c3D": 30
       }
     },
     {
@@ -177,6 +202,19 @@
         "largAnel": 16,
         "raioLongarina": 11,
         "nLongarinas": 5
+      },
+      "braco": {
+        "dTubo1": 77,
+        "compTubo1": 613,
+        "compTubo2": 485,
+        "dTubo2": 79,
+        "escala7": 1,
+        "escala8": 1,
+        "escala9": 0.8,
+        "c6Nr": 6,
+        "c6D": 50,
+        "c3Nr": 6,
+        "c3D": 50
       }
     },
     {
@@ -214,6 +252,19 @@
         "largAnel": 14,
         "raioLongarina": 12,
         "nLongarinas": 6
+      },
+      "braco": {
+        "dTubo1": 77,
+        "compTubo1": 700,
+        "compTubo2": 800,
+        "dTubo2": 79,
+        "escala7": 1,
+        "escala8": 1,
+        "escala9": 0.8,
+        "c6Nr": 8,
+        "c6D": 60,
+        "c3Nr": 5,
+        "c3D": 50
       }
     },
     {
@@ -251,6 +302,19 @@
         "largAnel": 10,
         "raioLongarina": 8,
         "nLongarinas": 4
+      },
+      "braco": {
+        "dTubo1": 77,
+        "compTubo1": 500,
+        "compTubo2": 600,
+        "dTubo2": 79,
+        "escala7": 1,
+        "escala8": 1,
+        "escala9": 0.65,
+        "c6Nr": 10,
+        "c6D": 35,
+        "c3Nr": 4,
+        "c3D": 45
       }
     },
     {
@@ -288,6 +352,19 @@
         "largAnel": 18,
         "raioLongarina": 13,
         "nLongarinas": 6
+      },
+      "braco": {
+        "dTubo1": 77,
+        "compTubo1": 613,
+        "compTubo2": 485,
+        "dTubo2": 79,
+        "escala7": 1,
+        "escala8": 1,
+        "escala9": 0.8,
+        "c6Nr": 6,
+        "c6D": 50,
+        "c3Nr": 6,
+        "c3D": 50
       }
     },
     {
@@ -325,6 +402,19 @@
         "largAnel": 24,
         "raioLongarina": 16,
         "nLongarinas": 6
+      },
+      "braco": {
+        "dTubo1": 100,
+        "compTubo1": 650,
+        "compTubo2": 485,
+        "dTubo2": 95,
+        "escala7": 1.2,
+        "escala8": 1,
+        "escala9": 0.9,
+        "c6Nr": 6,
+        "c6D": 50,
+        "c3Nr": 6,
+        "c3D": 50
       }
     }
   ],

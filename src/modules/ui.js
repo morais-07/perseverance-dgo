@@ -189,7 +189,7 @@ export function initDownloadButtons(msg) {
         toast.setAttribute('role', 'status');
         document.body.appendChild(toast);
       }
-      toast.textContent = msg;
+      toast.textContent = a.dataset.aviso || msg;
       toast.classList.add('show');
       clearTimeout(timer);
       timer = setTimeout(() => toast.classList.remove('show'), 5000);
@@ -250,7 +250,7 @@ export function initLightbox() {
       const group = [...document.querySelectorAll(`.gal-t[data-gal="${t.dataset.gal}"]`)];
       return open(group.map((g) => ({ src: asset(g.dataset.full), alt: g.dataset.alt })), group.indexOf(t), t);
     }
-    const fig = e.target.closest('.week .slot.has-media');
+    const fig = e.target.closest('.week .slot.has-media, .m1-slot .slot.has-media');
     if (fig) {
       const im = fig.querySelector('img');
       if (im?.src) open([{ src: im.src, alt: im.alt }], 0, fig);

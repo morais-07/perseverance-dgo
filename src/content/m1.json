@@ -44,7 +44,7 @@
     "fecho": "Três caminhos, três ferramentas e o mesmo motor: as condições de cada planeta. No fim, convergem num rover completo para cada um dos sete destinos."
   },
   "braco": {
-    "titulo": "Braço: um modelo, sete configurações",
+    "titulo": "Braço: um modelo para sete destinos",
     "responsavel": "David Coelho",
     "texto": "No M1, o braço foi parametrizado no Autodesk Fusion. O objetivo era criar, a partir de um único modelo CAD, 7 configurações diferentes, uma para cada corpo celeste. Para isso, todas as dimensões do braço passaram a ser variáveis.",
     "desafioTitulo": "O que foi difícil",
@@ -62,13 +62,13 @@
       "Diâmetro do tubo 2: muda também, em escala relativa, os outros corpos do componente 6",
       "Fatores de escala 1, 2, 7, 8 e 9: mudam, em escala relativa, os corpos do componente com o mesmo número"
     ],
-    "furos": "Para reduzir a massa, os tubos 1 e 2 têm furos transversais, com o número e o diâmetro controlados por variáveis próprias.",
+    "furos": "Para reduzir a massa, os tubos 1 e 2 têm furos transversais. O número e o diâmetro são controlados por `C3_nr_furos` e `C3_D_furos` no tubo 1, e por `C6_nr_furos` e `C6_D_furos` no tubo 2.",
     "legendaTitulo": "Os componentes do braço",
     "legenda": [
       [
         "Componente 1",
-        "suporte preto e rótulas cinzentas",
-        "#3a3a3f"
+        "rótulas cinzentas",
+        "#8a8a8f"
       ],
       [
         "Componente 2",
@@ -94,10 +94,100 @@
         "Componente 8",
         "disco preto",
         "#1d1d20"
+      ],
+      [
+        "Componente 9",
+        "suporte preto",
+        "#1d1d20"
       ]
     ],
-    "fotoAlt": "Braço do rover com cada componente numa cor: suporte preto e rótulas cinzentas, azul, amarelo, verde, vermelho e disco preto.",
-    "variantes": "As variantes dos sete destinos"
+    "fotoAlt": "Braço do rover com cada componente numa cor: rótulas cinzentas, azul, amarelo, verde, vermelho, disco preto e suporte preto.",
+    "variantes": "As variantes dos sete destinos",
+    "legendaNota": "Os componentes 4 e 5 foram integrados no componente 6.",
+    "valores": {
+      "titulo": "O braço de cada destino",
+      "texto": "Valores das variáveis usados em cada configuração.",
+      "coluna": "Variável",
+      "linhas": [
+        [
+          "dTubo1",
+          "Diâmetro do tubo 1 (mm)",
+          0
+        ],
+        [
+          "compTubo1",
+          "Comprimento do tubo 1 (mm)",
+          0
+        ],
+        [
+          "dTubo2",
+          "Diâmetro do tubo 2 (mm)",
+          0
+        ],
+        [
+          "compTubo2",
+          "Comprimento do tubo 2 (mm)",
+          0
+        ],
+        [
+          "escala7",
+          "Fator de escala 7",
+          2
+        ],
+        [
+          "escala8",
+          "Fator de escala 8",
+          2
+        ],
+        [
+          "escala9",
+          "Fator de escala 9",
+          2
+        ],
+        [
+          "c3Nr",
+          "Furos no tubo 1 (número)",
+          0
+        ],
+        [
+          "c3D",
+          "Diâmetro dos furos do tubo 1 (mm)",
+          0
+        ],
+        [
+          "c6Nr",
+          "Furos no tubo 2 (número)",
+          0
+        ],
+        [
+          "c6D",
+          "Diâmetro dos furos do tubo 2 (mm)",
+          0
+        ]
+      ],
+      "justificacaoTitulo": "Porque estes valores",
+      "justificacaoNota": "Escolha qualitativa, a partir das condições de cada destino.",
+      "justificacaoColunas": [
+        "Destino",
+        "Porque estes valores"
+      ],
+      "justificacao": {
+        "marte": "É a referência do projeto, por isso mantém os tubos e os furos de base.",
+        "lua": "A gravidade é baixa, por isso os tubos ficam muito mais finos. O tubo 2 fica mais comprido para ganhar alcance. Com menos parede, há menos furos, e mais pequenos.",
+        "mercurio": "A gravidade é muito próxima da de Marte, por isso mantém os tubos e os furos.",
+        "europa": "A gravidade baixa permite o maior alcance dos sete, com os dois tubos mais compridos. Mantém o diâmetro para as cargas laterais do gelo, e o tubo 2 leva mais furos para compensar a massa.",
+        "tita": "As cargas são suaves, por isso é o caso mais fácil: tubos mais curtos e o tubo 2 com o maior número de furos, para tirar mais massa.",
+        "io": "O terreno é irregular, por isso mantém a robustez e o alcance de base, sem tubos mais compridos.",
+        "venus": "É o caso limite, com a gravidade mais alta: tem os tubos mais grossos e o maior fator de escala 7, para aguentar as cargas."
+      }
+    },
+    "passosTitulos": [
+      "Um modelo, sete configurações",
+      "De modelo fixo a modelo paramétrico",
+      "Alcance e robustez",
+      "As variantes de cada destino"
+    ],
+    "variantesTexto": "Cada destino tem os seus valores de tubos, escalas e furos. Em «Ver detalhe» estão os valores e o porquê de cada escolha."
   },
   "chassis": {
     "titulo": "Chassis: dois caminhos",
@@ -123,7 +213,58 @@
     ],
     "seeds": {
       "titulo": "Designs por seed",
-      "texto": "Uma seed alimenta um randomizer, que sorteia 10 variáveis dentro dos limites definidos. A seed 0 dá o design original; de 1 a 1000 dá um design aleatório, sempre igual para o mesmo número."
+      "texto": "Uma seed alimenta um randomizer, que sorteia 10 variáveis dentro dos limites definidos. A seed 0 dá o design original; de 1 a 1000 dá um design aleatório, sempre igual para o mesmo número.",
+      "randomizer": {
+        "titulo": "Como funciona o randomizer",
+        "texto": "O nó de JavaScript `Randomizer` fica entre os sliders e o resto do modelo. Com a seed 0, deixa passar os valores dos sliders. Com outra seed, um gerador pseudoaleatório (mulberry32) cria uma sequência de números, e cada variável usa o número seguinte para obter um valor dentro do seu intervalo:",
+        "passo": "Math.round((min + r * (max - min)) / passo) * passo",
+        "notas": [
+          "O número de costelas, a espessura, os anéis e o raio das longarinas não são sorteados e continuam a vir dos sliders.",
+          "O randomizer serve para explorar formas. Os chassis dos rovers não são sorteados: usam a seed 0 e os valores escolhidos para cada destino, o que está de acordo com «o planeta é o motor»."
+        ],
+        "legenda": "O grupo Randomizer_Designs no BeeGraphy, com a seed 693.",
+        "alt": "Grupo Randomizer_Designs no BeeGraphy: o slider da seed, com o valor 693, ligado ao nó Randomizer e às suas variáveis.",
+        "intervalos": [
+          [
+            "Comprimento (mm)",
+            "1400",
+            "2200",
+            "10"
+          ],
+          [
+            "Largura (mm)",
+            "900",
+            "1400",
+            "10"
+          ],
+          [
+            "Altura (mm)",
+            "450",
+            "700",
+            "10"
+          ],
+          [
+            "Larguras frente, meio e trás (proporção)",
+            "0,5",
+            "1",
+            "0,05"
+          ],
+          [
+            "Alturas frente, meio e trás (proporção)",
+            "0,5",
+            "1",
+            "0,05"
+          ],
+          [
+            "Número de longarinas",
+            "3",
+            "6",
+            "1"
+          ]
+        ],
+        "codigoBotao": "Ver o código completo",
+        "codigo": "(inp) => {\n  // Randomizer: seed 0 = valores dos sliders; outro seed = design aleatorio repetivel\n  const v = (o) => (o && o.value !== undefined ? o.value : o);\n  const I = {};\n  for (const k in inp) I[k] = v(inp[k]);\n  const n = (val) => ({ type: Type.Number, meta: {}, value: val });\n  // Intervalos seguros: [nome, min, max, passo]\n  const R = [\n    ['comprimento', 1400, 2200, 10],\n    ['largura', 900, 1400, 10],\n    ['altura', 450, 700, 10],\n    ['larg_frente', 0.5, 1, 0.05],\n    ['larg_meio', 0.5, 1, 0.05],\n    ['larg_tras', 0.5, 1, 0.05],\n    ['alt_frente', 0.5, 1, 0.05],\n    ['alt_meio', 0.5, 1, 0.05],\n    ['alt_tras', 0.5, 1, 0.05],\n    ['n_longarinas', 3, 6, 1],\n  ];\n  // Gerador com seed (mulberry32), para o mesmo numero dar sempre o mesmo design\n  const seed = Math.round(I.seed);\n  let s = (seed * 2654435761) >>> 0;\n  const rnd = () => {\n    s = (s + 0x6D2B79F5) >>> 0;\n    let t = s;\n    t = Math.imul(t ^ (t >>> 15), t | 1);\n    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);\n    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;\n  };\n  const res = {};\n  R.forEach(([k, a, b, p]) => {\n    const r = rnd();\n    const val = seed === 0 ? I[k] : Math.round((a + r * (b - a)) / p) * p;\n    res['r_' + k] = n(val);\n  });\n  return res;\n}"
+      }
     },
     "valores": {
       "titulo": "O chassis de cada destino",
@@ -174,7 +315,213 @@
           "Número de longarinas",
           0
         ]
+      ],
+      "justificacaoTitulo": "Porque estes valores",
+      "justificacaoNota": "Escolha qualitativa, a partir das condições de cada destino. Não foi feito cálculo estrutural.",
+      "justificacao": {
+        "lua": "A gravidade é baixa, por isso leva menos material. Os anéis ficam só um pouco mais finos, porque o ciclo térmico provoca fadiga.",
+        "mercurio": "A gravidade é quase igual à de Marte, por isso mantém o tamanho. Costelas e anéis mais robustos para a grande variação de temperatura.",
+        "europa": "Pontas mais largas para dar estabilidade no gelo. A gaiola fica completa e os tubos mais grossos, para as cargas laterais.",
+        "tita": "É o caso mais fácil, por isso é o mais leve dos seis. É também o mais comprido, porque as cargas são suaves.",
+        "io": "Mais curto para o terreno irregular, com mais costelas e secções altas para aguentar os impactos.",
+        "venus": "É o caso limite, com a gravidade mais alta: é o mais curto e o mais rígido, com os maiores valores de quase todas as secções."
+      },
+      "iguais": "Valores iguais nos seis chassis: seed 0, `largura` 1100, `altura` 550, `larg_meio` 1, `alt_meio` 0,8, `susp_pos_X` 0,5, `susp_dist_topo` 218, `cima_dist_X` 317."
+    },
+    "responsavel": "Rafael Morais",
+    "fixoNota": "Vale para os chassis feitos com a seed 0 e os valores fixos. Nos designs por seed, a largura também é sorteada, por isso os 1198 mm não se mantêm.",
+    "construcao": {
+      "titulo": "Como o modelo é construído",
+      "passos": [
+        [
+          "Casco",
+          "Três elipses (frente, meio e trás) e um loft de grau 2 que passa por elas. O resultado é uma superfície, não um sólido."
+        ],
+        [
+          "Costelas",
+          "Planos ao longo do comprimento cortam o casco. Cada curva é deslocada para dentro para formar um anel, que depois é extrudido."
+        ],
+        [
+          "Longarinas",
+          "Um plano longitudinal roda à volta do eixo X e corta o casco. Os tubos seguem essas curvas e as pontas são fechadas."
+        ],
+        [
+          "Tampas e placa",
+          "Tampa da frente, tampa de trás e placa do braço."
+        ],
+        [
+          "Suportes",
+          "Suspensão (dois), suporte de cima, braço e câmara. Cada grupo segue o mesmo esquema: sliders, nó de cálculo em JavaScript e geometria."
+        ],
+        [
+          "Recortes",
+          "Retira às costelas e às longarinas o volume ocupado pelos suportes, pelas tampas e pela placa."
+        ]
+      ],
+      "formulaTexto": "Fórmula que os nós de cálculo usam para encontrar o casco, com t = X / comprimento e f0, f1, f2 os semi-eixos da frente, do meio e de trás:",
+      "formula": "q(t) = f0·(2t² − 3t + 1) + f1·(4t − 4t²) + f2·(2t² − t)"
+    },
+    "dificil": {
+      "titulo": "O que foi difícil",
+      "itens": [
+        [
+          "Peças sobrepostas.",
+          "Como os suportes entram no casco, intersetavam costelas e longarinas. Medi peça a peça o volume de cada interseção. Por exemplo, a suspensão entrava em 4 costelas, com cerca de 20 200 mm³ em cada uma."
+        ],
+        [
+          "Medições pouco fiáveis.",
+          "O nó de volume não é fiável nos anéis das costelas. Na primeira costela deu 733 862 mm³, quando as medidas apontavam para cerca de 168 000 mm³. Passei a medir as interseções diretamente."
+        ],
+        [
+          "Tempo de cálculo.",
+          "Depois de mudar a seed, o modelo completo demorou entre 78 s e 308 s na maioria dos testes. Na seed 6, o primeiro cálculo passou dos 420 s."
+        ],
+        [
+          "Arredondamentos.",
+          "O nó de fillet só conseguiu arredondar 6 de 25 anéis, por isso as costelas ficaram sem fillet."
+        ]
+      ],
+      "resumo": "Como os suportes entram no casco, foi preciso medir e recortar as sobreposições, e o modelo completo demora a recalcular depois de mudar a seed."
+    },
+    "decisoes": [
+      [
+        "Só as pontas do casco são variáveis nos rovers.",
+        "Os suportes laterais estão a meio do comprimento, e a forma nesse ponto depende só da secção do meio. Com `largura` e `larg_meio` fixas, mudar as pontas não altera os 1198 mm."
+      ],
+      [
+        "Distâncias recalculadas, não fixadas à mão.",
+        "O nó `Calc_Distancias` mantém os 317 mm em X (para trás do centro das caixas laterais) e os 218 mm em Z (do topo do suporte de cima ao eixo dos cilindros) quando o comprimento e a altura das pontas mudam. Confirmei os 1198, 317 e 218 mm nos seis destinos, e são iguais em todos."
+      ],
+      [
+        "Recortes com a forma exterior dos suportes, sem furos.",
+        "Assim, não fica nenhum resto de costela dentro dos furos dos rolamentos."
+      ],
+      [
+        "Mais largo no meio.",
+        "Para chegar aos 1198 mm entre as superfícies exteriores dos cilindros, o casco ficou com 1100 mm de largura no meio. Com a proporção 0,8, as pontas ficam com 880 mm."
       ]
+    ],
+    "fusionDetalhe": {
+      "titulo": "Como funciona",
+      "intro": "O chassis foi construído a partir de parâmetros: valores com nome, como o comprimento ou a largura. Quando um valor muda, o Fusion recalcula a geometria que depende dele. Assim, é possível testar configurações sem redesenhar as peças.",
+      "valores": {
+        "titulo": "Valores que se escolhem e valores calculados",
+        "texto": "O modelo tem 38 parâmetros mestre, que são os valores que se escolhem, como `comprimento` (1706 mm), `largura` (1146 mm) e `altura` (460 mm). Os outros 19 são calculados por fórmulas. Por exemplo, o comprimento da caixa é `largura * 0.28`, por isso acompanha a largura do chassis.",
+        "img": {
+          "kind": "image",
+          "file": "media/m1/chassis/fusion_parametros.webp",
+          "desc": "Parâmetros do chassis na janela Change Parameters.",
+          "size": "1600×900",
+          "alt": "Janela Change Parameters do Fusion, com os parâmetros do chassis.",
+          "legenda": "Parâmetros do chassis na janela Change Parameters."
+        }
+      },
+      "alterar": {
+        "titulo": "Como alterar um valor",
+        "texto": "Em Modify, abre-se Change Parameters, escreve-se um valor ou uma fórmula e confirma-se. Os parâmetros mais usados estão marcados como favoritos e aparecem no topo da lista."
+      },
+      "painel": {
+        "titulo": "O painel de sliders",
+        "texto": "Para experimentar mais depressa, o painel tem um slider por parâmetro mestre. O modelo recalcula quando se larga o slider, normalmente em cerca de 0,5 s, e o painel indica se ficou saudável. Cada slider mostra a faixa válida encontrada nos testes e o valor original. Um valor fora da faixa é ajustado ao limite.",
+        "comandosLegenda": "Comandos do painel de sliders",
+        "colunas": [
+          "Comando",
+          "O que faz"
+        ],
+        "comandos": [
+          [
+            "Filtrar e «só ★»",
+            "Mostram só os parâmetros que interessam"
+          ],
+          [
+            "Modo rápido",
+            "Desliga temporariamente detalhes pesados, como os padrões da treliça"
+          ],
+          [
+            "Confirmar",
+            "Aceita os valores atuais e volta a ligar os detalhes"
+          ],
+          [
+            "Cancelar",
+            "Repõe os valores de quando se abriu o painel ou do último Confirmar"
+          ],
+          [
+            "Medir",
+            "Mostra quanto tempo demora cada operação do modelo"
+          ]
+        ],
+        "img": {
+          "kind": "image",
+          "file": "media/m1/chassis/fusion_painel.webp",
+          "desc": "Painel de sliders com a faixa válida de cada parâmetro.",
+          "size": "1600×900",
+          "alt": "Painel de sliders do chassis no Fusion, com a faixa válida de cada parâmetro.",
+          "legenda": "Painel de sliders com a faixa válida de cada parâmetro."
+        },
+        "faixasTitulo": "Faixas válidas dos parâmetros principais",
+        "faixasColunas": [
+          "Parâmetro",
+          "Original",
+          "Faixa válida"
+        ],
+        "faixas": [
+          [
+            "comprimento",
+            "1706 mm",
+            "1364,8 a 2388,4 mm"
+          ],
+          [
+            "largura",
+            "1146 mm",
+            "687,6 a 1260,6 mm"
+          ],
+          [
+            "altura",
+            "460 mm",
+            "276 a 644 mm"
+          ],
+          [
+            "d_furo_susp",
+            "101,6 mm",
+            "60,96 a 142,2 mm"
+          ],
+          [
+            "d_furo_ponta",
+            "110 mm",
+            "66 a 154 mm"
+          ]
+        ]
+      },
+      "configuracoes": {
+        "titulo": "Fazer configurações",
+        "texto": "Cada configuração é um conjunto de valores. Com o painel, ajustam-se os sliders, carrega-se em Confirmar e guarda-se uma versão do modelo no Fusion. Para voltar atrás, carrega-se em Cancelar antes de confirmar.",
+        "par": [
+          {
+            "kind": "image",
+            "file": "media/m1/chassis/fusion_chassis_base.webp",
+            "desc": "Valores de base: 1706 × 1146 × 460 mm",
+            "size": "1600×900",
+            "alt": "Chassis no Fusion com os valores de base: 1706 × 1146 × 460 mm.",
+            "legenda": "Valores de base: 1706 × 1146 × 460 mm"
+          },
+          {
+            "kind": "image",
+            "file": "media/m1/chassis/fusion_chassis_variante.webp",
+            "desc": "Variante: 1500 × 1000 × 400 mm",
+            "size": "1600×900",
+            "alt": "Variante do chassis no Fusion: 1500 × 1000 × 400 mm.",
+            "legenda": "Variante: 1500 × 1000 × 400 mm"
+          }
+        ]
+      }
+    },
+    "passosTitulos": {
+      "dois": "Fusion e BeeGraphy",
+      "configuracoes": "Fusion: fazer configurações",
+      "painel": "Fusion: o painel de sliders",
+      "difícil": "BeeGraphy: o que foi difícil",
+      "valores": "BeeGraphy: o chassis de cada destino",
+      "seeds": "BeeGraphy: designs por seed"
     }
   },
   "suspensao": {
@@ -353,5 +700,35 @@
       ],
       "proximo": "Ver o plano do M2"
     }
+  },
+  "transferencias": {
+    "estado": "Em breve",
+    "aviso": "Ainda não está disponível.",
+    "braco": [
+      {
+        "tipo": "ficheiro",
+        "rotulo": "Descarregar o CAD do braço",
+        "destino": ""
+      }
+    ],
+    "chassis": [
+      {
+        "tipo": "ficheiro",
+        "rotulo": "Descarregar o CAD do chassis paramétrico",
+        "destino": ""
+      },
+      {
+        "tipo": "link",
+        "rotulo": "Abrir os sliders no BeeGraphy",
+        "destino": ""
+      }
+    ],
+    "suspensao": [
+      {
+        "tipo": "ficheiro",
+        "rotulo": "Descarregar os ficheiros e o CAD das suspensões",
+        "destino": ""
+      }
+    ]
   }
 }

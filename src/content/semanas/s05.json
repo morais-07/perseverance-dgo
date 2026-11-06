@@ -2,11 +2,11 @@
   "semana": 5,
   "data": "15 out",
   "fase": "M1",
-  "titulo": "Design paramétrico, algorítmico e generativo",
+  "titulo": "Primeiros testes paramétricos",
   "tema": "Design paramétrico, algorítmico e generativo. Scripting em CAD.",
   "texto": [
-    "Semana de pré-design generativo. Testámos tabelas de parâmetros no Fusion, com elipses, círculos e planos a controlar a forma das peças e várias configurações a partir do mesmo modelo.",
-    "Nuno: escolha da estratégia «um rover para cada planeta» e primeira versão do sketch paramétrico do joelho (captura do Fusion e OpenCV)."
+    "Definimos a estratégia de um rover para cada planeta e começámos a preparar o design generativo. Testámos formas controladas por parâmetros e tabelas de configurações no Fusion.",
+    "Na suspensão, extraímos o contorno do joelho, desenhámos um sketch base e gerámos cinco designs aleatórios, com a massa entre −14,9 % e +10,5 % face à base."
   ],
   "etiqueta": null,
   "apresentacao": false,

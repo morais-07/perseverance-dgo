@@ -156,7 +156,7 @@ function alvo(page, tab, extra) {
 
 /**
  * Vai até à secção e mantém-na no sítio enquanto as imagens acima dela carregam e mudam a altura da página.
- * Para assim que a pessoa mexe na página, ou ao fim de 4 segundos.
+ * Para assim que a pessoa mexe na página, ou ao fim de 8 segundos.
  */
 function irPara(sec, suave = false) {
   const animar = suave && !reducedMotion();
@@ -175,12 +175,12 @@ function irPara(sec, suave = false) {
     clearTimeout(limite);
     EVENTOS.forEach((n) => removeEventListener(n, parar));
   };
-  const limite = setTimeout(parar, 4000);
+  const limite = setTimeout(parar, 8000);
   EVENTOS.forEach((n) => addEventListener(n, parar, { passive: true }));
   onLeave(parar);
   if (!animar) manter();
 }
-const EVENTOS = ['wheel', 'touchstart', 'keydown', 'mousedown'];
+const EVENTOS = ['wheel', 'touchstart', 'keydown', 'pointerdown'];
 
 /** Índice da página: leva à secção sem remontar a página e acompanha o scroll. */
 function initIndice(el) {

@@ -1009,7 +1009,7 @@ a.pager-l:hover .pager-ic { background: var(--mars); color: #000; }
 .sec-cola .table-wrap { margin-top: var(--s5); }
 .sec-cola .pg-sec a { color: var(--mars); }
 @media (max-width: 860px) {
-  .m1-equipa, .m1-duas, .m1-conc { grid-template-columns: 1fr; }
+  .m1-equipa, .m1-duas, .m1-conc { grid-template-columns: minmax(0, 1fr); }
   .m1-grade-braco { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .m1-grade-4, .m1-grade-susp { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -1062,3 +1062,46 @@ a.pager-l:hover .pager-ic { background: var(--mars); color: #000; }
   .susp-l { grid-template-columns: 70px 1fr 54px 44px; }
   .susp-ref { left: calc(70px + var(--s2) + (100% - 70px - 54px - 44px - 3 * var(--s2)) * 0.7416); }
 }
+
+/* ═════════ M1: chassis no BeeGraphy ═════════ */
+.m1-fluxo { list-style: none; margin: 0; padding: 0; counter-reset: fx; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); }
+.m1-fluxo li { counter-increment: fx; display: grid; align-content: start; gap: var(--s1); padding: var(--s4); border: 1px solid var(--line-d); background: rgba(255, 255, 255, 0.025); }
+.m1-fluxo b::before { content: counter(fx) ' · '; color: var(--mars); }
+.m1-fluxo span { font-size: 0.92rem; color: #c9cad3; }
+.m1-sep-p { margin-top: var(--s5); }
+.m1-codigo { max-width: 100%; margin: var(--s3) 0 var(--s4); padding: var(--s3) var(--s4); overflow-x: auto; background: #000; border: 1px solid var(--line-d); border-radius: var(--r); font-family: var(--f-mono); font-size: 0.82rem; line-height: 1.5; color: #e4e5ea; }
+.sec-cola code { font-family: var(--f-mono); font-size: 0.88em; }
+.m1-marcas { list-style: disc; padding-left: 1.2em; display: grid; gap: var(--s3); font-size: 0.95rem; }
+.m1-marcas b { color: #fff; }
+.m1-decisao-lista { margin-top: 0; padding: var(--s4) var(--s5); }
+.m1-decisao-lista h5 { margin-bottom: var(--s3); }
+.m1-fig-pequena { max-width: 460px; }
+@media (max-width: 860px) { .m1-fluxo { grid-template-columns: 1fr; } }
+
+/* ═════════ M1: parametrização do chassis no Fusion ═════════ */
+.m1-slot { margin: 0; }
+.m1-slot .slot img { object-fit: contain; background: #000; }
+.m1-slot .slot.has-media { cursor: zoom-in; }
+.m1-slot figcaption { margin-top: var(--s2); font-size: 0.86rem; color: var(--dust); }
+.m1-fusion .table-wrap { font-size: 0.92rem; }
+.m1-fusion table { min-width: 0; }
+.m1-botoes { display: flex; flex-wrap: wrap; gap: var(--s3); margin: var(--s4) 0 var(--s5); }
+.m1-slot .slot.has-media { aspect-ratio: auto; }
+.m1-slot .slot.has-media img { position: static; display: block; height: auto; }
+
+/* ═════════ M1: o mesmo início e os mesmos passos em todos os componentes ═════════ */
+.m1-parte { margin-bottom: var(--s5); padding: var(--s5) var(--s6); background: rgba(255, 122, 0, 0.12); border: 1px solid rgba(255, 122, 0, 0.55); border-radius: var(--r); }
+.sec .m1-parte h3 { margin: 0 0 var(--s1); font-size: clamp(1.8rem, 3.8vw, 3rem); font-weight: 800; font-stretch: 72%; line-height: 1.02; }
+.m1-parte .m1-quem { margin: 0; font-size: 1.05rem; }
+.m1-parte .m1-botoes { margin: var(--s4) 0 0; }
+.pg-sec + .pg-sec { margin-top: var(--s9); }
+.m1-passo > p:first-of-type { margin-top: 0; }
+.m1-passo .m1-limites { margin-top: 0; }
+.m1-passo > .m1-fig, .m1-passo > .m1-grade { margin-top: var(--s3); }
+.m1-braco-foto { display: grid; grid-template-columns: minmax(150px, 240px) minmax(0, 1fr); gap: var(--s4); align-items: start; }
+.m1-braco-foto h5 { margin: 0 0 var(--s2); }
+.m1-det .m1-listas { margin-bottom: var(--s4); }
+.m1-det .m1-listas ul { padding: 0; list-style: none; }
+@media (max-width: 860px) { .m1-parte { padding: var(--s4); } .m1-braco-foto { grid-template-columns: minmax(0, 1fr); } }
+.m1-passos { grid-template-columns: minmax(0, 1fr); }
+.m1-passo, .m1-det { min-width: 0; }

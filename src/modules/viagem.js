@@ -38,7 +38,7 @@ const sheetHtml = (d) => {
             ? `<p>Chassis: comprimento de ${fmt(d.chassis.comprimento)} mm, ${d.chassis.nCostelas} costelas de ${d.chassis.espCostela} mm de espessura, anéis de ${d.chassis.largAnel} mm de largura e ${d.chassis.nLongarinas} longarinas de ${d.chassis.raioLongarina} mm de raio.</p>`
             : `<p>${esc(data.chassisFusion)}</p>`
         }
-        <p>${tbc(data.adaptacaoModelo.replace('{nome}', d.nome))}</p>
+        <p>Braço: tubo 1 com Ø${d.braco.dTubo1} mm e ${d.braco.compTubo1} mm de comprimento (${d.braco.c3Nr} furos de Ø${d.braco.c3D} mm); tubo 2 com Ø${d.braco.dTubo2} mm e ${d.braco.compTubo2} mm de comprimento (${d.braco.c6Nr} furos de Ø${d.braco.c6D} mm).</p>
         <p class="note">${esc(data.corNota)}</p>
       </div>
       <figure><img src="${asset(`media/m1/suspensao/passo5_suspensao_${d.id}.webp`)}" alt="Suspensão completa para ${esc(d.nome)}: a laranja, as peças geradas." loading="lazy" /><figcaption>Suspensão</figcaption></figure>

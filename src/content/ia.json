@@ -8,11 +8,15 @@
     },
     {
       "rotulo": "Tarefas apoiadas",
-      "valor": "Apenas o website: estrutura e código, organização do conteúdo e geração de texto (redação dos textos de contexto sobre a missão)."
+      "valor": "No website: estrutura e código, organização do conteúdo e geração de texto (redação dos textos de contexto sobre a missão). O apoio no trabalho do M1 está descrito nos itens seguintes."
     },
     {
       "rotulo": "M1 · suspensão (Nuno)",
       "valor": "Claude (Anthropic) como copiloto na escrita dos scripts Python (leitura do STEP, calibração, gerador de variantes, análise de esforços, figuras) e na preparação dos slides. A definição do problema, a escolha dos planetas, critérios e materiais, a modelação no Rhino/Grasshopper, as simulações no Intact e a validação dos resultados foram feitas pelo Nuno."
+    },
+    {
+      "rotulo": "M1 · chassis no Fusion (Rafael)",
+      "valor": "Claude (Anthropic), através do Claude Code, na auditoria dos parâmetros, nos testes de robustez, em correções do modelo e na criação do painel de sliders. A modelação do chassis e as decisões de projeto foram feitas pelo Rafael."
     },
     {
       "rotulo": "Prompts",

@@ -2,11 +2,11 @@
   "semana": 6,
   "data": "22 out",
   "fase": "M1",
-  "titulo": "Integração de simulação estrutural",
+  "titulo": "Parametrização e primeira análise",
   "tema": "Integração de simulação numérica estrutural.",
   "texto": [
-    "Nuno: leitura direta do STEP em Python, calibração do sketch de 16 parâmetros (IoU 0,948) e análise analítica dos esforços.",
-    "Braço: parâmetros dos tubos e das juntas numa tabela do Fusion. Chassis: tabela de parâmetros no Fusion e um primeiro design conceitual no BeeGraphy."
+    "Parametrizámos o braço e o chassis no Fusion, com tabelas de parâmetros, e fizemos o primeiro design conceitual do chassis no BeeGraphy.",
+    "Na suspensão, passámos a ler o STEP diretamente em Python, calibrámos o sketch de 16 parâmetros (IoU 0,948) e analisámos os esforços da peça como viga curva, com variantes por função e material no Rhino."
   ],
   "etiqueta": null,
   "apresentacao": false,
